@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Meteor } from "meteor/meteor";
+import { Accounts } from "meteor/accounts-base";
 
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,27 +15,30 @@ export default class Login extends React.Component {
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
 
-    Meteor.loginWithPassword({email}, password, (err) => {
+    if (password.length < 6) {
+      return this.setState({error: "Passwort muss länger als 5 Zeichen sein"});
+    }
+
+    Accounts.createUser({email, password}, (err) => {
       if (err) {
-        this.setState({error: "Login nicht möglich. Überprüfe Email und Passwort"});
+        this.setState({error: err.reason});
       } else {
         this.setState({error: ""});
       }
     });
   }
   render() {
-    return(
+    return (
       <div>
-        <h1>Team Manager</h1>
-
+        <h1>Erstelle einen Account</h1>
         {this.state.error ? <p>{this.state.error}</p> : undefined}
 
         <form onSubmit={this.onSubmit.bind(this)} noValidate>
           <input type="email" ref="email" name="email" placeholder="Email"/>
           <input type="password" ref="password" name="password" placeholder="Passwort"/>
-          <button>Einloggen</button>
+          <button>Account erstellen</button>
         </form>
-        <Link to="/signup" replace>Account erstellen</Link>
+        <Link to="/" replace>Du hast bereits einen Account?</Link>
       </div>
     );
   }
