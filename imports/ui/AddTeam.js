@@ -6,14 +6,9 @@ export default class AddTeam extends React.Component {
     let teamName = e.target.teamName.value;
 
     e.preventDefault();
-
-    if(teamName){
-      e.target.teamName.value = '';
-      Teams.insert({
-        name: teamName
-      });
+    Meteor.call('teamAdd', teamName);
+    e.target.teamName.value = '';
     }
-  }
   render(){
     return(
       <div>
