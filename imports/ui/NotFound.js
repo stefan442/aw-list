@@ -5,7 +5,7 @@ export default class NotFound extends React.Component {
   render() {
     return (
       <div>
-        <p>Not Found</p>
+        <p>Not Found 404</p>
         <Link to="/" replace>Zurück zum Login</Link>
       </div>
     );
