@@ -1,7 +1,6 @@
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from "meteor/accounts-base";
+import {Accounts} from "meteor/accounts-base";
 
-import { signupSchema } from "./schemas.js";
+import {signupSchema} from "./schemas.js";
 
 Accounts.validateNewUser((user) => {
 
