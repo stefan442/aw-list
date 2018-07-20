@@ -1,11 +1,10 @@
 import './main.html';
-import { Meteor } from "meteor/meteor";
-import { Tracker } from "meteor/tracker";
+import {Meteor} from "meteor/meteor";
+import {Tracker} from "meteor/tracker";
 import React from "react";
 import ReactDOM from "react-dom";
-import SimpleSchema from "simpl-schema";
 
-import { AppRouter, history, onAuthChange } from "../imports/routes/AppRouter.js";
+import {AppRouter, onAuthChange} from "../imports/routes/AppRouter.js";
 import "../imports/startup/simple-schema-configuration.js";
 
 Tracker.autorun(() => {
@@ -15,4 +14,4 @@ Tracker.autorun(() => {
 
 Meteor.startup(() => {
   ReactDOM.render(<AppRouter/>, document.getElementById("app"));
-})
+});
