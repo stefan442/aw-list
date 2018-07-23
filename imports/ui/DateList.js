@@ -17,9 +17,11 @@ import { Players } from './../api/players.js';
 export default class DateList extends React.Component{
   constructor(props) {
     super(props);
+    let teamId = this.props.match.params._id;
     this.state = {
       dates: [],
       players:[],
+      teamId: teamId,
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
@@ -68,9 +70,12 @@ export default class DateList extends React.Component{
    }
 
    switchToPlayer(){
-     this.props.history.push('/playerslist');
+     this.props.history.push('/playerslist/' + this.state.teamId);
    }
 
+   switchToTeams(){
+     this.props.history.push('/teampage');
+   }
 
   onSubmitDate = (e) => {
      e.preventDefault();
@@ -78,6 +83,7 @@ export default class DateList extends React.Component{
                   date: e.target.date.value,
                   art: e.target.art.value,
                   info: e.target.info.value,
+                  teamId: this.state.teamId,
                 };
     Meteor.call('onSubmitDate', date);
     e.target.date.value = "";
@@ -96,6 +102,7 @@ export default class DateList extends React.Component{
 
     return(
       <div>
+        <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
         <button onClick={this.switchToPlayer.bind(this)}>Spieler Liste</button>
         <button onClick={this.handleOpenModalDate}>Termin hinzufügen</button>
         <ReactTable
@@ -113,7 +120,6 @@ export default class DateList extends React.Component{
           ]}
           className="-striped -highlight"
         />
-
 
 
         <Modal

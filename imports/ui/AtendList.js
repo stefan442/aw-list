@@ -48,7 +48,7 @@ export default class AtendList extends React.Component {
 
 //route zur DateList
   goToApp() {
-    this.props.history.push('/datelist');
+    this.props.history.replace('/datelist/' + this.state.date.teamId);
   }
 
   addAtend(e){
@@ -56,7 +56,7 @@ export default class AtendList extends React.Component {
   }
   dateDelete(e) {
     Meteor.call('dateDelete', e);
-    this.props.history.push('/datelist');
+    this.props.history.replace('/datelist/' + this.state.date.teamId);
 
   }
 

@@ -15,8 +15,10 @@ import { Players } from './../api/players.js';
 export default class PlayersList extends React.Component{
   constructor(props) {
     super(props);
+    let teamId = this.props.match.params._id;
     this.state = {
       players:[],
+      teamId: teamId,
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
@@ -34,7 +36,7 @@ export default class PlayersList extends React.Component{
     );
   }
   switchToDates(){
-    this.props.history.push('/datelist');
+    this.props.history.push('/datelist/' + this.state.teamId);
   }
 
   handleOpenModalPlayer () {
@@ -50,7 +52,7 @@ export default class PlayersList extends React.Component{
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
-
+                    teamId: this.state.teamId,
                   };
       Meteor.call('onSubmitPlayer', player)
       e.target.name.value = "";
@@ -64,12 +66,19 @@ export default class PlayersList extends React.Component{
       this.props.history.push('/playerprofil/' + _id);
     }
 
+    switchToTeams(){
+      this.props.history.push('/teampage');
+    }
+
+
     render() {
       let players = this.state.players;
 
 
       return(
         <div>
+          <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
+
           <button onClick={this.switchToDates.bind(this)}>Termin Liste</button>
           <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
           <p> {players.name} </p>
@@ -89,7 +98,7 @@ export default class PlayersList extends React.Component{
                 accessor: "countdays",
               },
 
-              
+
               ]}
               defaultPageSize={10}
               className="-striped -highlight"

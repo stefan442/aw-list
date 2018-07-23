@@ -6,12 +6,12 @@ import {Atendence} from './atendence.js';
 
 
 Meteor.methods({
-  'createAtendence' (dateId){
+  'createAtendence' ({dateId, teamId}){
     let players = Players.find().fetch();
       let atendence = Atendence.find({date: dateId}).fetch();
         if(atendence == undefined || atendence.length <= 0){
             players = players.map((player) =>{
-                Atendence.insert({"date": dateId, "player": player._id, "atend": false});
+                Atendence.insert({"date": dateId, "player": player._id, "atend": false, "teamId": teamId});
                 Players.update({_id: player._id}, {$inc: {"countdays": 1}});
                 return player;
             }
@@ -29,7 +29,7 @@ Meteor.methods({
             );
 
             if(playerExist == undefined ) {
-              Atendence.insert({"date": dateId, "player": player._id, "atend": false, "buttontext": "false" });
+              Atendence.insert({"date": dateId, "player": player._id, "atend": false, "buttontext": "false", "teamId": teamId });
               Players.update({_id: player._id}, {$inc: {"countdays": 1}});
               }
           }
@@ -37,6 +37,7 @@ Meteor.methods({
       }
     }
   },
+  
   'dateDelete' (dateRow){
 
      let players = Players.find().fetch();

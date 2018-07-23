@@ -16,12 +16,13 @@ if(Meteor.isServer){
 Meteor.methods({
   'onSubmitDate' (dateRow){
     let id;
+
     if (dateRow.date && dateRow.art){
-      id = Dates.insert({"date": dateRow.date, "art": dateRow.art, "info": dateRow.info});
+      id = Dates.insert({"date": dateRow.date, "art": dateRow.art, "info": dateRow.info, "teamId": dateRow.teamId});
 
     }
 
-    Meteor.call('createAtendence', id);
+    Meteor.call('createAtendence', {dateId: id, teamId: dateRow.teamId});
 
   },
 
