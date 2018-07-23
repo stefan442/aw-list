@@ -8,6 +8,8 @@ import Signup from "../ui/Signup";
 import NotFound from "../ui/NotFound";
 import Login from "../ui/Login";
 import DateList from "../ui/DateList";
+import AtendList from "../ui/AtendList";
+import PlayersList from "../ui/PlayersList";
 
 //tabellen fuer anwesenheitsliste
 import { Dates } from './../api/dates.js';
@@ -15,7 +17,7 @@ import { Players } from './../api/players.js';
 import { Atendence } from './../api/atendence.js';
 
 const unauthenticatedPages = ["/", "/signup"];
-const authenticatedPages = ["/dates"];
+const authenticatedPages = ["/datelist"];
 
 export const onAuthChange = (isAuthenticated) => {
   const pathname = history.location.pathname;
@@ -24,7 +26,7 @@ export const onAuthChange = (isAuthenticated) => {
 
   if (isAuthenticated) {
     if (isUnauthenticatedPage) {
-      history.replace("/dates");
+      history.replace("/datelist");
     }
   } else {
     if (isAuthenticatedPage) {
@@ -49,7 +51,7 @@ export class AppRouter extends React.Component {
 
   onEnterPublicPage() {
     if (Meteor.userId()) {
-      this.props.history.replace("/dates");
+      this.props.history.replace("/datelist");
     }
   }
   onEnterPrivatePage() {
@@ -57,18 +59,6 @@ export class AppRouter extends React.Component {
       this.props.history.replace("/");
     }
   }
-  //
-  // renderAtendenceList = (props) => {
-  //   let dates = this.state.dates;
-  //   let players = this.state.players;
-  //
-  //   return(<App dates={dates} players={players} {...props}/>)
-  // };
-  //
-  // renderAtend = (props) => {
-  //   Meteor.call('createAtendence', props);
-  //   return(<Atend {...props}/>);
-  // };
 
 
 
@@ -79,7 +69,9 @@ export class AppRouter extends React.Component {
         <Switch>
           <Route path="/" component={Login} exact={true} onEnter={this.onEnterPublicPage}/>
           <Route path="/signup" component={Signup} onEnter={this.onEnterPublicPage}/>
-          <Route exact path="/dates" component={DateList}/>
+          <Route exact path="/datelist" component={DateList}/>
+          <Route exact path="/atendlist/:id" component={AtendList}/>
+          <Route exact path="/playerslist" component={PlayersList}/>
 
           <Route path="*" component={NotFound}/>
         </Switch>
