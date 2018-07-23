@@ -52,7 +52,7 @@ export class AppRouter extends React.Component {
 
   onEnterPublicPage() {
     if (Meteor.userId()) {
-      this.props.history.replace("/datelist");
+      this.props.history.replace("/teampage");
     }
   }
   onEnterPrivatePage() {
@@ -70,10 +70,7 @@ export class AppRouter extends React.Component {
         <Switch>
           <Route path="/" component={Login} exact={true} onEnter={this.onEnterPublicPage}/>
           <Route path="/signup" component={Signup} onEnter={this.onEnterPublicPage}/>
-          <Route exact path="/datelist" component={DateList}/>
-          <Route exact path="/atendlist/:_id" component={AtendList}/>
-          <Route exact path="/playerslist" component={PlayersList}/>
-          <Route exact path="/playerprofil/:_id" component={PlayerProfil}/>
+          <Route path="/teampage" component={TeamPage}/>
           <Route path="*" component={NotFound}/>
         </Switch>
       </Router>
