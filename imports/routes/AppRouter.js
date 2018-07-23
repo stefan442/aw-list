@@ -10,6 +10,7 @@ import Login from "../ui/Login";
 import DateList from "../ui/DateList";
 import AtendList from "../ui/AtendList";
 import PlayersList from "../ui/PlayersList";
+import PlayerProfil from "../ui/PlayerProfil";
 
 //tabellen fuer anwesenheitsliste
 import { Dates } from './../api/dates.js';
@@ -70,9 +71,9 @@ export class AppRouter extends React.Component {
           <Route path="/" component={Login} exact={true} onEnter={this.onEnterPublicPage}/>
           <Route path="/signup" component={Signup} onEnter={this.onEnterPublicPage}/>
           <Route exact path="/datelist" component={DateList}/>
-          <Route exact path="/atendlist/:id" component={AtendList}/>
+          <Route exact path="/atendlist/:_id" component={AtendList}/>
           <Route exact path="/playerslist" component={PlayersList}/>
-
+          <Route exact path="/playerprofil/:_id" component={PlayerProfil}/>
           <Route path="*" component={NotFound}/>
         </Switch>
       </Router>

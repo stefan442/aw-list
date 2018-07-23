@@ -68,5 +68,11 @@ Meteor.methods({
       Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}});
     }
   },
+  'playerDelete'(playerRow){
+
+    Atendence.remove({player: playerRow._id});
+    Players.remove({_id: playerRow._id});
+  },
+
 
 })

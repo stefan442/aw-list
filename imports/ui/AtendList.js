@@ -19,7 +19,8 @@ import { Atendence } from './../api/atendence.js';
 export default class AtendList extends React.Component {
   constructor(props) {
     super(props);
-    let date = Dates.find({_id: this.props.match.params._id}).fetch();
+    let date = Dates.findOne({_id: this.props.match.params._id});
+
     this.state = {
       players: [],
       atendence: [],
@@ -53,6 +54,11 @@ export default class AtendList extends React.Component {
   addAtend(e){
       Meteor.call ('toggleAtendence', {playerRow: e, today: this.props.match.params._id});
   }
+  dateDelete(e) {
+    Meteor.call('dateDelete', e);
+    this.props.history.push('/datelist');
+
+  }
 
   render(){
     let date  = this.state.date;
@@ -77,9 +83,8 @@ export default class AtendList extends React.Component {
       <div>
         <p>Spielerliste</p>
         <button onClick={this.goToApp.bind(this)}>&#x2299;</button>
-
-        <p> {date._id}</p>
-        <p> {date.info}</p>
+        <button onClick={() => this.dateDelete(date).bind(this)}>-</button>,
+        <p> {date.date}</p>
         <p> Info: {date.info} </p>
         <ReactTable
           data = {players}
