@@ -49,12 +49,20 @@ export default class PlayerProfil extends React.Component{
   }
 
   goToPlayersList() {
+<<<<<<< HEAD
     this.props.history.push('/playerslist');
+=======
+    this.props.history.push('/playerslist/' + this.state.player.teamId);
+>>>>>>> 7a7752cc0ee886ea9fa28dbfffb44624c115b200
   }
 
   playerDelete(e) {
     Meteor.call('playerDelete', e);
+<<<<<<< HEAD
     this.props.history.push('/playerslist');
+=======
+    this.props.history.push('/playerslist/' + this.state.player.teamId);
+>>>>>>> 7a7752cc0ee886ea9fa28dbfffb44624c115b200
 
   }
 
@@ -89,7 +97,11 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}}>-</button>,
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
+<<<<<<< HEAD
       <p>Anwesenheit: {() => {this.calculatAtendence.bind(this)}</p>
+=======
+      <p>Anwesenheit: {() => {this.calculatAtendence.bind(this)}}</p>
+>>>>>>> 7a7752cc0ee886ea9fa28dbfffb44624c115b200
 
       <ReactTable
         data = {dates}
