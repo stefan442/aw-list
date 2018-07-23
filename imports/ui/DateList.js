@@ -63,7 +63,6 @@ export default class DateList extends React.Component{
 
 //route zur anwesenheitsliste
    goToAtend(e) {
-     console.log(e);
      let _id = e._id;
      this.props.history.push('/atendlist/' + _id);
    }

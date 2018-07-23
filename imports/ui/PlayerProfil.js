@@ -58,6 +58,12 @@ export default class PlayerProfil extends React.Component{
 
   }
 
+  // calculatAtendence(){
+  //   let percentage =
+  //
+  // }
+
+
   render(){
     let player = this.state.player;
     let dates = this.state.dates;
@@ -83,7 +89,7 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}}>-</button>,
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
-      <p>Anwesenheit</p>
+      <p>Anwesenheit: {() => {this.calculatAtendence.bind(this)}</p>
 
       <ReactTable
         data = {dates}
