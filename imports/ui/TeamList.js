@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Tracker} from 'meteor/tracker';
 
-import Teamfunc from './Teamfunc.js';
+import TeamFunc from './TeamFunc.js';
 import {Teams} from '../api/teams.js';
 
 export default class TeamList extends React.Component {
@@ -31,7 +31,7 @@ export default class TeamList extends React.Component {
       )
     } else {
       return this.state.teams.map((team) => {
-        return <Teamfunc key={team._id} team={team} {...this.props}/>;
+        return <TeamFunc key={team._id} team={team} {...this.props}/>;
       });
     }
   }
