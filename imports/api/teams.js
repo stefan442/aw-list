@@ -11,18 +11,10 @@ if(Meteor.isServer){
 
 Meteor.methods({
     'teamAdd'(team){
-      debugger;
       if(team){
         Teams.insert({
           name: team
         });
       }
-    },
-
-    //remove in methods mit allen tabellen
-    'teamRemove'(teamID){
-      Teams.remove({
-        _id: teamID
-      });
     }
-});
+    });

@@ -17,7 +17,7 @@ export default class TeamFunc extends React.Component {
             <button onClick={() => {
               this.props.history.replace('/datelist/' + this.props.team._id)
             }}>{this.props.team.name}</button>
-            <button onClick={() => Meteor.call('teamRemove', this.props.team._id)}>
+            <button onClick={() => Meteor.call('teamFullRemove', this.props.team._id)}>
               Mannschaft löschen
             </button>
           </div>
