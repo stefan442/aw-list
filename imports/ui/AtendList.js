@@ -82,6 +82,7 @@ export default class AtendList extends React.Component {
     Meteor.call('onSubmitPlayer', player)
     e.target.name.value = "";
     this.handleCloseModalPlayer();
+
   }
 
   updateAtendence(){
@@ -111,12 +112,15 @@ export default class AtendList extends React.Component {
     })
 
     let noAtendPlayer = players.map((player) => {
+
       let noAtend = this.state.atendence.find((obj) => {
-        if(obj.player != player._id){
+        if(obj.player == player._id){
           return obj;
         }
-      })
-      return player;
+      });
+      if(noAtend == undefined){
+        return player;
+      }
     })
 
     return (
@@ -160,6 +164,11 @@ export default class AtendList extends React.Component {
          shouldCloseOnOverlayClick={false}
       >
         <p> Spieler hinzufuegen</p>
+
+
+
+
+
         <form onSubmit={this.onSubmitPlayer.bind(this)}>
           <input type="text" name="name" placeholder="name"  />
           <input type="text" name="phone" placeholder="phone"  />

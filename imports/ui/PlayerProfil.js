@@ -20,7 +20,7 @@ import { Atendence } from './../api/atendence.js';
 export default class PlayerProfil extends React.Component{
   constructor(props) {
     super(props);
-    debugger
+
     let player = Players.findOne({_id: this.props.match.params._id});
 
 
@@ -76,7 +76,6 @@ export default class PlayerProfil extends React.Component{
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
-      debugger;
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.date == date._id){
           return obj;
