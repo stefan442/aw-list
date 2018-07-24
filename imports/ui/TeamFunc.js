@@ -8,6 +8,7 @@ import {history, AppRouter} from '../routes/AppRouter.js';
 
 export default class TeamFunc extends React.Component {
 
+
       render(){
         return(
           <div>

@@ -8,6 +8,7 @@ import {Mongo} from 'meteor/mongo';
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
+import Modal from 'react-modal';
 
 import './../../client/main.html';
 import DateList from './DateList.js';
@@ -26,6 +27,8 @@ export default class AtendList extends React.Component {
       atendence: [],
       date: date,
     }
+    this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
+    this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
 
   componentDidMount(){
@@ -37,7 +40,7 @@ export default class AtendList extends React.Component {
 
         Meteor.subscribe("players");
         let playerIds = atendence.map((atend) =>{return atend.player});
-        const players = Players.find(_id: {$in: playerIds}).fetch();
+        const players = Players.find({_id: {$in: playerIds}}).fetch();
         this.setState({ players });
 
       }
@@ -61,32 +64,68 @@ export default class AtendList extends React.Component {
     this.props.history.replace('/datelist/' + this.state.date.teamId);
 
   }
+  handleOpenModalPlayer () {
+    this.setState({ showModalPlayer: true });
+  }
+
+  handleCloseModalPlayer () {
+     this.setState({ showModalPlayer: false });
+  }
+
+  onSubmitPlayer = (e) => {
+    e.preventDefault();
+    let player = {
+                  name: e.target.name.value,
+                  phoneNumber: e.target.phone.value,
+                  teamId: this.state.teamId,
+                };
+    Meteor.call('onSubmitPlayer', player)
+    e.target.name.value = "";
+    this.handleCloseModalPlayer();
+  }
+
+  updateAtendence(){
+
+
+  }
+
 
   render(){
     let date  = this.state.date;
     let players = this.state.players;
 
     players = players.map((player) => {
-    let atendDB = this.state.atendence.find((obj) => {
-      if(obj.player == player._id){
-        return obj;
+      let atendDB = this.state.atendence.find((obj) => {
+        if(obj.player == player._id){
+          return obj;
+        }
+      });
+      let atend = false;
+      if(atendDB){
+        atend = atendDB.atend;
       }
-    });
-    let atend = false;
-    if(atendDB){
-      atend = atendDB.atend;
-    }
-    return {
-      ...player,
-      buttontext: atend + "",
-    }
+      return {
+        ...player,
+        buttontext: atend + "",
+      }
+    })
+
+    let noAtendPlayer = players.map((player) => {
+      let noAtend = this.state.atendence.find((obj) => {
+        if(obj.player != player._id){
+          return obj;
+        }
+      })
+      return player;
     })
 
     return (
       <div>
         <p>Spielerliste</p>
         <button onClick={this.goToApp.bind(this)}>&#x2299;</button>
-        <button onClick={() => this.dateDelete(date).bind(this)}>-</button>,
+        <button onClick={() => this.dateDelete(date).bind(this)}>-</button>
+        <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
+
         <p> {date.date}</p>
         <p> Info: {date.info} </p>
         <ReactTable
@@ -114,7 +153,21 @@ export default class AtendList extends React.Component {
           ]
         }
       />
+      <Modal
+         isOpen={this.state.showModalPlayer}
+         contentLabel="onRequestClose Example"
+         onRequestClose={this.handleCloseModalPlayer}
+         shouldCloseOnOverlayClick={false}
+      >
+        <p> Spieler hinzufuegen</p>
+        <form onSubmit={this.onSubmitPlayer.bind(this)}>
+          <input type="text" name="name" placeholder="name"  />
+          <input type="text" name="phone" placeholder="phone"  />
+          <button type="submit">OK!</button>
+        </form>
+        <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>,
 
+      </Modal>
       </div>
 
     );
