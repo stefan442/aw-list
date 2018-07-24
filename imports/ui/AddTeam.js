@@ -3,6 +3,7 @@ import {Teams} from '../api/teams.js';
 
 export default class AddTeam extends React.Component {
   handleSubmit(e){
+    debugger;
     let teamName = e.target.teamName.value;
 
     e.preventDefault();

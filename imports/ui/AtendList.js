@@ -30,14 +30,16 @@ export default class AtendList extends React.Component {
 
   componentDidMount(){
     this.playersTracker = Tracker.autorun(() => {
-        Meteor.subscribe("players");
-        const players = Players.find().fetch();
-        this.setState({ players });
 
         Meteor.subscribe("atendence");
-        let playerIds = players.map((player) =>{return player._id});
-        const atendence = Atendence.find({date: this.props.match.params._id, player: {$in: playerIds}}).fetch();
+        const atendence = Atendence.find({date: this.props.match.params._id, teamId: this.state.date.teamId}).fetch();
         this.setState({ atendence });
+
+        Meteor.subscribe("players");
+        let playerIds = atendence.map((atend) =>{return atend.player});
+        const players = Players.find(_id: {$in: playerIds}).fetch();
+        this.setState({ players });
+
       }
     );
   }
@@ -63,6 +65,7 @@ export default class AtendList extends React.Component {
   render(){
     let date  = this.state.date;
     let players = this.state.players;
+
     players = players.map((player) => {
     let atendDB = this.state.atendence.find((obj) => {
       if(obj.player == player._id){
