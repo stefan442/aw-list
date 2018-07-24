@@ -87,7 +87,6 @@ export default class AtendList extends React.Component {
 
   updateAtendence(){
 
-
   }
 
 

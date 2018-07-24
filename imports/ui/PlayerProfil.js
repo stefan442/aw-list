@@ -67,10 +67,6 @@ export default class PlayerProfil extends React.Component{
   //
   // }
 
-  renderPlayer(){
-
-    return
-  }
 
 
   render(){
