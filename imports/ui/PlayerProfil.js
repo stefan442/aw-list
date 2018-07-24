@@ -31,19 +31,15 @@ export default class PlayerProfil extends React.Component{
   }
   componentDidMount(){
   this.playersTracker = Tracker.autorun(() => {
-    // debugger;
       Meteor.subscribe("atendence");
       debugger;
-      // let dateId = dates.map((date) =>{return date._id});
       const atendence = Atendence.find({player: this.state.player._id}).fetch();
       this.setState({ atendence });
 
       Meteor.subscribe("dates");
       let dateId = atendence.map((atend) =>{return atend.date});
-
       const dates = Dates.find({_id: {$in: dateId}}).fetch();
       this.setState({ dates });
-     // debugger;
 
       }
     );
@@ -71,11 +67,11 @@ export default class PlayerProfil extends React.Component{
   // }
 
 
+
   render(){
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
-      debugger;
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.date == date._id){
           return obj;
