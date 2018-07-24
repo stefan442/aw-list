@@ -30,7 +30,7 @@ export default class PlayersList extends React.Component{
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {
         Meteor.subscribe("players");
-        const players = Players.find().fetch();
+        const players = Players.find({teamId: this.state.teamId}).fetch();
         this.setState({ players });
       }
     );
