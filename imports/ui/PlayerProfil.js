@@ -20,7 +20,8 @@ import { Atendence } from './../api/atendence.js';
 export default class PlayerProfil extends React.Component{
   constructor(props) {
     super(props);
-    let player = Players.find({_id: this.props.match.params._id}).fetch();
+    debugger
+    let player = Players.findOne({_id: this.props.match.params._id});
 
 
     this.state = {
@@ -32,14 +33,19 @@ export default class PlayerProfil extends React.Component{
   componentDidMount(){
   this.playersTracker = Tracker.autorun(() => {
     // debugger;
+      Meteor.subscribe("atendence");
+      debugger;
+      // let dateId = dates.map((date) =>{return date._id});
+      const atendence = Atendence.find({player: this.state.player._id}).fetch();
+      this.setState({ atendence });
+
       Meteor.subscribe("dates");
-      const dates = Dates.find().fetch();
+      let dateId = atendence.map((atend) =>{return atend.date});
+
+      const dates = Dates.find({_id: {$in: dateId}}).fetch();
       this.setState({ dates });
      // debugger;
-      Meteor.subscribe("atendence");
-      let dateId = dates.map((date) =>{return date._id});
-      const atendence = Atendence.find({date: {$in: dateId}, player: this.state.player._id}).fetch();
-      this.setState({ atendence });
+
       }
     );
   }
@@ -70,7 +76,7 @@ export default class PlayerProfil extends React.Component{
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
-      // debugger;
+      debugger;
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.date == date._id){
           return obj;
@@ -92,7 +98,7 @@ export default class PlayerProfil extends React.Component{
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
 
-      <p>Anwesenheit: {() => {this.calculatAtendence.bind(this)}}</p>
+      <p>Anwesenheit:</p>
 
       <ReactTable
         data = {dates}
