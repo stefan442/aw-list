@@ -119,7 +119,7 @@ export default class PlayersList extends React.Component{
               <input type="text" name="phone" placeholder="phone"  />
               <button type="submit">OK!</button>
             </form>
-            <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>,
+            <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>
 
           </Modal>
 

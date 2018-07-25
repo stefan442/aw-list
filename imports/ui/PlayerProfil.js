@@ -61,6 +61,7 @@ export default class PlayerProfil extends React.Component{
   }
 
   render(){
+    debugger;
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
@@ -79,6 +80,7 @@ export default class PlayerProfil extends React.Component{
         atend: atend + "",
       }
     });
+    console.log(player.playerRelAt);
     return(
       <div>
       <h1>Spieler Profil</h1>
@@ -86,9 +88,7 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}}>-</button>,
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
-
-      <p>Anwesenheit:</p>
-
+      <p>Anwesenheit: {player.playerRelAt} % </p>
       <ReactTable
         data = {dates}
           columns={[

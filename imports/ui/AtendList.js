@@ -110,7 +110,7 @@ export default class AtendList extends React.Component {
     })
 
 
-
+    // .bind(this) entfernen wenn vorhanden bei dateDelete
     return (
       <div>
         <p>Spielerliste</p>

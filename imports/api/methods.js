@@ -61,12 +61,15 @@ Meteor.methods({
     atendence.atend = !atendence.atend;
     Atendence.update({player: playerRow._id, date: today}, {$set: {atend: atendence.atend}});
     atendence.buttontext = atendence.atend + "";
+     let playerRelAt;
     if(atendence.atend){
-      Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}});
+      playerRelAt = (playerRow.countAtend + 1) / playerRow.countdays * 100;
+      Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}, $set: {playerRelAt: playerRelAt}});
 
     }
     else{
-      Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}});
+      playerRelAt = (playerRow.countAtend - 1) / playerRow.countdays * 100;
+      Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
     }
   },
   'playerDelete'(playerRow){
@@ -82,7 +85,7 @@ Meteor.methods({
   'onSubmitPlayer' (playerInsert){
     let id;
     if (playerInsert.name){
-      id = Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "countDays": 0, "teamId": playerInsert.teamId});
+      id = Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "countdays": 0, "teamId": playerInsert.teamId, "playersRelAt": 0});
     }
     let dates = Dates.find({date: {$gte: playerInsert.today}}).fetch();
     let count = 0;
@@ -97,8 +100,6 @@ Meteor.methods({
 
 
   },
-
-
 
   'teamFullRemove' (teamId){
       Atendence.remove({
