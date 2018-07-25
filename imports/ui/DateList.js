@@ -20,6 +20,8 @@ export default class DateList extends React.Component{
   constructor(props) {
     super(props);
     let teamId = this.props.match.params._id;
+    let today= moment().format("DD.MM.YYYY");
+
     this.state = {
       dates: [],
       players:[],
@@ -27,6 +29,7 @@ export default class DateList extends React.Component{
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
+      today: today,
     }
     this.handleOpenModalDate = this.handleOpenModalDate.bind(this);
     this.handleCloseModalDate = this.handleCloseModalDate.bind(this);
@@ -94,25 +97,48 @@ export default class DateList extends React.Component{
     this.handleCloseModalDate();
   }
 
+  goTodayAtend(){
+    debugger;
+    let today = moment().format("YYYY.MM.DD");
+    let date = this.state.dates.find((obj) => {
+        if(obj.date == today){
+          return obj;
+        }
+      }
+    );
+
+    if(date){
+      this.props.history.replace('/atendlist/' + date._id);
+    }
+    else{
+      return alert("Heute kein Termin");
+    }
+  }
 
 
 
   render() {
     let dates = this.state.dates.map((date) =>{
-
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
         return  date;
     });
-// let dates = this.state.dates;
     let players = this.state.players;
-    const date = moment().format("DD.MM.YYYY");
+    let today = this.state.today;
 
     return(
       <div>
-      <p>{date}</p>
+
         <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
         <button onClick={this.switchToPlayer.bind(this)}>Spieler Liste</button>
         <button onClick={this.handleOpenModalDate}>Termin hinzufügen</button>
+        <br/>
+        <br/>
+
+        <button onClick={this.goTodayAtend.bind(this)}>{today}</button>
+
+        <br/>
+        <br/>
+
         <ReactTable
           data = {dates}
           columns={[

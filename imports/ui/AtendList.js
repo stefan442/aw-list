@@ -115,7 +115,7 @@ export default class AtendList extends React.Component {
       <div>
         <p>Spielerliste</p>
         <button onClick={this.goToApp.bind(this)}>&#x2299;</button>
-        <button onClick={() => this.dateDelete(date).bind(this)}>-</button>
+        <button onClick={() => this.dateDelete(date)}>-</button>
         <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
 
         <p> {formatedDate}</p>

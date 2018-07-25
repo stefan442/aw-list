@@ -53,7 +53,9 @@ export default class MissingPlayers extends React.Component {
     if(players != undefined && players.length != 0){
       var missingPlayer = players.map((player) => {
           return (<div key={player._id} >
-          <button onClick={() =>{this.updateAtendence(player._id)}}> {player.name} </button>
+          <button onClick={(e) =>{
+            e.target.hidden = true;
+            this.updateAtendence(player._id)}}> {player.name} </button>
           </div>)
         })
     }

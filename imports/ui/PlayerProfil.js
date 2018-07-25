@@ -60,13 +60,6 @@ export default class PlayerProfil extends React.Component{
 
   }
 
-  // calculatAtendence(){
-  //   let percentage =
-  //
-  // }
-
-
-
   render(){
     let player = this.state.player;
     let dates = this.state.dates;
