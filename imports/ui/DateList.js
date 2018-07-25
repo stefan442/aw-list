@@ -8,10 +8,13 @@ import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import TextField from '@material-ui/core/TextField';
 
 // import './../../client/main.html';
 import AtendList from './AtendList.js';
 import PlayersList from './PlayersList.js';
+import DateCalendar from './DateCalendar.js';
+
 
 import {Dates} from '../api/dates.js';
 import { Players } from './../api/players.js';
@@ -107,6 +110,7 @@ export default class DateList extends React.Component{
     let players = this.state.players;
     const date = moment().format("DD.MM.YYYY");
 
+
     return(
       <div>
       <p>{date}</p>
@@ -138,7 +142,7 @@ export default class DateList extends React.Component{
         >
           <p> Termin hinzufuegen</p>
           <form onSubmit={this.onSubmitDate.bind(this)}>
-            <input type="text" name="date" placeholder="date"  />
+            <DateCalendar/>
             <NativeSelect name="art" >
               <option value={"Training"}>Training</option>
               <option value={"Spiel"}>Spiel</option>
@@ -154,6 +158,8 @@ export default class DateList extends React.Component{
     );
   }
 }
+
+
 DateList.propTypes = {
   history: PropTypes.object
 }
