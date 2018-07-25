@@ -10,6 +10,13 @@ import Modal from 'react-modal';
 import {Dates} from './../api/dates.js';
 import {Players} from './../api/players.js';
 import {Atendence} from './../api/atendence.js';
+import './../../client/main.html';
+import DateList from './DateList.js';
+import MissingPlayers from './MissingPlayers.js';
+
+import { Dates } from './../api/dates.js';
+import { Players } from './../api/players.js';
+import { Atendence } from './../api/atendence.js';
 
 export default class AtendList extends React.Component {
   constructor(props) {
@@ -72,7 +79,8 @@ export default class AtendList extends React.Component {
     let player = {
                   name: e.target.name.value,
                   phoneNumber: e.target.phone.value,
-                  teamId: this.state.teamId,
+                  teamId: this.state.date.teamId,
+                  today: this.state.date.date,
                 };
     Meteor.call('onSubmitPlayer', player);
     e.target.name.value = "";
@@ -80,9 +88,6 @@ export default class AtendList extends React.Component {
 
   };
 
-  updateAtendence(){
-
-  }
 
 
   render(){
@@ -158,6 +163,10 @@ export default class AtendList extends React.Component {
          shouldCloseOnOverlayClick={false}
       >
         <p> Spieler hinzufuegen</p>
+
+
+        <div> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
+
 
         <form onSubmit={this.onSubmitPlayer.bind(this)}>
           <input type="text" name="name" placeholder="name"  />

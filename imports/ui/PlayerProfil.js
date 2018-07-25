@@ -20,7 +20,6 @@ export default class PlayerProfil extends React.Component{
   componentDidMount(){
   this.playersTracker = Tracker.autorun(() => {
       Meteor.subscribe("atendence");
-      debugger;
       const atendence = Atendence.find({player: this.state.player._id}).fetch();
       this.setState({ atendence });
 
