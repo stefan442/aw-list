@@ -7,6 +7,7 @@ import history from './../routes/AppRouter.js';
 import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 // import './../../client/main.html';
 import AtendList from './AtendList.js';
@@ -138,7 +139,11 @@ export default class DateList extends React.Component{
           <p> Termin hinzufuegen</p>
           <form onSubmit={this.onSubmitDate.bind(this)}>
             <input type="text" name="date" placeholder="date"  />
-            <input type="text" name="art" placeholder="Art"/>
+            <NativeSelect name="art" >
+              <option value={"Training"}>Training</option>
+              <option value={"Spiel"}>Spiel</option>
+              <option value={"Sonstiges"}>Sonstiges</option>
+            </NativeSelect>
             <input type="text" name="info" placeholder="Info"/>
             <button type="submit" >OK!</button>
           </form>

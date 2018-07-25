@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.54",
+    "@material-ui/core": "^1.4.1",
     "history": "^4.7.2",
     "message-box": "^0.2.0",
     "meteor-node-stubs": "^0.4.1",
