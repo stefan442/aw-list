@@ -16,7 +16,7 @@ export default class TeamList extends React.Component {
       this.teamTracker = Tracker.autorun(() =>{
         Meteor.subscribe("teams");
         const teams = Teams.find({}, {sort: {name: 1}}).fetch();
-        this.setState({ teams });      
+        this.setState({ teams });
       });
     }
     componentWillUnmount(){
