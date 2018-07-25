@@ -3,7 +3,7 @@ import { Meteor } from "meteor/meteor";
 import {Dates} from './dates.js';
 import {Players} from './players.js';
 import {Atendence} from './atendence.js';
-
+import {Teams} from './teams.js';
 
 Meteor.methods({
   'createAtendence' ({dateId, teamId}){
@@ -100,4 +100,18 @@ Meteor.methods({
 
 
 
+  'teamFullRemove' (teamId){
+      Atendence.remove({
+        teamId: teamId
+      });
+      Dates.remove({
+        teamId: teamId
+      });
+      Players.remove({
+        teamId: teamId
+      });
+      Teams.remove({
+        _id: teamId
+      });
+  },
 })

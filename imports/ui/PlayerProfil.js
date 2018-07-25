@@ -20,7 +20,6 @@ import { Atendence } from './../api/atendence.js';
 export default class PlayerProfil extends React.Component{
   constructor(props) {
     super(props);
-
     let player = Players.findOne({_id: this.props.match.params._id});
 
 
