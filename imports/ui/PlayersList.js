@@ -52,7 +52,9 @@ export default class PlayersList extends React.Component{
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
+                    //today:
                     teamId: this.state.teamId,
+
                   };
       Meteor.call('onSubmitPlayer', player)
       e.target.name.value = "";

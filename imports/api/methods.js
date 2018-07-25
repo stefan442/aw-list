@@ -74,6 +74,30 @@ Meteor.methods({
     Atendence.remove({player: playerRow._id});
     Players.remove({_id: playerRow._id});
   },
+  'updateAtendence'(atendenceInsert){
+    Atendence.insert({"date": atendenceInsert.date, "player": atendenceInsert.player, "atend": false, "teamId": atendenceInsert.teamId});
+    Players.update({_id: atendenceInsert.player}, {$inc: {"countdays": 1}} );
+  },
+
+  'onSubmitPlayer' (playerInsert){
+    let id;
+    if (playerInsert.name){
+      id = Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "countDays": 0, "teamId": playerInsert.teamId});
+    }
+    let dates = Dates.find({date: {$gte: playerInsert.today}}).fetch();
+    let count = 0;
+    dates = dates.map((date) =>{
+
+
+        count++;
+        Atendence.insert({"date": date._id, "player": id, "atend": false, "teamId": date.teamId});
+
+    });
+    Players.update({_id: id}, {$inc: {"countdays": count}} );
+
+
+  },
+
 
 
 })

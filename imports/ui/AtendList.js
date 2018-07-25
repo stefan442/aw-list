@@ -12,6 +12,7 @@ import Modal from 'react-modal';
 
 import './../../client/main.html';
 import DateList from './DateList.js';
+import MissingPlayers from './MissingPlayers.js';
 
 import { Dates } from './../api/dates.js';
 import { Players } from './../api/players.js';
@@ -37,7 +38,6 @@ export default class AtendList extends React.Component {
         Meteor.subscribe("atendence");
         const atendence = Atendence.find({date: this.props.match.params._id, teamId: this.state.date.teamId}).fetch();
         this.setState({ atendence });
-
         Meteor.subscribe("players");
         let playerIds = atendence.map((atend) =>{return atend.player});
         const players = Players.find({_id: {$in: playerIds}}).fetch();
@@ -77,17 +77,15 @@ export default class AtendList extends React.Component {
     let player = {
                   name: e.target.name.value,
                   phoneNumber: e.target.phone.value,
-                  teamId: this.state.teamId,
+                  teamId: this.state.date.teamId,
+                  today: this.state.date.date,
                 };
-    Meteor.call('onSubmitPlayer', player)
+    Meteor.call('onSubmitPlayer', player);
     e.target.name.value = "";
     this.handleCloseModalPlayer();
 
   }
 
-  updateAtendence(){
-
-  }
 
 
   render(){
@@ -110,17 +108,7 @@ export default class AtendList extends React.Component {
       }
     })
 
-    let noAtendPlayer = players.map((player) => {
 
-      let noAtend = this.state.atendence.find((obj) => {
-        if(obj.player == player._id){
-          return obj;
-        }
-      });
-      if(noAtend == undefined){
-        return player;
-      }
-    })
 
     return (
       <div>
@@ -165,7 +153,7 @@ export default class AtendList extends React.Component {
         <p> Spieler hinzufuegen</p>
 
 
-
+        <div> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
 
 
         <form onSubmit={this.onSubmitPlayer.bind(this)}>
