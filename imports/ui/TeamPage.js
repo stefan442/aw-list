@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AddTeam from './AddTeam.js';
 import TeamList from './TeamList.js';

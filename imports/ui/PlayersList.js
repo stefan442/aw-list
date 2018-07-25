@@ -1,16 +1,12 @@
 import React from "react";
 import Modal from 'react-modal';
-import {render} from "react-dom";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import history from './../routes/AppRouter.js';
-import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
 
 import DateList from './DateList.js';
-
-import { Dates } from '../api/dates.js';
-import { Players } from './../api/players.js';
+import {Players} from './../api/players.js';
 
 export default class PlayersList extends React.Component{
   constructor(props) {
@@ -22,7 +18,8 @@ export default class PlayersList extends React.Component{
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
-    }
+    };
+
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
@@ -34,6 +31,10 @@ export default class PlayersList extends React.Component{
         this.setState({ players });
       }
     );
+  }
+
+  componentWillUnmount(){
+      this.datesTracker.stop();
   }
   switchToDates(){
     this.props.history.push('/datelist/' + this.state.teamId);
@@ -54,13 +55,15 @@ export default class PlayersList extends React.Component{
                     phoneNumber: e.target.phone.value,
                     teamId: this.state.teamId,
                   };
-      Meteor.call('onSubmitPlayer', player)
+      Meteor.call('onSubmitPlayer', player);
       e.target.name.value = "";
       this.handleCloseModalPlayer();
-    }
+    };
+
     playerDelete(e) {
       Meteor.call('playerDelete', e);
     }
+
     goToPlayerProfil(e){
       let _id = e._id;
       this.props.history.push('/playerprofil/' + _id);
@@ -129,7 +132,7 @@ export default class PlayersList extends React.Component{
 
 DateList.propTypes = {
   history: PropTypes.object
-}
+};
 
 DateList.defaultProps = {
   history: history

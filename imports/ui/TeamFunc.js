@@ -1,10 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Route, Switch, Redirect} from 'react-router-dom';
-import createHistory from "history/createBrowserHistory";
-
-import {Teams} from '../api/teams.js';
-import {history, AppRouter} from '../routes/AppRouter.js';
 
 export default class TeamFunc extends React.Component {
 

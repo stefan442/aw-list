@@ -1,18 +1,11 @@
 import React from "react";
 import Modal from 'react-modal';
-import {render} from "react-dom";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import history from './../routes/AppRouter.js';
-import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
 
-// import './../../client/main.html';
-import AtendList from './AtendList.js';
-import PlayersList from './PlayersList.js';
-
 import {Dates} from '../api/dates.js';
-import { Players } from './../api/players.js';
+import {Players} from './../api/players.js';
 
 export default class DateList extends React.Component{
   constructor(props) {
@@ -25,7 +18,8 @@ export default class DateList extends React.Component{
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
-    }
+    };
+
     this.handleOpenModalDate = this.handleOpenModalDate.bind(this);
     this.handleCloseModalDate = this.handleCloseModalDate.bind(this);
 
@@ -43,6 +37,10 @@ export default class DateList extends React.Component{
         this.setState({ players });
       }
     );
+ }
+
+ componentWillUnmount(){
+      this.datesTracker.stop();
  }
 
 // popup state für Termin hinzufuegen
@@ -90,15 +88,13 @@ export default class DateList extends React.Component{
     e.target.art.value = "";
     e.target.info.value = "";
     this.handleCloseModalDate();
-  }
+  };
 
 
 
 
   render() {
     let dates = this.state.dates;
-    let players = this.state.players;
-
 
     return(
       <div>
@@ -144,7 +140,7 @@ export default class DateList extends React.Component{
 }
 DateList.propTypes = {
   history: PropTypes.object
-}
+};
 
 DateList.defaultProps = {
   history: history

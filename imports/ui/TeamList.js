@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Tracker} from 'meteor/tracker';
 
 import TeamFunc from './TeamFunc.js';

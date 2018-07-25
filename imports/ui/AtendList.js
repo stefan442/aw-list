@@ -1,21 +1,15 @@
 import React from "react";
-import {render} from "react-dom";
 import './../../client/main.html';
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import {Mongo} from 'meteor/mongo';
 // import "react-table/react-table.css";
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
 
-import './../../client/main.html';
-import DateList from './DateList.js';
-
-import { Dates } from './../api/dates.js';
-import { Players } from './../api/players.js';
-import { Atendence } from './../api/atendence.js';
+import {Dates} from './../api/dates.js';
+import {Players} from './../api/players.js';
+import {Atendence} from './../api/atendence.js';
 
 export default class AtendList extends React.Component {
   constructor(props) {
@@ -26,7 +20,8 @@ export default class AtendList extends React.Component {
       players: [],
       atendence: [],
       date: date,
-    }
+    };
+
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
@@ -79,11 +74,11 @@ export default class AtendList extends React.Component {
                   phoneNumber: e.target.phone.value,
                   teamId: this.state.teamId,
                 };
-    Meteor.call('onSubmitPlayer', player)
+    Meteor.call('onSubmitPlayer', player);
     e.target.name.value = "";
     this.handleCloseModalPlayer();
 
-  }
+  };
 
   updateAtendence(){
 
@@ -96,7 +91,7 @@ export default class AtendList extends React.Component {
 
     players = players.map((player) => {
       let atendDB = this.state.atendence.find((obj) => {
-        if(obj.player == player._id){
+        if(obj.player === player._id){
           return obj;
         }
       });
@@ -108,19 +103,19 @@ export default class AtendList extends React.Component {
         ...player,
         buttontext: atend + "",
       }
-    })
+    });
 
-    let noAtendPlayer = players.map((player) => {
+    players.map((player) => {
 
       let noAtend = this.state.atendence.find((obj) => {
-        if(obj.player == player._id){
+        if(obj.player === player._id){
           return obj;
         }
       });
-      if(noAtend == undefined){
+      if(noAtend === undefined){
         return player;
       }
-    })
+    });
 
     return (
       <div>
@@ -164,10 +159,6 @@ export default class AtendList extends React.Component {
       >
         <p> Spieler hinzufuegen</p>
 
-
-
-
-
         <form onSubmit={this.onSubmitPlayer.bind(this)}>
           <input type="text" name="name" placeholder="name"  />
           <input type="text" name="phone" placeholder="phone"  />
@@ -183,7 +174,7 @@ export default class AtendList extends React.Component {
 }
 AtendList.propTypes = {
   history: PropTypes.object
-}
+};
 
 AtendList.defaultProps = {
   history: history

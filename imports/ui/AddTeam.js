@@ -1,14 +1,15 @@
 import React from 'react';
-import {Teams} from '../api/teams.js';
 
 export default class AddTeam extends React.Component {
-  handleSubmit(e){
-    let teamName = e.target.teamName.value;
 
-    e.preventDefault();
-    Meteor.call('teamAdd', teamName);
-    e.target.teamName.value = '';
+    handleSubmit(e){
+        let teamName = e.target.teamName.value;
+
+        e.preventDefault();
+        Meteor.call('teamAdd', teamName);
+        e.target.teamName.value = '';
     }
+
   render(){
     return(
       <div>
