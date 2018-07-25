@@ -90,6 +90,7 @@ export default class AtendList extends React.Component {
 
   render(){
     let date  = this.state.date;
+    let formatedDate = moment(date.date).format("DD.MM.YYYY");
     let players = this.state.players;
 
     players = players.map((player) => {
@@ -117,7 +118,7 @@ export default class AtendList extends React.Component {
         <button onClick={() => this.dateDelete(date).bind(this)}>-</button>
         <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
 
-        <p> {date.date}</p>
+        <p> {formatedDate}</p>
         <p> Info: {date.info} </p>
         <ReactTable
           data = {players}

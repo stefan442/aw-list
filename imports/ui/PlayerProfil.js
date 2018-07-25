@@ -71,6 +71,8 @@ export default class PlayerProfil extends React.Component{
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
+      date.formatedDate = moment(date.date).format("DD.MM.YYYY");
+
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.date == date._id){
           return obj;
@@ -99,7 +101,7 @@ export default class PlayerProfil extends React.Component{
           columns={[
             {
               Header: "Datum",
-              accessor: "date",
+              accessor: "formatedDate",
             },
             {
               Header: "Art",

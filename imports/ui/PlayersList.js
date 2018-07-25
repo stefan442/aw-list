@@ -49,10 +49,11 @@ export default class PlayersList extends React.Component{
 
     onSubmitPlayer = (e) => {
       e.preventDefault();
+      const today = moment().format("YYYY.MM.DD");
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
-                    //today:
+                    today: today,
                     teamId: this.state.teamId,
 
                   };

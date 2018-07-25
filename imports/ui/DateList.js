@@ -6,6 +6,7 @@ import "react-table/react-table.css";
 import history from './../routes/AppRouter.js';
 import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 // import './../../client/main.html';
 import AtendList from './AtendList.js';
@@ -96,12 +97,18 @@ export default class DateList extends React.Component{
 
 
   render() {
-    let dates = this.state.dates;
-    let players = this.state.players;
+    let dates = this.state.dates.map((date) =>{
 
+        date.formatedDate = moment(date.date).format("DD.MM.YYYY");
+        return  date;
+    });
+// let dates = this.state.dates;
+    let players = this.state.players;
+    const date = moment().format("DD.MM.YYYY");
 
     return(
       <div>
+      <p>{date}</p>
         <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
         <button onClick={this.switchToPlayer.bind(this)}>Spieler Liste</button>
         <button onClick={this.handleOpenModalDate}>Termin hinzufügen</button>
@@ -110,7 +117,7 @@ export default class DateList extends React.Component{
           columns={[
             {
               Header: "Datum",
-              Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}}>{row.original.date}</button>,
+              Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}}>{row.original.formatedDate}</button>,
             },
             {
               Header: "Art",
