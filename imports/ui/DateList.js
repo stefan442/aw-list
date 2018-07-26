@@ -8,6 +8,8 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import DateCalendar from './DateCalendar.js';
 import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
+import TextField from '@material-ui/core/TextField';
+
 
 export default class DateList extends React.Component{
   constructor(props) {
@@ -167,7 +169,11 @@ export default class DateList extends React.Component{
               <option value={"Spiel"}>Spiel</option>
               <option value={"Sonstiges"}>Sonstiges</option>
             </NativeSelect>
-            <input type="text" name="info" placeholder="Info"/>
+            <TextField
+              id="info"
+              type="text"
+              placeholder="Info"
+            />
             <button type="submit" >OK!</button>
           </form>
           <button  onClick={this.handleCloseModalDate}>Abbrechen</button>
