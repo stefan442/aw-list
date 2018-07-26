@@ -95,7 +95,10 @@ export default class PlayersList extends React.Component{
                 Header: "Termine Gesamt",
                 accessor: "countdays",
               },
-
+              {
+                Header: "percentage",
+                accessor: "playerRelAt",
+              },
               {
                       Header: 'Anwesenheit',
                       accessor: 'playerRelAt',
