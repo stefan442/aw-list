@@ -2,10 +2,6 @@ import React from "react";
 import Modal from 'react-modal';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import history from './../routes/AppRouter.js';
-import PropTypes from 'prop-types';
-
-import DateList from './DateList.js';
 import {Players} from './../api/players.js';
 
 export default class PlayersList extends React.Component{
@@ -50,7 +46,7 @@ export default class PlayersList extends React.Component{
 
     onSubmitPlayer = (e) => {
       e.preventDefault();
-      const today = moment().format("YYYY.MM.DD");
+      const today = moment().format("YYYY-MM-DD");
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
@@ -62,10 +58,6 @@ export default class PlayersList extends React.Component{
       e.target.name.value = "";
       this.handleCloseModalPlayer();
     };
-
-    playerDelete(e) {
-      Meteor.call('playerDelete', e);
-    }
 
     goToPlayerProfil(e){
       let _id = e._id;
@@ -133,10 +125,10 @@ export default class PlayersList extends React.Component{
   }
 }
 
-DateList.propTypes = {
+/*DateList.propTypes = {
   history: PropTypes.object
 };
 
 DateList.defaultProps = {
   history: history
-};
+};*/

@@ -14,8 +14,9 @@ export default class TeamPage extends React.Component {
       render(){
         return(
           <div>
-            <TeamList {...this.props}/>
-            <AddTeam/>
+              <h1>{this.state.title}</h1>
+              <TeamList {...this.props}/>
+              <AddTeam/>
           </div>
         );
       }

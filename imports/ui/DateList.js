@@ -5,14 +5,7 @@ import "react-table/react-table.css";
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import TextField from '@material-ui/core/TextField';
-
-// import './../../client/main.html';
-import AtendList from './AtendList.js';
-import PlayersList from './PlayersList.js';
 import DateCalendar from './DateCalendar.js';
-
-
 import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
 
@@ -30,7 +23,8 @@ export default class DateList extends React.Component{
       showModalPlayer: false,
       value: 0,
       today: today,
-    }
+    };
+
     this.handleOpenModalDate = this.handleOpenModalDate.bind(this);
     this.handleCloseModalDate = this.handleCloseModalDate.bind(this);
 
@@ -105,7 +99,7 @@ export default class DateList extends React.Component{
     debugger;
     let today = moment().format("YYYY-MM-DD");
     let date = this.state.dates.find((obj) => {
-        if(obj.date == today){
+        if(obj.date === today){
           return obj;
         }
       }
@@ -122,12 +116,10 @@ export default class DateList extends React.Component{
 
 
   render() {
-    let dates = this.state.dates;
     let dates = this.state.dates.map((date) =>{
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
         return  date;
     });
-    let players = this.state.players;
     let today = this.state.today;
 
 

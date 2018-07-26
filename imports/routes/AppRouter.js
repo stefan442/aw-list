@@ -64,14 +64,16 @@ export class AppRouter extends React.Component {
     return (
       <Router history={history}>
         <Switch>
+          /*Public*/
           <Route path="/" component={Login} exact={true} onEnter={this.onEnterPublicPage}/>
           <Route path="/signup" component={Signup} onEnter={this.onEnterPublicPage}/>
+          /*Private*/
           <Route path="/teampage" component={TeamPage} onEnter={this.onEnterPrivatePage}/>
           <Route path="/datelist/:_id" component={DateList} onEnter={this.onEnterPrivatePage}/>
           <Route path="/atendlist/:_id" component={AtendList} onEnter={this.onEnterPrivatePage}/>
           <Route path="/playerslist/:_id" component={PlayersList} onEnter={this.onEnterPrivatePage}/>
           <Route path="/playerprofil/:_id" component={PlayerProfil} onEnter={this.onEnterPrivatePage}/>
-
+          /*Not Found*/
           <Route path="*" component={NotFound}/>
         </Switch>
       </Router>

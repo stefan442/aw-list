@@ -1,4 +1,4 @@
-import { Meteor } from "meteor/meteor";
+import {Meteor} from "meteor/meteor";
 import {Mongo} from 'meteor/mongo';
 
 //Tabelle für Anwesenheitssaetze
@@ -11,4 +11,4 @@ if(Meteor.isServer){
 
 Meteor.methods({
 
-})
+});

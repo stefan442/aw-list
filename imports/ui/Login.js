@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Meteor } from "meteor/meteor";
+import {Link} from "react-router-dom";
+import {Meteor} from "meteor/meteor";
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export default class Login extends React.Component {
       error: ""
     };
   }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -23,6 +24,7 @@ export default class Login extends React.Component {
       }
     });
   }
+
   render() {
     return(
       <div>

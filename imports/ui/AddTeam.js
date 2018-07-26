@@ -4,13 +4,15 @@ export default class AddTeam extends React.Component {
   onLogout() {
     Accounts.logout();
   }
+
   handleSubmit(e){
     let teamName = e.target.teamName.value;
 
     e.preventDefault();
     Meteor.call('teamAdd', teamName);
     e.target.teamName.value = '';
-    }
+  }
+
   render(){
     return(
       <div>

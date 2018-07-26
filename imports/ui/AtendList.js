@@ -7,13 +7,10 @@ import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
 
-import './../../client/main.html';
-import DateList from './DateList.js';
+import {Dates} from './../api/dates.js';
+import {Players} from './../api/players.js';
+import {Atendence} from './../api/atendence.js';
 import MissingPlayers from './MissingPlayers.js';
-
-import { Dates } from './../api/dates.js';
-import { Players } from './../api/players.js';
-import { Atendence } from './../api/atendence.js';
 
 export default class AtendList extends React.Component {
   constructor(props) {
