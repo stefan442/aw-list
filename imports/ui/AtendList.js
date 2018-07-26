@@ -1,22 +1,16 @@
 import React from "react";
-import {render} from "react-dom";
 import './../../client/main.html';
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-import {Mongo} from 'meteor/mongo';
 // import "react-table/react-table.css";
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
 
-import './../../client/main.html';
-import DateList from './DateList.js';
+import {Dates} from './../api/dates.js';
+import {Players} from './../api/players.js';
+import {Atendence} from './../api/atendence.js';
 import MissingPlayers from './MissingPlayers.js';
-
-import { Dates } from './../api/dates.js';
-import { Players } from './../api/players.js';
-import { Atendence } from './../api/atendence.js';
 
 export default class AtendList extends React.Component {
   constructor(props) {
@@ -27,7 +21,8 @@ export default class AtendList extends React.Component {
       players: [],
       atendence: [],
       date: date,
-    }
+    };
+
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
@@ -38,6 +33,7 @@ export default class AtendList extends React.Component {
         Meteor.subscribe("atendence");
         const atendence = Atendence.find({date: this.props.match.params._id, teamId: this.state.date.teamId}).fetch();
         this.setState({ atendence });
+
         Meteor.subscribe("players");
         let playerIds = atendence.map((atend) =>{return atend.player});
         const players = Players.find({_id: {$in: playerIds}}).fetch();
@@ -84,7 +80,7 @@ export default class AtendList extends React.Component {
     e.target.name.value = "";
     this.handleCloseModalPlayer();
 
-  }
+  };
 
 
 
@@ -95,7 +91,7 @@ export default class AtendList extends React.Component {
 
     players = players.map((player) => {
       let atendDB = this.state.atendence.find((obj) => {
-        if(obj.player == player._id){
+        if(obj.player === player._id){
           return obj;
         }
       });
@@ -107,10 +103,10 @@ export default class AtendList extends React.Component {
         ...player,
         buttontext: atend + "",
       }
-    })
+    });
 
 
-    // .bind(this) entfernen wenn vorhanden bei dateDelete
+
     return (
       <div>
         <p>Spielerliste</p>
@@ -172,7 +168,7 @@ export default class AtendList extends React.Component {
 }
 AtendList.propTypes = {
   history: PropTypes.object
-}
+};
 
 AtendList.defaultProps = {
   history: history

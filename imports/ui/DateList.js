@@ -1,23 +1,13 @@
 import React from "react";
 import Modal from 'react-modal';
-import {render} from "react-dom";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import history from './../routes/AppRouter.js';
-import createHistory from "history/createBrowserHistory";
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import TextField from '@material-ui/core/TextField';
-
-// import './../../client/main.html';
-import AtendList from './AtendList.js';
-import PlayersList from './PlayersList.js';
 import DateCalendar from './DateCalendar.js';
-
-
 import {Dates} from '../api/dates.js';
-import { Players } from './../api/players.js';
+import {Players} from './../api/players.js';
 
 export default class DateList extends React.Component{
   constructor(props) {
@@ -33,7 +23,8 @@ export default class DateList extends React.Component{
       showModalPlayer: false,
       value: 0,
       today: today,
-    }
+    };
+
     this.handleOpenModalDate = this.handleOpenModalDate.bind(this);
     this.handleCloseModalDate = this.handleCloseModalDate.bind(this);
 
@@ -51,6 +42,10 @@ export default class DateList extends React.Component{
         this.setState({ players });
       }
     );
+ }
+
+ componentWillUnmount(){
+      this.datesTracker.stop();
  }
 
 // popup state für Termin hinzufuegen
@@ -98,13 +93,13 @@ export default class DateList extends React.Component{
     e.target.art.value = "";
     e.target.info.value = "";
     this.handleCloseModalDate();
-  }
+  };
 
   goTodayAtend(){
     debugger;
     let today = moment().format("YYYY-MM-DD");
     let date = this.state.dates.find((obj) => {
-        if(obj.date == today){
+        if(obj.date === today){
           return obj;
         }
       }
@@ -125,13 +120,11 @@ export default class DateList extends React.Component{
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
         return  date;
     });
-    let players = this.state.players;
     let today = this.state.today;
 
 
     return(
       <div>
-
         <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
         <button onClick={this.switchToPlayer.bind(this)}>Spieler Liste</button>
         <button onClick={this.handleOpenModalDate}>Termin hinzufügen</button>
@@ -184,11 +177,9 @@ export default class DateList extends React.Component{
     );
   }
 }
-
-
 DateList.propTypes = {
   history: PropTypes.object
-}
+};
 
 DateList.defaultProps = {
   history: history

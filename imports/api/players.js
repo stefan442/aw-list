@@ -1,4 +1,4 @@
-import { Meteor } from "meteor/meteor";
+import {Meteor} from "meteor/meteor";
 import {Mongo} from 'meteor/mongo';
 
 
@@ -13,6 +13,10 @@ if(Meteor.isServer){
 
 Meteor.methods({
 
+  'onSubmitPlayer' (playerInsert){
+    if (playerInsert.name){
+      Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "countDays": 0, "teamId": playerInsert.teamId});
+    }
+  }
 
-
-})
+});

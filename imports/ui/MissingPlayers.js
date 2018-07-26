@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Players } from './../api/players.js';
+import {Players} from './../api/players.js';
 
 export default class MissingPlayers extends React.Component {
   constructor(props) {
@@ -41,17 +41,17 @@ export default class MissingPlayers extends React.Component {
     players = players.filter((player) => {
 
       let noAtend = this.state.atendingPlayers.find((obj) => {
-        if(obj._id == player._id){
+        if(obj._id === player._id){
           return obj;
         }
       });
-      if(noAtend == undefined){
+      if(noAtend === undefined){
         return player;
       }
-    })
+    });
 
-    if(players != undefined && players.length != 0){
-      var missingPlayer = players.map((player) => {
+    if(players !== undefined && players.length !== 0){
+      this.missingPlayers = players.map((player) => {
           return (<div key={player._id} >
           <button onClick={(e) =>{
             e.target.hidden = true;
@@ -60,7 +60,7 @@ export default class MissingPlayers extends React.Component {
         })
     }
     return(
-      <div>{missingPlayer}</div>
+      <div>{this.missingPlayers}</div>
 
     );
   }

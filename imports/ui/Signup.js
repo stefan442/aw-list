@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Accounts } from "meteor/accounts-base";
+import {Link} from "react-router-dom";
+import {Accounts} from "meteor/accounts-base";
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export default class Signup extends React.Component {
       error: ""
     };
   }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -27,6 +28,7 @@ export default class Signup extends React.Component {
       }
     });
   }
+
   render() {
     return (
       <div>

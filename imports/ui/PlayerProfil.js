@@ -1,20 +1,8 @@
 import React from "react";
-import {render} from "react-dom";
-import './../../client/main.html';
-import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
-import history from './../routes/AppRouter.js';
-import createHistory from "history/createBrowserHistory";
-import {Mongo} from 'meteor/mongo';
-// import "react-table/react-table.css";
 import ReactTable from "react-table";
-
-import './../../client/main.html';
-import PlayersList from './PlayersList.js';
-
 import {Dates} from '../api/dates.js';
-import { Players } from './../api/players.js';
-import { Atendence } from './../api/atendence.js';
+import {Players} from './../api/players.js';
+import {Atendence} from './../api/atendence.js';
 
 
 export default class PlayerProfil extends React.Component{
@@ -68,7 +56,7 @@ export default class PlayerProfil extends React.Component{
       date.formatedDate = moment(date.date).format("DD.MM.YYYY");
 
       let atendDB = this.state.atendence.find((obj) => {
-        if(obj.date == date._id){
+        if(obj.date === date._id){
           return obj;
         }
       });
