@@ -49,7 +49,7 @@ export default class PlayersList extends React.Component{
 
     onSubmitPlayer = (e) => {
       e.preventDefault();
-      const today = moment().format("YYYY.MM.DD");
+      const today = moment().format("YYYY-MM-DD");
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
@@ -101,6 +101,32 @@ export default class PlayersList extends React.Component{
                 accessor: "countdays",
               },
 
+              {
+                      Header: 'Anwesenheit',
+                      accessor: 'playerRelAt',
+                      Cell: (row) => (
+                        <div
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: '#dadada',
+                            borderRadius: '2px'
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: `${row.original.playerRelAt}%`,
+                              height: '100%',
+                              backgroundColor: row.original.playerRelAt > 66 ? '#85cc00'
+                                : row.original.playerRelAt > 33 ? '#ffbf00'
+                                : '#ff2e00',
+                              borderRadius: '2px',
+                              transition: 'all .2s ease-out'
+                            }}
+                          />
+                        </div>
+                      )
+                    },
 
               ]}
               defaultPageSize={10}
