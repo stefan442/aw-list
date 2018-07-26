@@ -102,7 +102,7 @@ export default class DateList extends React.Component{
 
   goTodayAtend(){
     debugger;
-    let today = moment().format("YYYY.MM.DD");
+    let today = moment().format("YYYY-MM-DD");
     let date = this.state.dates.find((obj) => {
         if(obj.date == today){
           return obj;
