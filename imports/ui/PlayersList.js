@@ -50,10 +50,11 @@ export default class PlayersList extends React.Component{
 
     onSubmitPlayer = (e) => {
       e.preventDefault();
+      const today = moment().format("YYYY.MM.DD");
       let player = {
                     name: e.target.name.value,
                     phoneNumber: e.target.phone.value,
-                    //today:
+                    today: today,
                     teamId: this.state.teamId,
 
                   };
@@ -121,7 +122,7 @@ export default class PlayersList extends React.Component{
               <input type="text" name="phone" placeholder="phone"  />
               <button type="submit">OK!</button>
             </form>
-            <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>,
+            <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>
 
           </Modal>
 

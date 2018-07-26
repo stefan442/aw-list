@@ -7,9 +7,6 @@ import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
 
-import {Dates} from './../api/dates.js';
-import {Players} from './../api/players.js';
-import {Atendence} from './../api/atendence.js';
 import './../../client/main.html';
 import DateList from './DateList.js';
 import MissingPlayers from './MissingPlayers.js';
@@ -92,6 +89,7 @@ export default class AtendList extends React.Component {
 
   render(){
     let date  = this.state.date;
+    let formatedDate = moment(date.date).format("DD.MM.YYYY");
     let players = this.state.players;
 
     players = players.map((player) => {
@@ -110,26 +108,16 @@ export default class AtendList extends React.Component {
       }
     });
 
-    players.map((player) => {
 
-      let noAtend = this.state.atendence.find((obj) => {
-        if(obj.player === player._id){
-          return obj;
-        }
-      });
-      if(noAtend === undefined){
-        return player;
-      }
-    });
 
     return (
       <div>
         <p>Spielerliste</p>
         <button onClick={this.goToApp.bind(this)}>&#x2299;</button>
-        <button onClick={() => this.dateDelete(date).bind(this)}>-</button>
+        <button onClick={() => this.dateDelete(date)}>-</button>
         <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
 
-        <p> {date.date}</p>
+        <p> {formatedDate}</p>
         <p> Info: {date.info} </p>
         <ReactTable
           data = {players}

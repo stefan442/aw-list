@@ -48,17 +48,13 @@ export default class PlayerProfil extends React.Component{
 
   }
 
-  // calculatAtendence(){
-  //   let percentage =
-  //
-  // }
-
-
-
   render(){
+    debugger;
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
+      date.formatedDate = moment(date.date).format("DD.MM.YYYY");
+
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.date === date._id){
           return obj;
@@ -72,6 +68,7 @@ export default class PlayerProfil extends React.Component{
         atend: atend + "",
       }
     });
+    console.log(player.playerRelAt);
     return(
       <div>
       <h1>Spieler Profil</h1>
@@ -79,15 +76,13 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}}>-</button>,
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
-
-      <p>Anwesenheit:</p>
-
+      <p>Anwesenheit: {player.playerRelAt} % </p>
       <ReactTable
         data = {dates}
           columns={[
             {
               Header: "Datum",
-              accessor: "date",
+              accessor: "formatedDate",
             },
             {
               Header: "Art",
