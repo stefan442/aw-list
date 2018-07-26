@@ -49,7 +49,6 @@ export default class PlayerProfil extends React.Component{
   }
 
   render(){
-    debugger;
     let player = this.state.player;
     let dates = this.state.dates;
     dates = dates.map((date) => {
@@ -68,7 +67,6 @@ export default class PlayerProfil extends React.Component{
         atend: atend + "",
       }
     });
-    console.log(player.playerRelAt);
     return(
       <div>
       <h1>Spieler Profil</h1>
@@ -92,7 +90,19 @@ export default class PlayerProfil extends React.Component{
               Header: "Anwesend",
               accessor: "atend",
             },
+            {
+              accessor: "date",
+              show: false,
 
+            },
+
+
+            ]}
+            defaultSorted={[
+                {
+                  id: "date",
+                  desc: true
+                }
             ]}
             defaultPageSize={10}
             className="-striped -highlight"

@@ -96,7 +96,6 @@ export default class DateList extends React.Component{
   };
 
   goTodayAtend(){
-    debugger;
     let today = moment().format("YYYY-MM-DD");
     let date = this.state.dates.find((obj) => {
         if(obj.date === today){
@@ -147,8 +146,21 @@ export default class DateList extends React.Component{
               Header: "Art",
               accessor: "art",
             },
+            {
+              accessor: "date",
+              show: false,
+
+            },
+
 
           ]}
+          defaultSorted={[
+              {
+                id: "date",
+                desc: true
+              }
+          ]}
+
           className="-striped -highlight"
         />
 
