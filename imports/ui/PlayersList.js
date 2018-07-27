@@ -127,7 +127,16 @@ export default class PlayersList extends React.Component{
                         </div>
                       )
                     },
-
+                    {
+                      accessor: "name",
+                      show: false,
+                    },
+              ]}
+              defaultSorted={[
+                  {
+                    id: "name",
+                    desc: false
+                  }
               ]}
               defaultPageSize={10}
               className="-striped -highlight"

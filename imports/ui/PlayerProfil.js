@@ -41,7 +41,7 @@ export default class PlayerProfil extends React.Component{
   goToPlayersList() {
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
-//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren 
+//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren
   playerDelete(e) {
     Meteor.call('playerDelete', e);
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
@@ -101,7 +101,7 @@ export default class PlayerProfil extends React.Component{
             defaultSorted={[
                 {
                   id: "date",
-                  desc: true
+                  desc: false
                 }
             ]}
             defaultPageSize={10}

@@ -160,7 +160,7 @@ export default class DateList extends React.Component{
           defaultSorted={[
               {
                 id: "date",
-                desc: true
+                desc: false
               }
           ]}
 

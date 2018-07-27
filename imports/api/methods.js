@@ -44,7 +44,7 @@ Meteor.methods({
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      let actualDay = dateRow.date;
-     let dates = Dates.find({date: {$lte: actualDay}});
+     let dates = Dates.find({date: {$lte: actualDay}}).fetch();
      dates = dates.map((date) => {
        return date._id;
      })
@@ -72,25 +72,27 @@ Meteor.methods({
   },
   //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
   'toggleAtendence' ({playerRow, today}){
+    debugger;
     let atendence = Atendence.findOne({player: playerRow._id, date: today});
     atendence.atend = !atendence.atend;
     Atendence.update({player: playerRow._id, date: today}, {$set: {atend: atendence.atend}});
     atendence.buttontext = atendence.atend + "";
      let playerRelAt;
      let actualDay = moment().format("YYYY-MM-DD");
-       let dates = Dates.find({date: {$lte: actualDay}});
+       let dates = Dates.find({date: {$lte: actualDay}}).fetch();
        dates = dates.map((date) => {
          return date._id;
        })
 
        let count = Atendence.find({date: {$in: dates}}).count();
-
+       console.log(count);
     if(atendence.atend){
       playerRelAt = (playerRow.countAtend + 1) / count * 100;
       Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}, $set: {playerRelAt: playerRelAt}});
 
     }
     else{
+
       playerRelAt = (playerRow.countAtend - 1) / count * 100;
       Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
     }

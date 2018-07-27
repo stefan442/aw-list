@@ -144,8 +144,13 @@ export default class AtendList extends React.Component {
               Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}}>{row.original.buttontext}</button>
             },
 
-          ]
-        }
+          ]}
+          defaultSorted={[
+              {
+                id: "name",
+                desc: false
+              }
+          ]}
       />
       <Modal
          isOpen={this.state.showModalPlayer}
