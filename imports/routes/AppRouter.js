@@ -14,9 +14,6 @@ import PlayerProfil from "../ui/PlayerProfil";
 import TeamPage from "../ui/TeamPage";
 
 
-//tabellen fuer anwesenheitsliste
-
-// alle seiten nach login
 const unauthenticatedPages = ["/", "/signup"];
 const authenticatedPages = ["/teampage", "/datelist/:_id", "/atendlist/:_id", "/playerslist/:_id", "/playerprofil/:_id"];
 

@@ -11,7 +11,7 @@ export default class MissingPlayers extends React.Component {
       date: this.props.date,
     }
   }
-
+  //Tracker zum laden der Spieler
   componentDidMount(){
     this.playersTracker = Tracker.autorun(() => {
         Meteor.subscribe("players");
@@ -21,6 +21,11 @@ export default class MissingPlayers extends React.Component {
     );
   }
 
+  //stoppt den Tracker
+    componentWillUnmount(){
+      this.playersTracker.stop();
+    }
+//funktion zum methodanufruf um Atendencesaetze zum updaten
   updateAtendence(playerId){
     let newAtend ={
       player: playerId,
@@ -29,10 +34,6 @@ export default class MissingPlayers extends React.Component {
     };
     Meteor.call('updateAtendence', newAtend);
   }
-
-    componentWillUnmount(){
-      this.playersTracker.stop();
-    }
 
 
 

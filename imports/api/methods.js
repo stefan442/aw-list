@@ -6,6 +6,9 @@ import {Atendence} from './atendence.js';
 import {Teams} from './teams.js';
 
 Meteor.methods({
+  //erzeugt Atendence- Sätze bei der Termin erstellung
+  //Setzt in der Atendence Tabelle die Anwesenheit defaultmaessig auf false
+  //countdays wird nicht mehr benoetigt im finalen Programm
   'createAtendence' ({dateId, teamId}){
     let players = Players.find().fetch();
       let atendence = Atendence.find({date: dateId}).fetch();
@@ -15,7 +18,6 @@ Meteor.methods({
                 Players.update({_id: player._id}, {$inc: {"countdays": 1}});
                 return player;
             }
-
           );
         }
         else{
@@ -27,18 +29,18 @@ Meteor.methods({
                 }
               }
             );
-
-            if(playerExist === undefined ) {
-
+            if(playerExist === undefined){
               Atendence.insert({"date": dateId, "player": player._id, "atend": false, "buttontext": "false", "teamId": teamId });
               Players.update({_id: player._id}, {$inc: {"countdays": 1}});
-              }
+            }
           }
         );
       }
     }
   },
 
+//loescht einen Termin auf der Dates Tabelle und die zugehoerigen Atendence Saetze zu diesen Termine
+//updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      let actualDay = dateRow.date;
@@ -68,6 +70,7 @@ Meteor.methods({
      Atendence.remove({date: dateRow._id});
 
   },
+  //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
   'toggleAtendence' ({playerRow, today}){
     let atendence = Atendence.findOne({player: playerRow._id, date: today});
     atendence.atend = !atendence.atend;
@@ -92,11 +95,13 @@ Meteor.methods({
       Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
     }
   },
+  //loescht einen Spieler mit seinen zugehoerigen Atendence Saetzen
   'playerDelete'(playerRow){
 
     Atendence.remove({player: playerRow._id});
     Players.remove({_id: playerRow._id});
   },
+  //erstellt fuer einen neuen spieler rueckwirkend neue atendence Saetze ab einen Termin in der Vergangenheit der seine erste Anwesenheit war
   'updateAtendence'(atendenceInsert){
     let actualDay = moment().format("YYYY-MM-DD");
     let thisDate = Dates.findOne({_id: atendenceInsert.date, date: {$lt: actualDay}});
@@ -123,7 +128,7 @@ Meteor.methods({
       Players.update({_id: atendenceInsert.player}, {$set: {"playerRelAt": playerRelAt}} );
     }
   },
-
+//erstellt einen neuen Spieler und erzeugt neu Atendence Saetze ab dem heutigen Tag oder ab einem ausgewählten Termin
   'onSubmitPlayer' (playerInsert){
     let id;
     if (playerInsert.name){
@@ -142,7 +147,7 @@ Meteor.methods({
 
 
   },
-
+//loescht ein gesamtes Team mit allen dazugehoerigen Atendence Saetzen, Terminen und Spielern
   'teamFullRemove' (teamId){
       Atendence.remove({
         teamId: teamId

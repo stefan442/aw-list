@@ -17,6 +17,7 @@ export default class PlayerProfil extends React.Component{
       dates: [],
     }
   }
+  //Tracker zum laden der Atendence Saetze und Termine
   componentDidMount(){
   this.playersTracker = Tracker.autorun(() => {
       Meteor.subscribe("atendence");
@@ -32,19 +33,18 @@ export default class PlayerProfil extends React.Component{
     );
   }
 
+  //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();
   }
-
+//navigation zur Spielerliste zurueck
   goToPlayersList() {
-
-    this.props.history.push('/playerslist/' + this.state.player.teamId);
+    this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
-
+//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren 
   playerDelete(e) {
     Meteor.call('playerDelete', e);
-
-    this.props.history.push('/playerslist/' + this.state.player.teamId);
+    this.props.history.replace('/playerslist/' + this.state.player.teamId);
 
   }
 

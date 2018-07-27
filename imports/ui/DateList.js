@@ -33,6 +33,9 @@ export default class DateList extends React.Component{
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
+
+  //Tracker zum laden der Termine und Spieler
+
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {
         Meteor.subscribe("dates");
@@ -45,25 +48,24 @@ export default class DateList extends React.Component{
       }
     );
  }
-
+ //stoppt den Tracker
  componentWillUnmount(){
       this.datesTracker.stop();
  }
 
-// popup state für Termin hinzufuegen
+//oeffnet popup für Termin hinzufuegen
  handleOpenModalDate () {
    this.setState({ showModalDate: true });
   }
-
+  //schliesst popup für Termin hinzufuegen
   handleCloseModalDate () {
     this.setState({ showModalDate: false });
   }
-  // popup state für Spieler hinzufuegen
-
+  //oeffnet popup für Spieler hinzufuegen
   handleOpenModalPlayer () {
     this.setState({ showModalPlayer: true });
    }
-
+   //schliesst popup für Termin hinzufuegen
    handleCloseModalPlayer () {
      this.setState({ showModalPlayer: false });
    }
@@ -71,17 +73,17 @@ export default class DateList extends React.Component{
 //route zur anwesenheitsliste
    goToAtend(e) {
      let _id = e._id;
-     this.props.history.push('/atendlist/' + _id);
+     this.props.history.replace('/atendlist/' + _id);
    }
-
+//navigation zur spielerliste (tab)
    switchToPlayer(){
-     this.props.history.push('/playerslist/' + this.state.teamId);
+     this.props.history.replace('/playerslist/' + this.state.teamId);
    }
-
+//navigation zurueck Temauswahl
    switchToTeams(){
-     this.props.history.push('/teampage');
+     this.props.history.replace('/teampage');
    }
-
+//funktion fuer den Methodenaufruf um einen Spieler hinzuzufuegen
   onSubmitDate = (e) => {
      e.preventDefault();
      let date = {
@@ -96,7 +98,7 @@ export default class DateList extends React.Component{
     e.target.info.value = "";
     this.handleCloseModalDate();
   };
-
+//navigiert zum Temin am heutigen Tag
   goTodayAtend(){
     let today = moment().format("YYYY-MM-DD");
     let date = this.state.dates.find((obj) => {
@@ -105,7 +107,6 @@ export default class DateList extends React.Component{
         }
       }
     );
-
     if(date){
       this.props.history.replace('/atendlist/' + date._id);
     }

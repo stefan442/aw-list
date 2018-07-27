@@ -12,24 +12,16 @@ if(Meteor.isServer){
   });
 }
 
-
 Meteor.methods({
+  //ertellt neuen Termin und erzeugt die dazugehoerigen Atendence- Saetze
   'onSubmitDate' (dateRow){
     let id;
     let today = moment().format("YYYY-MM-DD");
     if (dateRow.date && dateRow.art){
       id = Dates.insert({"date": dateRow.date, "art": dateRow.art, "info": dateRow.info, "teamId": dateRow.teamId});
-
     }
-
     if(dateRow.date >= today){
-
       Meteor.call('createAtendence', {dateId: id, teamId: dateRow.teamId});
-
     }
-
-
   },
-
-})
-;
+});

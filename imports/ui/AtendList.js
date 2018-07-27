@@ -26,7 +26,7 @@ export default class AtendList extends React.Component {
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
-
+//Tracker zum laden der Atendence Saetze und Spieler
   componentDidMount(){
     this.playersTracker = Tracker.autorun(() => {
 
@@ -42,7 +42,7 @@ export default class AtendList extends React.Component {
       }
     );
   }
-
+//stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();
   }
@@ -51,23 +51,28 @@ export default class AtendList extends React.Component {
   goToApp() {
     this.props.history.replace('/datelist/' + this.state.date.teamId);
   }
-
+//ruft die methode zum setzen der Anwesenheit auf
   addAtend(e){
       Meteor.call ('toggleAtendence', {playerRow: e, today: this.props.match.params._id});
   }
+  //ruft die Methode zum loeschen eines Termins auf
+  //navigiert zum Temin-Liste zurueck
   dateDelete(e) {
     Meteor.call('dateDelete', e);
     this.props.history.replace('/datelist/' + this.state.date.teamId);
 
   }
+  //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
   handleOpenModalPlayer () {
     this.setState({ showModalPlayer: true });
   }
+  //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
 
   handleCloseModalPlayer () {
      this.setState({ showModalPlayer: false });
   }
 
+//Methodenaufruf zum hinzufuegen eines Spielers
   onSubmitPlayer = (e) => {
     e.preventDefault();
     let player = {

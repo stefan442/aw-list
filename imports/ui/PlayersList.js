@@ -19,7 +19,7 @@ export default class PlayersList extends React.Component{
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
-
+  //Tracker zum laden der Spieler
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {
         Meteor.subscribe("players");
@@ -29,21 +29,23 @@ export default class PlayersList extends React.Component{
     );
   }
 
+  //stoppt den Tracker
   componentWillUnmount(){
       this.datesTracker.stop();
   }
+  //navigation zur Terminliste(tab)
   switchToDates(){
-    this.props.history.push('/datelist/' + this.state.teamId);
+    this.props.history.replace('/datelist/' + this.state.teamId);
   }
-
+//oeffnet popup zum Spielerhinzufuegen
   handleOpenModalPlayer () {
     this.setState({ showModalPlayer: true });
   }
-
+  //schliesst popup zum Spielerhinzufuegen
     handleCloseModalPlayer () {
        this.setState({ showModalPlayer: false });
     }
-
+//funktion zum Methodenaufruf um einen Spieler hinzufuegen
     onSubmitPlayer = (e) => {
       e.preventDefault();
       const today = moment().format("YYYY-MM-DD");
@@ -58,14 +60,14 @@ export default class PlayersList extends React.Component{
       e.target.name.value = "";
       this.handleCloseModalPlayer();
     };
-
+//navigation zum spielerprofil
     goToPlayerProfil(e){
       let _id = e._id;
-      this.props.history.push('/playerprofil/' + _id);
+      this.props.history.replace('/playerprofil/' + _id);
     }
-
+//navigation zur Teamliste (tab)
     switchToTeams(){
-      this.props.history.push('/teampage');
+      this.props.history.replace('/teampage');
     }
 
 
@@ -153,11 +155,3 @@ export default class PlayersList extends React.Component{
     );
   }
 }
-
-/*DateList.propTypes = {
-  history: PropTypes.object
-};
-
-DateList.defaultProps = {
-  history: history
-};*/

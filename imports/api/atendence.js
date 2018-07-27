@@ -8,7 +8,3 @@ if(Meteor.isServer){
     return Atendence.find();
   });
 }
-
-Meteor.methods({
-
-});

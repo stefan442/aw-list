@@ -10,8 +10,3 @@ if(Meteor.isServer){
     return Players.find();
   });
 }
-
-Meteor.methods({
-
-  
-});
