@@ -120,6 +120,7 @@ export default class AtendList extends React.Component {
         <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
 
         <p> {formatedDate}</p>
+        <p> Info: {date.art} </p>
         <p> Info: {date.info} </p>
         <ReactTable
           data = {players}
