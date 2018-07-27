@@ -55,12 +55,21 @@ Meteor.methods({
        let player = Players.findOne({_id: atendence.player});
 
        if(atendence.atend){
-         console.log(player);
-         playerRelAt = (player.countAtend - 1) / (count - 1) * 100;
+         if((count - 1) != 0){
+           playerRelAt = (playerRow.countAtend + 1) / (count - 1) * 100;
+         }
+         else{
+            playerRelAt = 0;
+         }
          Players.update({_id: player._id},  {$inc: {"countAtend": -1, "countdays": -1}, $set: {playerRelAt: playerRelAt}});
        }
        else{
-         playerRelAt = (player.countAtend) / (count - 1) * 100;
+         if((count - 1) != 0){
+           playerRelAt = (playerRow.countAtend - 1) / (count - 1) * 100;
+         }
+         else{
+           	playerRelAt = 0;
+         }
          Players.update({_id: player._id}, {$inc: {"countdays": -1}, $set: {playerRelAt: playerRelAt}});
        }
      });
@@ -85,15 +94,24 @@ Meteor.methods({
        })
 
        let count = Atendence.find({date: {$in: dates}}).count();
-       console.log(count);
     if(atendence.atend){
-      playerRelAt = (playerRow.countAtend + 1) / count * 100;
+      if(count != 0){
+        playerRelAt = (playerRow.countAtend + 1) / count * 100;
+      }
+      else{
+        	playerRelAt = 0;
+      }
       Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}, $set: {playerRelAt: playerRelAt}});
 
     }
     else{
 
-      playerRelAt = (playerRow.countAtend - 1) / count * 100;
+      if(count != 0){
+        playerRelAt = (playerRow.countAtend - 1) / count * 100;
+      }
+      else{
+        	playerRelAt = 0;
+      }
       Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
     }
   },
