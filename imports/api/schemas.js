@@ -1,5 +1,6 @@
 import SimpleSchema from "simpl-schema";
 
+// Schema zum Überprüfen der Email
 export const signupSchema = new SimpleSchema({
   email: {
     type: String,

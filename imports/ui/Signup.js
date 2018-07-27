@@ -13,6 +13,7 @@ export default class Signup extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
+    // Email und Passwort werden gekürzt
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
 
@@ -20,6 +21,7 @@ export default class Signup extends React.Component {
       return this.setState({error: "Passwort muss länger als 5 Zeichen sein"});
     }
 
+    // Erstellt User und prüft Email in users.api
     Accounts.createUser({email, password}, (err) => {
       if (err) {
         this.setState({error: err.reason});
