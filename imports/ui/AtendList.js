@@ -1,7 +1,7 @@
 import React from "react";
 import './../../client/main.html';
 import PropTypes from 'prop-types';
-// import "react-table/react-table.css";
+import "react-table/react-table.css";
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";

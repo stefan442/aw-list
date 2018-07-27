@@ -67,6 +67,7 @@ export default class PlayerProfil extends React.Component{
         atend: atend + "",
       }
     });
+    let percentage = Math.round(this.state.player.playerRelAt);
     return(
       <div>
       <h1>Spieler Profil</h1>
@@ -74,7 +75,7 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}}>-</button>,
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
-      <p>Anwesenheit: {player.playerRelAt} % </p>
+      <p>Anwesenheit: {percentage} % </p>
       <ReactTable
         data = {dates}
           columns={[
