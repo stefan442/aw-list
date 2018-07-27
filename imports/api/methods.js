@@ -44,7 +44,7 @@ Meteor.methods({
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      let actualDay = dateRow.date;
-     let dates = Dates.find({date: {$lte: actualDay}});
+     let dates = Dates.find({date: {$lte: actualDay}}).fetch();
      dates = dates.map((date) => {
        return date._id;
      })
@@ -78,7 +78,7 @@ Meteor.methods({
     atendence.buttontext = atendence.atend + "";
      let playerRelAt;
      let actualDay = moment().format("YYYY-MM-DD");
-       let dates = Dates.find({date: {$lte: actualDay}});
+       let dates = Dates.find({date: {$lte: actualDay}}).fetch();
        dates = dates.map((date) => {
          return date._id;
        })
