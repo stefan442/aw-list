@@ -81,7 +81,6 @@ Meteor.methods({
   },
   //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
   'toggleAtendence' ({playerRow, today}){
-    debugger;
     let atendence = Atendence.findOne({player: playerRow._id, date: today});
     atendence.atend = !atendence.atend;
     Atendence.update({player: playerRow._id, date: today}, {$set: {atend: atendence.atend}});
