@@ -143,7 +143,7 @@ export default class AtendList extends React.Component {
             },
 
             {
-              Header: "Anwesned",
+              Header: "Anwesend",
 
               Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
             },
