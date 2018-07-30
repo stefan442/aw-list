@@ -109,13 +109,16 @@ export default class AtendList extends React.Component {
           return obj;
         }
       });
-      let atend = false;
-      if(atendDB){
-        atend = atendDB.atend;
+      // let atend = false;
+      let buttontext = "Nein";
+
+      if(atendDB.atend){
+        // atend = atendDB.atend;
+        buttontext = "Ja";
       }
       return {
         ...player,
-        buttontext: atend + "",
+        buttontext: buttontext + "",
       }
     });
 

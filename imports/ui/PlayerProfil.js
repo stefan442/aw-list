@@ -33,9 +33,6 @@ export default class PlayerProfil extends React.Component{
     );
   }
 
-  componentWillMount() {
-    Modal.setAppElement('body');
- }
 
   //stoppt den Tracker
   componentWillUnmount(){
@@ -64,11 +61,16 @@ export default class PlayerProfil extends React.Component{
         }
       });
 
-      let atend = atendDB.atend;
+      // let atend = false;
+      let buttontext = "Nein";
 
+      if(atendDB.atend){
+        // atend = atendDB.atend;
+        buttontext = "Ja";
+      }
       return {
         ...date,
-        atend: atend + "",
+        atend: buttontext + "",
       }
     });
     let percentage = Math.round(this.state.player.playerRelAt);
