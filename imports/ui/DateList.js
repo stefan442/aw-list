@@ -127,13 +127,13 @@ export default class DateList extends React.Component{
 
     return(
       <div>
-        <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
-        <button onClick={this.switchToPlayer.bind(this)}>Spieler Liste</button>
-        <button onClick={this.handleOpenModalDate}>Termin hinzufügen</button>
+        <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
+        <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
+        <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
         <br/>
         <br/>
 
-        <button onClick={this.goTodayAtend.bind(this)}>{today}</button>
+        <button onClick={this.goTodayAtend.bind(this)} className="buttonColor">{today}</button>
 
         <br/>
         <br/>
@@ -143,7 +143,7 @@ export default class DateList extends React.Component{
           columns={[
             {
               Header: "Datum",
-              Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}}>{row.original.formatedDate}</button>,
+              Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}} className="buttonColor">{row.original.formatedDate}</button>,
             },
             {
               Header: "Art",
@@ -173,23 +173,33 @@ export default class DateList extends React.Component{
             contentLabel="onRequestClose Example"
             onRequestClose={this.handleCloseModalDate}
             shouldCloseOnOverlayClick={false}
+            className="boxed-view__box"
+            overlayClassName="boxed-view boxed-view--modal"
         >
-          <p> Termin hinzufuegen</p>
+          <p>Termin hinzufügen</p>
           <form onSubmit={this.onSubmitDate.bind(this)}>
-            <DateCalendar/>
-            <NativeSelect name="art" >
-              <option value={"Training"}>Training</option>
-              <option value={"Spiel"}>Spiel</option>
-              <option value={"Sonstiges"}>Sonstiges</option>
-            </NativeSelect>
-            <TextField
-              id="info"
-              type="text"
-              placeholder="Info"
-            />
-            <button type="submit" >OK!</button>
+            <div>
+              <DateCalendar/>
+            </div>
+            <div>
+              <NativeSelect name="art" >
+                <option value={"Training"}>Training</option>
+                <option value={"Spiel"}>Spiel</option>
+                <option value={"Sonstiges"}>Sonstiges</option>
+              </NativeSelect>
+            </div>
+            <div>
+              <TextField
+                id="info"
+                type="text"
+                placeholder="Info"
+              />
+            </div>
+            <div>
+              <button type="submit" className="buttonColor">Hinzufügen</button>
+            </div>
           </form>
-          <button  onClick={this.handleCloseModalDate}>Abbrechen</button>
+          <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
         </Modal>
       </div>
 

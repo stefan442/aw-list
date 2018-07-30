@@ -115,12 +115,12 @@ export default class AtendList extends React.Component {
     return (
       <div>
         <p>Spielerliste</p>
-        <button onClick={this.goToApp.bind(this)}>&#x2299;</button>
-        <button onClick={() => this.dateDelete(date)}>-</button>
-        <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
+        <button onClick={this.goToApp.bind(this)} className="buttonColor">&#x2299;</button>
+        <button onClick={() => this.dateDelete(date)} className="buttonColor">-</button>
+        <button onClick={this.handleOpenModalPlayer} className="buttonColor">Spieler hinzufügen</button>
 
         <p> {formatedDate}</p>
-        <p> Info: {date.art} </p>
+        <p> Art: {date.art} </p>
         <p> Info: {date.info} </p>
         <ReactTable
           data = {players}
@@ -141,7 +141,7 @@ export default class AtendList extends React.Component {
               Header: "Anwesned",
               width: 65,
 
-              Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}}>{row.original.buttontext}</button>
+              Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
             },
 
           ]
@@ -162,9 +162,9 @@ export default class AtendList extends React.Component {
         <form onSubmit={this.onSubmitPlayer.bind(this)}>
           <input type="text" name="name" placeholder="name"  />
           <input type="text" name="phone" placeholder="phone"  />
-          <button type="submit">OK!</button>
+          <button type="submit" className="buttonColor">OK!</button>
         </form>
-        <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>,
+        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>,
 
       </Modal>
       </div>

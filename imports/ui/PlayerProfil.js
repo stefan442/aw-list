@@ -41,7 +41,7 @@ export default class PlayerProfil extends React.Component{
   goToPlayersList() {
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
-//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren 
+//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren
   playerDelete(e) {
     Meteor.call('playerDelete', e);
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
@@ -70,8 +70,8 @@ export default class PlayerProfil extends React.Component{
     return(
       <div>
       <h1>Spieler Profil</h1>
-      <button onClick={this.goToPlayersList.bind(this)}>&#x2299;</button>
-      <button onClick={() => {this.playerDelete(player)}}>-</button>,
+      <button onClick={this.goToPlayersList.bind(this)} className="buttonColor">&#x2299;</button>
+      <button onClick={() => {this.playerDelete(player)}} className="buttonColor">-</button>
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
       <p>Anwesenheit: {player.playerRelAt} % </p>

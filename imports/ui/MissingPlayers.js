@@ -56,7 +56,7 @@ export default class MissingPlayers extends React.Component {
           return (<div key={player._id} >
           <button onClick={(e) =>{
             e.target.hidden = true;
-            this.updateAtendence(player._id)}}> {player.name} </button>
+            this.updateAtendence(player._id)}} className="buttonColor"> {player.name} </button>
           </div>)
         })
     }

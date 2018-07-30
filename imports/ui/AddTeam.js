@@ -18,9 +18,9 @@ export default class AddTeam extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           	<input type="text" name="teamName" placeholder="Mannschaftsname" />
-            <button>Team hinzufügen</button>
+            <button className="buttonColor">Team hinzufügen</button>
         </form>
-        <button onClick={this.onLogout.bind(this)}>Logout</button>
+        <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
       </div>
     );
   }

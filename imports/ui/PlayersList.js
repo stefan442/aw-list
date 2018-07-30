@@ -77,17 +77,17 @@ export default class PlayersList extends React.Component{
 
       return(
         <div>
-          <button onClick={this.switchToTeams.bind(this)}>Team Liste</button>
+          <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
 
-          <button onClick={this.switchToDates.bind(this)}>Termin Liste</button>
-          <button onClick={this.handleOpenModalPlayer}>Spieler hinzufügen</button>
+          <button onClick={this.switchToDates.bind(this)} className="buttonColor">Termin Liste</button>
+          <button onClick={this.handleOpenModalPlayer} className="buttonColor">Spieler hinzufügen</button>
           <p> {players.name} </p>
           <ReactTable
             data = {players}
             columns={[
               {
                 Header: "Name",
-                Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}}>{row.original.name}</button>,
+                Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}} className="buttonColor">{row.original.name}</button>,
               },
               {
                 Header: "Anwesenheit",
@@ -138,14 +138,16 @@ export default class PlayersList extends React.Component{
              contentLabel="onRequestClose Example"
              onRequestClose={this.handleCloseModalPlayer}
              shouldCloseOnOverlayClick={false}
+             className="boxed-view__box"
+             overlayClassName="boxed-view boxed-view--modal"
           >
             <p> Spieler hinzufuegen</p>
             <form onSubmit={this.onSubmitPlayer.bind(this)}>
               <input type="text" name="name" placeholder="name"  />
               <input type="text" name="phone" placeholder="phone"  />
-              <button type="submit">OK!</button>
+              <button type="submit" className="buttonColor">OK!</button>
             </form>
-            <button  onClick={this.handleCloseModalPlayer}>Abbrechen</button>
+            <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
 
           </Modal>
 

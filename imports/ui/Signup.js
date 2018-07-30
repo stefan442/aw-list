@@ -40,9 +40,9 @@ export default class Signup extends React.Component {
         <form onSubmit={this.onSubmit.bind(this)} noValidate>
           <input type="email" ref="email" name="email" placeholder="Email"/>
           <input type="password" ref="password" name="password" placeholder="Passwort"/>
-          <button>Account erstellen</button>
+          <button className="buttonColor">Account erstellen</button>
         </form>
-        <Link to="/" replace>Du hast bereits einen Account?</Link>
+        <Link to="/" replace className="linkColor">Du hast bereits einen Account?</Link>
       </div>
     );
   }
