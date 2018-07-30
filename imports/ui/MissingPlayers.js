@@ -56,7 +56,8 @@ export default class MissingPlayers extends React.Component {
       this.missingPlayers = players.map((player) => {
           return (<div key={player._id} >
           <button onClick={(e) =>{
-            e.target.hidden = true;
+            e.target.style.visibility='hidden';
+
             this.updateAtendence(player._id)}} className="buttonColor"> {player.name} </button>
           </div>)
         })
