@@ -33,6 +33,10 @@ export default class PlayerProfil extends React.Component{
     );
   }
 
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
+
   //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();
