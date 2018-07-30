@@ -90,47 +90,35 @@ export default class PlayersList extends React.Component{
                 Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}}>{row.original.name}</button>,
               },
               {
-                Header: "Anwesenheit",
-                accessor: "countAtend",
-              },
-              {
-                Header: "Termine Gesamt",
-                accessor: "countdays",
-              },
-              {
-                Header: "percentage",
-                accessor: "playerRelAt",
-              },
-              {
-                      Header: 'Anwesenheit',
-                      accessor: 'playerRelAt',
-                      Cell: (row) => (
-                        <div
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            backgroundColor: '#dadada',
-                            borderRadius: '2px'
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: `${row.original.playerRelAt}%`,
-                              height: '100%',
-                              backgroundColor: row.original.playerRelAt > 66 ? '#85cc00'
-                                : row.original.playerRelAt > 33 ? '#ffbf00'
-                                : '#ff2e00',
-                              borderRadius: '2px',
-                              transition: 'all .2s ease-out'
-                            }}
-                          />
-                        </div>
-                      )
-                    },
-                    {
-                      accessor: "name",
-                      show: false,
-                    },
+                Header: 'Anwesenheit',
+                accessor: 'playerRelAt',
+                Cell: (row) => (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: '#dadada',
+                      borderRadius: '2px'
+                    }}
+                  >
+                  <div
+                    style={{
+                      width: `${row.original.playerRelAt}%`,
+                      height: '100%',
+                      backgroundColor: row.original.playerRelAt > 66 ? '#85cc00'
+                      : row.original.playerRelAt > 33 ? '#ffbf00'
+                      : '#ff2e00',
+                      borderRadius: '2px',
+                      transition: 'all .2s ease-out'
+                    }}
+                  />
+                  </div>
+                  )
+                },
+                {
+                  accessor: "name",
+                  show: false,
+                },
               ]}
               defaultSorted={[
                   {

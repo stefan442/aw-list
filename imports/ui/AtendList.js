@@ -53,7 +53,12 @@ export default class AtendList extends React.Component {
   }
 //ruft die methode zum setzen der Anwesenheit auf
   addAtend(e){
+    let thisToday = moment().format('YYYY-MM-DD');
+    let actualDay = this.state.date;
+
+    if(actualDay.date <= thisToday){
       Meteor.call ('toggleAtendence', {playerRow: e, today: this.props.match.params._id});
+    }
   }
   //ruft die Methode zum loeschen eines Termins auf
   //navigiert zum Temin-Liste zurueck
@@ -129,17 +134,9 @@ export default class AtendList extends React.Component {
               Header: "Name",
               accessor: "name",
             },
-            {
-              Header: "Anwesenheit",
-              accessor: "countAtend",
-            },
-            {
-              Header: "Termine Gesamt",
-              accessor: "countdays",
-            },
+
             {
               Header: "Anwesned",
-              width: 65,
 
               Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}}>{row.original.buttontext}</button>
             },
