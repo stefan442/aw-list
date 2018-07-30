@@ -161,8 +161,10 @@ export default class AtendList extends React.Component {
          contentLabel="onRequestClose Example"
          onRequestClose={this.handleCloseModalPlayer}
          shouldCloseOnOverlayClick={false}
+         className="boxed-view__box"
+         overlayClassName="boxed-view boxed-view--modal"
       >
-        <p> Spieler hinzufuegen</p>
+        <p> Spieler hinzufügen</p>
 
 
         <div> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
@@ -173,7 +175,7 @@ export default class AtendList extends React.Component {
           <input type="text" name="phone" placeholder="phone"  />
           <button type="submit" className="buttonColor">OK!</button>
         </form>
-        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>,
+        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
 
       </Modal>
       </div>

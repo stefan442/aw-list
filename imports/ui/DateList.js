@@ -167,7 +167,7 @@ export default class DateList extends React.Component{
                 desc: false
               }
           ]}
-
+          defaultPageSize={14}
           className="-striped -highlight"
         />
 
