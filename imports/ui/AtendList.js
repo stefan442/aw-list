@@ -42,6 +42,10 @@ export default class AtendList extends React.Component {
       }
     );
   }
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
+
 //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();

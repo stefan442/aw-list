@@ -28,6 +28,9 @@ export default class PlayersList extends React.Component{
       }
     );
   }
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
 
   //stoppt den Tracker
   componentWillUnmount(){
