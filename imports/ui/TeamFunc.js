@@ -13,7 +13,7 @@ export default class TeamFunc extends React.Component {
               this.props.history.replace('/datelist/' + this.props.team._id)
             }} className="buttonColor">{this.props.team.name}</button>
             <button onClick={() => Meteor.call('teamFullRemove', this.props.team._id)} className="buttonColor">
-              Mannschaft löschen
+              X
             </button>
           </div>
           </div>

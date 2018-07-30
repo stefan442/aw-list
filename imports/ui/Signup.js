@@ -35,6 +35,7 @@ export default class Signup extends React.Component {
     return (
       <div>
         <h1>Erstelle einen Account</h1>
+        <img border="0" height="51" hspace="0" src="/images/logo.png" width="263" />
         {this.state.error ? <p>{this.state.error}</p> : undefined}
 
         <form onSubmit={this.onSubmit.bind(this)} noValidate>

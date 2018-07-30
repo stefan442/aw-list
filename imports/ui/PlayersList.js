@@ -129,7 +129,7 @@ export default class PlayersList extends React.Component{
                     desc: false
                   }
               ]}
-              defaultPageSize={10}
+              defaultPageSize={15}
               className="-striped -highlight"
           />
 
