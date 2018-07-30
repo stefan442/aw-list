@@ -33,6 +33,7 @@ export default class PlayerProfil extends React.Component{
     );
   }
 
+
   //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();
@@ -60,13 +61,19 @@ export default class PlayerProfil extends React.Component{
         }
       });
 
-      let atend = atendDB.atend;
+      // let atend = false;
+      let buttontext = "Nein";
 
+      if(atendDB.atend){
+        // atend = atendDB.atend;
+        buttontext = "Ja";
+      }
       return {
         ...date,
-        atend: atend + "",
+        atend: buttontext + "",
       }
     });
+    let percentage = Math.round(this.state.player.playerRelAt);
     return(
       <div>
       <h1>Spieler Profil</h1>
@@ -74,7 +81,7 @@ export default class PlayerProfil extends React.Component{
       <button onClick={() => {this.playerDelete(player)}} className="buttonColor">-</button>
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
-      <p>Anwesenheit: {player.playerRelAt} % </p>
+      <p>Anwesenheit: {percentage} % </p>
       <ReactTable
         data = {dates}
           columns={[
@@ -101,7 +108,7 @@ export default class PlayerProfil extends React.Component{
             defaultSorted={[
                 {
                   id: "date",
-                  desc: true
+                  desc: false
                 }
             ]}
             defaultPageSize={10}

@@ -48,6 +48,10 @@ export default class DateList extends React.Component{
       }
     );
  }
+ componentWillMount() {
+   Modal.setAppElement('body');
+}
+
  //stoppt den Tracker
  componentWillUnmount(){
       this.datesTracker.stop();
@@ -160,7 +164,7 @@ export default class DateList extends React.Component{
           defaultSorted={[
               {
                 id: "date",
-                desc: true
+                desc: false
               }
           ]}
 

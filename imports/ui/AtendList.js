@@ -1,7 +1,7 @@
 import React from "react";
 import './../../client/main.html';
 import PropTypes from 'prop-types';
-// import "react-table/react-table.css";
+import "react-table/react-table.css";
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
@@ -42,6 +42,10 @@ export default class AtendList extends React.Component {
       }
     );
   }
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
+
 //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();
@@ -53,7 +57,12 @@ export default class AtendList extends React.Component {
   }
 //ruft die methode zum setzen der Anwesenheit auf
   addAtend(e){
+    let thisToday = moment().format('YYYY-MM-DD');
+    let actualDay = this.state.date;
+
+    if(actualDay.date <= thisToday){
       Meteor.call ('toggleAtendence', {playerRow: e, today: this.props.match.params._id});
+    }
   }
   //ruft die Methode zum loeschen eines Termins auf
   //navigiert zum Temin-Liste zurueck
@@ -100,13 +109,16 @@ export default class AtendList extends React.Component {
           return obj;
         }
       });
-      let atend = false;
-      if(atendDB){
-        atend = atendDB.atend;
+      // let atend = false;
+      let buttontext = "Nein";
+
+      if(atendDB.atend){
+        // atend = atendDB.atend;
+        buttontext = "Ja";
       }
       return {
         ...player,
-        buttontext: atend + "",
+        buttontext: buttontext + "",
       }
     });
 
@@ -129,23 +141,20 @@ export default class AtendList extends React.Component {
               Header: "Name",
               accessor: "name",
             },
-            {
-              Header: "Anwesenheit",
-              accessor: "countAtend",
-            },
-            {
-              Header: "Termine Gesamt",
-              accessor: "countdays",
-            },
+
             {
               Header: "Anwesned",
-              width: 65,
 
               Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
             },
 
-          ]
-        }
+          ]}
+          defaultSorted={[
+              {
+                id: "name",
+                desc: false
+              }
+          ]}
       />
       <Modal
          isOpen={this.state.showModalPlayer}
