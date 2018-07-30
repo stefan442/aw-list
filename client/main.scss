@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+html {
+  font-size: 1.3rem;
+}
+
 body {
   color: #F8B01E;
   background-color: #4D4D4D;
@@ -26,9 +30,10 @@ body {
 }
 
 .boxed-view__box {
+  user-select: none;
   background-color: #4D4D4D;
   padding: 2.4rem;
-  text-align: center;
+  text-align: left;
   width: 24rem;
 }
 
@@ -60,7 +65,7 @@ body {
 	cursor:pointer;
 	color:#474747;
 	font-family:Arial;
-	font-size:9px;
+	font-size:4vw;
 	padding:3px 2px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #f8af1e;
