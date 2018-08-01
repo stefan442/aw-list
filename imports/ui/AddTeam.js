@@ -16,11 +16,13 @@ export default class AddTeam extends React.Component {
   render(){
     return(
       <div>
-        <form className="teamListCentered" onSubmit={this.handleSubmit.bind(this)}>
+        <form className="teamListCenteredForm" onSubmit={this.handleSubmit.bind(this)}>
           	<input type="text" name="teamName" placeholder="Mannschaftsname" />
             <button className="buttonColor">Team hinzufügen</button>
         </form>
+        <div className="buttonLogout">
         <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
+        </div>
       </div>
     );
   }

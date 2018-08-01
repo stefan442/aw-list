@@ -82,12 +82,16 @@ export default class PlayerProfil extends React.Component{
         <Header/>
       </div>
       <div>
-      <h1>Spieler Profil</h1>
-      <button onClick={this.goToPlayersList.bind(this)} className="buttonColor">&#x2299;</button>
-      <button onClick={() => {this.playerDelete(player)}} className="buttonColor">-</button>
+      <div className="playerprofilForm">
+      <h1 className="smallHeaderText">Spieler Profil</h1>
+      <div className="playerprofilButton">
+      <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">&#x2299;</button>
+      <button onClick={() => {this.playerDelete(player)}} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
+      </div>
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
       <p>Anwesenheit: {percentage} % </p>
+      </div>
       <ReactTable
         data = {dates}
           columns={[
