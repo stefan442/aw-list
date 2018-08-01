@@ -146,6 +146,24 @@ body {
 	text-decoration:none;
 	text-shadow:0px 1px 0px #f8af1e;
 }
+.buttonTeamDel {
+  margin: 5%;
+  height: 20%;
+  width: 15%;
+}
+.buttonLogout{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 99% auto 0 auto;
+    width: 30%;
+}
+.buttonTeamName {
+  width: 50%;
+  height: 20%;
+  margin: 5%;
+}
 .buttonColor:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f09c00), color-stop(1, #f8af1e));
 	background:-moz-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
@@ -160,7 +178,8 @@ body {
 	position:relative;
 	top:0.5px;
 }
-.teamListCentered {
+
+.teamListCenteredForm {
   display: flex;
   align-content: center;
   justify-content: center;
@@ -168,6 +187,23 @@ body {
   margin: 5%;
   width: auto;
 }
+.teamListCentered {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 5%;
+  width: auto;
+}
+.teamListCenteredFunc {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: auto;
+  width: auto;
+}
+
 
 .ReactTable .rt-noData{
   visibility: hidden;
