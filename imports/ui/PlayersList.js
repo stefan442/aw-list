@@ -96,6 +96,7 @@ export default class PlayersList extends React.Component{
             columns={[
               {
                 Header: "Name",
+                sortable: false,
                 Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}} className="buttonColor">{row.original.name}</button>,
               },
               {
@@ -135,7 +136,12 @@ export default class PlayersList extends React.Component{
                     desc: false
                   }
               ]}
-              defaultPageSize={15}
+              previousText='Zurück'
+              nextText='Vor'
+              pageText='Seite'
+              ofText='von'
+              showPageSizeOptions={false}
+              defaultPageSize={14}
               className="-striped -highlight"
           />
 

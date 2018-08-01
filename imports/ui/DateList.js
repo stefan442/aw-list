@@ -142,9 +142,9 @@ export default class DateList extends React.Component{
         <Header/>
       <div>
         <div className="navBardp">
-          <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
-          <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
-          <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
+          <button onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
+          <button onClick={this.switchToPlayer.bind(this)} className="buttonColor navigation">Spieler Liste</button>
+          <button onClick={this.handleOpenModalDate} className="buttonColor navigation">Termin hinzufügen</button>
         </div>
 
         <br/>

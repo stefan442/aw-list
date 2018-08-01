@@ -94,6 +94,7 @@ export default class PlayerProfil extends React.Component{
             {
               Header: "Datum",
               accessor: "formatedDate",
+              sortable: false,
             },
             {
               Header: "Art",
@@ -102,6 +103,7 @@ export default class PlayerProfil extends React.Component{
             {
               Header: "Anwesend",
               accessor: "atend",
+              sortable: false,
             },
             {
               accessor: "date",
@@ -117,7 +119,12 @@ export default class PlayerProfil extends React.Component{
                   desc: false
                 }
             ]}
-            defaultPageSize={10}
+            previousText='Zurück'
+            nextText='Vor'
+            pageText='Seite'
+            ofText='von'
+            showPageSizeOptions={false}
+            defaultPageSize={14}
             className="-striped -highlight"
           />
 
