@@ -34,7 +34,8 @@ export const onAuthChange = (isAuthenticated) => {
   }
 };
 
-export const history = createHistory();
+ export const history = createHistory();
+
 
 export class AppRouter extends React.Component {
 //constructer fuer state-daten der anwesenheitsliste

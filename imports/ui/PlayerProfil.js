@@ -3,6 +3,8 @@ import ReactTable from "react-table";
 import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
 import {Atendence} from './../api/atendence.js';
+import Header from './header.js';
+
 
 
 export default class PlayerProfil extends React.Component{
@@ -76,6 +78,10 @@ export default class PlayerProfil extends React.Component{
     let percentage = Math.round(this.state.player.playerRelAt);
     return(
       <div>
+      <div>
+        <Header/>
+      </div>
+      <div>
       <h1>Spieler Profil</h1>
       <button onClick={this.goToPlayersList.bind(this)} className="buttonColor">&#x2299;</button>
       <button onClick={() => {this.playerDelete(player)}} className="buttonColor">-</button>
@@ -116,6 +122,7 @@ export default class PlayerProfil extends React.Component{
           />
 
       </div>
+    </div>
 
     )
   }

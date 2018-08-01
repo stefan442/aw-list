@@ -9,6 +9,8 @@ import DateCalendar from './DateCalendar.js';
 import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
 import TextField from '@material-ui/core/TextField';
+import Header from './header.js';
+
 
 
 export default class DateList extends React.Component{
@@ -119,7 +121,13 @@ export default class DateList extends React.Component{
     }
   }
 
+  onLogout(){
+    Accounts.logout()
+  }
 
+  onBack(){
+    this.props.history.replace('/playerslist/' + this.state.teamId);
+  }
 
   render() {
     let dates = this.state.dates.map((date) =>{
@@ -130,6 +138,8 @@ export default class DateList extends React.Component{
 
 
     return(
+      <div>
+        <Header/>
       <div>
         <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
         <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
@@ -206,7 +216,7 @@ export default class DateList extends React.Component{
           <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
         </Modal>
       </div>
-
+    </div>
     );
   }
 }

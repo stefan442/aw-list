@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import {Players} from './../api/players.js';
+import Header from './header.js';
+
 
 export default class PlayersList extends React.Component{
   constructor(props) {
@@ -80,6 +82,10 @@ export default class PlayersList extends React.Component{
 
       return(
         <div>
+        <div>
+          <Header/>
+        </div>
+        <div>
           <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
 
           <button onClick={this.switchToDates.bind(this)} className="buttonColor">Termin Liste</button>
@@ -153,6 +159,7 @@ export default class PlayersList extends React.Component{
 
 
         </div>
+      </div>
 
     );
   }

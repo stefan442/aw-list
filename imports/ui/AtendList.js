@@ -6,6 +6,8 @@ import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
+import Header from './header.js';
+
 
 import {Dates} from './../api/dates.js';
 import {Players} from './../api/players.js';
@@ -126,6 +128,10 @@ export default class AtendList extends React.Component {
 
     return (
       <div>
+      <div>
+        <Header/>
+      </div>
+      <div>
         <p>Spielerliste</p>
         <button onClick={this.goToApp.bind(this)} className="buttonColor">&#x2299;</button>
         <button onClick={() => this.dateDelete(date)} className="buttonColor">-</button>
@@ -179,6 +185,7 @@ export default class AtendList extends React.Component {
 
       </Modal>
       </div>
+    </div>
 
     );
   }

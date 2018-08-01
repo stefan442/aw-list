@@ -1,7 +1,47 @@
-* {
-  margin: 20;
-  padding: 0;
+:root{
+  clientisGrau: #4D4D4D;
+  clientisOrange: #F8B01E;
 }
+
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+.Header{
+  display: flex;
+  width: 100%;
+  background-color: #f8b01e;
+  color: #4d4d4d;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+.headerText{
+  font-size: 2em;
+  width: 70% !important;
+  margin: auto;
+}
+.Header>div{
+  justify-content: center;
+}
+
+.Logo{
+  margin: 5%;
+}
+.loginForm{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5%;
+  width: auto;
+}
+.loginField{
+  padding: 5px;
+  margin-bottom: 2%;
+}
+
 
 html {
   font-size:4vw;
@@ -11,6 +51,7 @@ body {
   color: #F8B01E;
   background-color: #4D4D4D;
 }
+
 
 .boxed-view {
   align-items: center;
