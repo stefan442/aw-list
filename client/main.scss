@@ -141,17 +141,11 @@ body {
 	position:relative;
 	top:0.5px;
 }
-
-.navBardp{
+.teamListCentered {
   display: flex;
   align-content: center;
   justify-content: center;
-  flex-direction: row;
-  margin-right: 1%;
-  margin-left: 1%;
-
-}
-
-.ReactTable .rt-noData{
-  visibility: hidden;
+  flex-direction: column;
+  margin: 5%;
+  width: auto;
 }

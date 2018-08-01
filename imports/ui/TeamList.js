@@ -25,7 +25,7 @@ export default class TeamList extends React.Component {
       if (this.state.teams.length === 0){
       return(
         <div>
-          <p>Bitte eine Mannschaft hinzufügen!</p>
+          <p className="teamListCentered">Bitte eine Mannschaft hinzufügen!</p>
         </div>
       )
     } else {
