@@ -6,8 +6,7 @@ export default class TeamFunc extends React.Component {
 
       render(){
         return(
-          <div>
-            <h3>{this.props.team.name}</h3>
+
           <div>
             <button onClick={() => {
               this.props.history.replace('/datelist/' + this.props.team._id)
@@ -16,7 +15,7 @@ export default class TeamFunc extends React.Component {
               X
             </button>
           </div>
-          </div>
+
         );
       }
 };

@@ -148,10 +148,12 @@ export default class DateList extends React.Component{
             {
               Header: "Datum",
               Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}} className="buttonColor">{row.original.formatedDate}</button>,
+              sortable: false,
             },
             {
               Header: "Art",
               accessor: "art",
+              sortable: false,
             },
             {
               accessor: "date",
@@ -167,6 +169,7 @@ export default class DateList extends React.Component{
                 desc: false
               }
           ]}
+
           defaultPageSize={14}
           className="-striped -highlight"
         />
