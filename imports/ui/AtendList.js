@@ -162,6 +162,7 @@ export default class AtendList extends React.Component {
                 desc: false
               }
           ]}
+          resizable={false}
           previousText='Zurück'
           nextText='Vor'
           pageText='Seite'

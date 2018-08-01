@@ -146,21 +146,16 @@ export default class DateList extends React.Component{
           <button onClick={this.switchToPlayer.bind(this)} className="buttonColor navigation">Spieler Liste</button>
           <button onClick={this.handleOpenModalDate} className="buttonColor navigation">Termin hinzufügen</button>
         </div>
-
-        <br/>
-        <br/>
-
-        <button onClick={this.goTodayAtend.bind(this)} className="buttonColor">{today}</button>
-
-        <br/>
-        <br/>
-
+        <div className="today">
+          <button onClick={this.goTodayAtend.bind(this)} className="buttonColor todayButton">Termin Heute: {today}</button>
+        </div>
         <ReactTable
           data = {dates}
           columns={[
             {
               Header: "Datum",
-              Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}} className="buttonColor">{row.original.formatedDate}</button>,
+              Cell: (row) => <button onClick={() => {this.goToAtend(row.original);}} className="buttonColor">{row.original.formatedDate}</button>,
+
               sortable: false,
             },
             {
@@ -182,6 +177,9 @@ export default class DateList extends React.Component{
                 desc: false
               }
           ]}
+
+
+          resizable={false}
           previousText='Zurück'
           nextText='Vor'
           pageText='Seite'

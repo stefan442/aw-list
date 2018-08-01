@@ -229,5 +229,31 @@ body {
 
 .ReactTable .rt-noData{
   visibility: hidden;
+}
 
+.navBardp{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 20%;
+  width: auto;
+  margin: 5px;
+
+}
+.navigation{
+  width: 33%;
+}
+
+.today{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80%;
+  width: auto;
+  margin: 5px;
+}
+.todayButton{
+  height: auto;
 }
