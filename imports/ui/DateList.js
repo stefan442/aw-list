@@ -141,9 +141,12 @@ export default class DateList extends React.Component{
       <div>
         <Header/>
       <div>
-        <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
-        <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
-        <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
+        <div className="navBardp">
+          <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
+          <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
+          <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
+        </div>
+
         <br/>
         <br/>
 
@@ -158,10 +161,12 @@ export default class DateList extends React.Component{
             {
               Header: "Datum",
               Cell: (row) =>  <button onClick={() => {this.goToAtend(row.original);}} className="buttonColor">{row.original.formatedDate}</button>,
+              sortable: false,
             },
             {
               Header: "Art",
               accessor: "art",
+              sortable: false,
             },
             {
               accessor: "date",
@@ -177,6 +182,11 @@ export default class DateList extends React.Component{
                 desc: false
               }
           ]}
+          previousText='Zurück'
+          nextText='Vor'
+          pageText='Seite'
+          ofText='von'
+          showPageSizeOptions={false}
           defaultPageSize={14}
           className="-striped -highlight"
         />
