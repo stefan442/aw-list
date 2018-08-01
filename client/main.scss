@@ -74,6 +74,19 @@ body {
   color: $orange;
 }
 
+.confirmMessage{
+  font-family: sans-serif;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2% 5%;
+}
+.confirmButtons{
+  width: 40%;
+  margin: 5px 0 0 0;
+}
+
 .inputField{
   padding: 5px;
   margin: 0 0 10px 0;
@@ -113,6 +126,18 @@ body {
   text-align: center;
 }
 
+.attendlistButtonRow{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  width: auto;
+  margin: 5px;
+}
+.attendlistButtonRowSingle{
+  width: 33%;
+}
+
 .boxed-view {
   align-items: center;
   display: flex;
@@ -139,6 +164,13 @@ body {
 .linkColor {
   font-family: sans-serif;
   color: $orange;
+}
+
+.missingPlayers{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: auto;
 }
 
 .buttonColor, .-btn {
@@ -191,7 +223,7 @@ body {
     align-content: center;
     justify-content: center;
     flex-direction: column;
-    margin: 99% auto 0 auto;
+    margin: 95% auto 0 auto;
     width: 30%;
 }
 .buttonTeamName {
@@ -209,6 +241,10 @@ body {
   margin: 5%;
   width: auto;
 }
+.teamListCenteredFormInput{
+  padding: 3px;
+  margin: 5px;
+}
 .teamListCentered {
   display: flex;
   align-content: center;
@@ -216,6 +252,7 @@ body {
   flex-direction: row;
   margin: 5%;
   width: auto;
+  font-family: sans-serif;
 }
 .teamListCenteredFunc {
   display: flex;

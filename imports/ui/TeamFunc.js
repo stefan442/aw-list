@@ -44,13 +44,14 @@ export default class TeamFunc extends React.Component {
                contentLabel="onRequestClose Example"
                onRequestClose={this.handleCloseModalTeam}
                shouldCloseOnOverlayClick={false}
-               className="boxed-view__box"
+               className="boxed-view__box confirmMessage"
                overlayClassName="boxed-view boxed-view--modal"
             >
               <p>Möchten sie wirklich diese Mannschaft löschen?</p>
-              <button  onClick={this.handleCloseModalTeam} className="buttonColor">Abbrechen</button>
-              <button  onClick={this.teamDelete.bind(this)} className="buttonColor">Löschen</button>
-
+              <form>
+              <button  onClick={this.handleCloseModalTeam} className="buttonColor confirmButtons">Abbrechen</button>
+              <button  onClick={this.teamDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+              </form>
             </Modal>
 
           </div>

@@ -132,14 +132,16 @@ export default class AtendList extends React.Component {
         <Header/>
       </div>
       <div>
-
-        <button onClick={this.goToApp.bind(this)} className="buttonColor">&#x2299;</button>
-        <button onClick={() => this.dateDelete(date)} className="buttonColor">-</button>
-        <button onClick={this.handleOpenModalPlayer} className="buttonColor">Spieler hinzufügen</button>
-
+        <div className="attendlistButtonRow">
+        <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
+        <button onClick={() => this.dateDelete(date)} className="buttonColor attendlistButtonRowSingle">Termin löschen</button>
+        <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
+        </div>
+        <div className="playerprofilInfo">
         <h3> {formatedDate}</h3>
         <p> Art: {date.art} </p>
         <p> Info: {date.info} </p>
+        </div>
         <ReactTable
           data = {players}
            columns={[
@@ -168,9 +170,10 @@ export default class AtendList extends React.Component {
           pageText='Seite'
           ofText='von'
           showPageSizeOptions={false}
-          defaultPageSize={14}
+          defaultPageSize={11}
           className="-striped -highlight"
       />
+
       <Modal
          isOpen={this.state.showModalPlayer}
          contentLabel="onRequestClose Example"
@@ -179,20 +182,23 @@ export default class AtendList extends React.Component {
          className="boxed-view__box"
          overlayClassName="boxed-view boxed-view--modal"
       >
+        <div className="">
         <p className="smallHeaderText">Spieler hinzufügen</p>
 
 
-        <div> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
+        <div className="missingPlayers"> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
+
         <div className="borderButton">
           <form onSubmit={this.onSubmitPlayer.bind(this)}>
-            <input type="text" name="name" placeholder="name" className="inputField"/>
-            <input type="text" name="phone" placeholder="phone" className="inputField"/>
+            <input type="text" name="name" placeholder="Name" className="inputField"/>
+            <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
             <div>
               <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
               <button type="submit" className="buttonColor">OK!</button>
             </div>
           </form>
         </div>
+      </div>
 
 
         {/* <form onSubmit={this.onSubmitPlayer.bind(this)}>

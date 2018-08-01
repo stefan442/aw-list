@@ -185,7 +185,7 @@ export default class DateList extends React.Component{
           pageText='Seite'
           ofText='von'
           showPageSizeOptions={false}
-          defaultPageSize={14}
+          defaultPageSize={13}
           className="-striped -highlight"
         />
 
