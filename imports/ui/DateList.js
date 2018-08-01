@@ -9,6 +9,8 @@ import DateCalendar from './DateCalendar.js';
 import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
 import TextField from '@material-ui/core/TextField';
+import Header from './header.js';
+
 
 
 export default class DateList extends React.Component{
@@ -119,7 +121,13 @@ export default class DateList extends React.Component{
     }
   }
 
+  onLogout(){
+    Accounts.logout()
+  }
 
+  onBack(){
+    this.props.history.replace('/playerslist/' + this.state.teamId);
+  }
 
   render() {
     let dates = this.state.dates.map((date) =>{
@@ -131,9 +139,14 @@ export default class DateList extends React.Component{
 
     return(
       <div>
-        <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
-        <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
-        <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
+        <Header/>
+      <div>
+        <div className="navBardp">
+          <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
+          <button onClick={this.switchToPlayer.bind(this)} className="buttonColor">Spieler Liste</button>
+          <button onClick={this.handleOpenModalDate} className="buttonColor">Termin hinzufügen</button>
+        </div>
+
         <br/>
         <br/>
 
@@ -169,7 +182,11 @@ export default class DateList extends React.Component{
                 desc: false
               }
           ]}
-
+          previousText='Zurück'
+          nextText='Vor'
+          pageText='Seite'
+          ofText='von'
+          showPageSizeOptions={false}
           defaultPageSize={14}
           className="-striped -highlight"
         />
@@ -209,7 +226,7 @@ export default class DateList extends React.Component{
           <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
         </Modal>
       </div>
-
+    </div>
     );
   }
 }

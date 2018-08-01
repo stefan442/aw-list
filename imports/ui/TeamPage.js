@@ -2,6 +2,7 @@ import React from 'react';
 
 import AddTeam from './AddTeam.js';
 import TeamList from './TeamList.js';
+import Header from './header.js';
 
 
 export default class TeamPage extends React.Component {
@@ -11,12 +12,24 @@ export default class TeamPage extends React.Component {
             title: "Mannschaften"
         };
       }
+
+      onLogout(){
+        Accounts.logout();
+      }
+
+      onBack(){
+          Accounts.logout();
+      }
+
       render(){
         return(
+          <div>
+            <Header/>
           <div>
               <h1>{this.state.title}</h1>
               <TeamList {...this.props}/>
               <AddTeam/>
+          </div>
           </div>
         );
       }

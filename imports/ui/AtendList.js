@@ -6,6 +6,8 @@ import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 // import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
+import Header from './header.js';
+
 
 import {Dates} from './../api/dates.js';
 import {Players} from './../api/players.js';
@@ -126,12 +128,16 @@ export default class AtendList extends React.Component {
 
     return (
       <div>
-        <p>Spielerliste</p>
+      <div>
+        <Header/>
+      </div>
+      <div>
+
         <button onClick={this.goToApp.bind(this)} className="buttonColor">&#x2299;</button>
         <button onClick={() => this.dateDelete(date)} className="buttonColor">-</button>
         <button onClick={this.handleOpenModalPlayer} className="buttonColor">Spieler hinzufügen</button>
 
-        <p> {formatedDate}</p>
+        <h3> {formatedDate}</h3>
         <p> Art: {date.art} </p>
         <p> Info: {date.info} </p>
         <ReactTable
@@ -140,11 +146,12 @@ export default class AtendList extends React.Component {
             {
               Header: "Name",
               accessor: "name",
+              sortable: false,
             },
 
             {
               Header: "Anwesend",
-
+              sortable: false,
               Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
             },
 
@@ -155,6 +162,13 @@ export default class AtendList extends React.Component {
                 desc: false
               }
           ]}
+          previousText='Zurück'
+          nextText='Vor'
+          pageText='Seite'
+          ofText='von'
+          showPageSizeOptions={false}
+          defaultPageSize={14}
+          className="-striped -highlight"
       />
       <Modal
          isOpen={this.state.showModalPlayer}
@@ -179,6 +193,7 @@ export default class AtendList extends React.Component {
 
       </Modal>
       </div>
+    </div>
 
     );
   }
