@@ -119,6 +119,7 @@ export default class PlayerProfil extends React.Component{
                   desc: false
                 }
             ]}
+            resizable={false}
             previousText='Zurück'
             nextText='Vor'
             pageText='Seite'

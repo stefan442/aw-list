@@ -86,10 +86,11 @@ export default class PlayersList extends React.Component{
           <Header/>
         </div>
         <div>
-          <button onClick={this.switchToTeams.bind(this)} className="buttonColor">Team Liste</button>
-
-          <button onClick={this.switchToDates.bind(this)} className="buttonColor">Termin Liste</button>
-          <button onClick={this.handleOpenModalPlayer} className="buttonColor">Spieler hinzufügen</button>
+          <div className="navBardp">
+            <button onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
+            <button onClick={this.switchToDates.bind(this)} className="buttonColor navigation">Termin Liste</button>
+            <button onClick={this.handleOpenModalPlayer} className="navigation buttonColor">Spieler hinzufügen</button>
+          </div>
           <p> {players.name} </p>
           <ReactTable
             data = {players}
@@ -136,6 +137,7 @@ export default class PlayersList extends React.Component{
                     desc: false
                   }
               ]}
+              resizable={false}
               previousText='Zurück'
               nextText='Vor'
               pageText='Seite'
