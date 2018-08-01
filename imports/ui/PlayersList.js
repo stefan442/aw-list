@@ -153,14 +153,17 @@ export default class PlayersList extends React.Component{
              className="boxed-view__box"
              overlayClassName="boxed-view boxed-view--modal"
           >
-            <p> Spieler hinzufuegen</p>
-            <form onSubmit={this.onSubmitPlayer.bind(this)}>
-              <input type="text" name="name" placeholder="name"  />
-              <input type="text" name="phone" placeholder="phone"  />
-              <button type="submit" className="buttonColor">OK!</button>
-            </form>
-            <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
-
+            <p className="smallHeaderText">Spieler hinzufügen</p>
+            <div className="borderButton">
+              <form onSubmit={this.onSubmitPlayer.bind(this)}>
+                <input type="text" name="name" placeholder="Name" className="inputField"/>
+                <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
+                <div>
+                  <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                  <button type="submit" className="buttonColor">OK!</button>
+                </div>
+              </form>
+            </div>
           </Modal>
 
 

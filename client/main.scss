@@ -70,6 +70,15 @@ body {
   margin: 0px auto 15px auto;
 }
 
+.ReactModalPortal>div>div>div>div>form>div>div>div{
+  color: $orange;
+}
+
+.inputField{
+  padding: 5px;
+  margin: 0 0 10px 0;
+}
+
 .playerprofilForm{
   display: flex;
   align-content: center;
@@ -78,19 +87,30 @@ body {
   margin: 2% 5%;
   width: auto;
 }
-.playerprofilButton{
+.borderButton{
   display: flex;
   align-content: center;
   justify-content: center;
   flex-direction: row;
-  margin: 0;
+  margin: 20px;
   width: auto;
 }
 .playerprofilButtonBack{
+  font-size: 100px;
   width: 50%
 }
 .playerprofilButtonDel{
   width: 50%;
+}
+.playerprofilInfo{
+  font-family: sans-serif;
+  margin: 10px 0 0 10px;
+}
+.ReactTable{
+  font-family: sans-serif;
+}
+.ReactTable>div>div>div>div>div{
+  text-align: center;
 }
 
 .boxed-view {
@@ -121,7 +141,7 @@ body {
   color: $orange;
 }
 
-.buttonColor {
+.buttonColor, .-btn {
 	-moz-box-shadow: 1px 1px 0px 0px #a66c00;
 	-webkit-box-shadow: 1px 1px 0px 0px #a66c00;
 	box-shadow: 1px 1px 0px 0px #a66c00;
@@ -132,7 +152,7 @@ body {
 	background:-ms-linear-gradient(top, #f8af1e 5%, #f09c00 100%);
 	background:linear-gradient(to bottom, #f8af1e 5%, #f09c00 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8af1e', endColorstr='#f09c00',GradientType=0);
-	background-color:#f8af1e;
+	background-color:#f8af1e !important;
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -145,6 +165,21 @@ body {
 	padding:3px 2px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #f8af1e;
+}
+
+.buttonColor:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f09c00), color-stop(1, #f8af1e));
+	background:-moz-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
+	background:-webkit-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
+	background:-o-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
+	background:-ms-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
+	background:linear-gradient(to bottom, #f09c00 5%, #f8af1e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09c00', endColorstr='#f8af1e',GradientType=0);
+	background-color:#f09c00;
+}
+.buttonColor:active {
+	position:relative;
+	top:0.5px;
 }
 .buttonTeamDel {
   margin: 5%;
@@ -164,20 +199,7 @@ body {
   height: 20%;
   margin: 5%;
 }
-.buttonColor:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f09c00), color-stop(1, #f8af1e));
-	background:-moz-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
-	background:-webkit-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
-	background:-o-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
-	background:-ms-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
-	background:linear-gradient(to bottom, #f09c00 5%, #f8af1e 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09c00', endColorstr='#f8af1e',GradientType=0);
-	background-color:#f09c00;
-}
-.buttonColor:active {
-	position:relative;
-	top:0.5px;
-}
+
 
 .teamListCenteredForm {
   display: flex;

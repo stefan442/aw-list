@@ -200,30 +200,35 @@ export default class DateList extends React.Component{
             className="boxed-view__box"
             overlayClassName="boxed-view boxed-view--modal"
         >
-          <p>Termin hinzufügen</p>
+          <p className="smallHeaderText">Termin hinzufügen</p>
+          <div>
+          <div>
           <form onSubmit={this.onSubmitDate.bind(this)}>
-            <div>
+
+            <div className="datelistModalText">
               <DateCalendar/>
             </div>
-            <div>
+            <div className="datelistModalText">
               <NativeSelect name="art" >
                 <option value={"Training"}>Training</option>
                 <option value={"Spiel"}>Spiel</option>
                 <option value={"Sonstiges"}>Sonstiges</option>
               </NativeSelect>
             </div>
-            <div>
+            <div className="datelistModalText">
               <TextField
                 id="info"
                 type="text"
                 placeholder="Info"
               />
             </div>
-            <div>
+            <div className="borderButton">
+              <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
               <button type="submit" className="buttonColor">Hinzufügen</button>
             </div>
           </form>
-          <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
+          </div>
+          </div>
         </Modal>
       </div>
     </div>

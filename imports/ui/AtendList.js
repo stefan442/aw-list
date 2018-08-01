@@ -178,18 +178,28 @@ export default class AtendList extends React.Component {
          className="boxed-view__box"
          overlayClassName="boxed-view boxed-view--modal"
       >
-        <p> Spieler hinzufügen</p>
+        <p className="smallHeaderText">Spieler hinzufügen</p>
 
 
         <div> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
+        <div className="borderButton">
+          <form onSubmit={this.onSubmitPlayer.bind(this)}>
+            <input type="text" name="name" placeholder="name" className="inputField"/>
+            <input type="text" name="phone" placeholder="phone" className="inputField"/>
+            <div>
+              <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+              <button type="submit" className="buttonColor">OK!</button>
+            </div>
+          </form>
+        </div>
 
 
-        <form onSubmit={this.onSubmitPlayer.bind(this)}>
+        {/* <form onSubmit={this.onSubmitPlayer.bind(this)}>
           <input type="text" name="name" placeholder="name"  />
           <input type="text" name="phone" placeholder="phone"  />
           <button type="submit" className="buttonColor">OK!</button>
         </form>
-        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button> */}
 
       </Modal>
       </div>

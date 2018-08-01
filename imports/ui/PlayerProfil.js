@@ -84,14 +84,17 @@ export default class PlayerProfil extends React.Component{
       <div>
       <div className="playerprofilForm">
       <h1 className="smallHeaderText">Spieler Profil</h1>
-      <div className="playerprofilButton">
-      <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">&#x2299;</button>
+      <div className="borderButton">
+      <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">Zurück</button>
       <button onClick={() => {this.playerDelete(player)}} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
       </div>
+      <div className="playerprofilInfo">
       <p>Name: {player.name}</p>
       <p>Tel.Nr.: {player.phoneNumber}</p>
       <p>Anwesenheit: {percentage} % </p>
       </div>
+      </div>
+      <div className="playerprofilTableFont">
       <ReactTable
         data = {dates}
           columns={[
@@ -123,6 +126,7 @@ export default class PlayerProfil extends React.Component{
                   desc: false
                 }
             ]}
+
             previousText='Zurück'
             nextText='Vor'
             pageText='Seite'
@@ -132,6 +136,7 @@ export default class PlayerProfil extends React.Component{
             className="-striped -highlight"
           />
 
+          </div>
       </div>
     </div>
 
