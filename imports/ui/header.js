@@ -28,8 +28,8 @@ export default class Header extends React.Component {
         <div className="headerText">
           Teammanager
         </div>
-        <div className="logoutButton">
-          <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
+        <div>
+          <button onClick={this.onLogout.bind(this)} className="buttonColor logoutButton">Logout</button>
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
-:root{
-  clientisGrau: #4D4D4D;
-  clientisOrange: #F8B01E;
-}
+// Variablen
+$orange: #f8b01e;
+$grey: #4d4d4d;
 
 *{
   margin: 0px;
@@ -11,13 +10,14 @@
 .Header{
   display: flex;
   width: 100%;
-  background-color: #f8b01e;
-  color: #4d4d4d;
+  background-color: $orange;
+  color: $grey;
   text-align: center;
   padding-top: 3%;
   padding-bottom: 3%;
 }
 .headerText{
+  font-family: sans-serif;
   font-size: 2em;
   width: 70% !important;
   margin: auto;
@@ -27,19 +27,38 @@
 }
 
 .Logo{
-  margin: 5%;
+  display: flex;
+  width: auto;
+  margin: 15% auto;
+  align-content: center;
+  justify-content: center;
 }
+.Logo>img{
+  width: 263px;
+  height: auto;
+  margin: auto;
+}
+
 .loginForm{
   display: flex;
   align-content: center;
   justify-content: center;
   flex-direction: column;
-  margin: 5%;
+  margin: 15% 10%;
   width: auto;
 }
 .loginField{
   padding: 5px;
   margin-bottom: 2%;
+}
+.loginLink{
+  width: auto;
+  margin: 5px auto;
+}
+.signupHeader{
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  margin: 0px auto 15px auto;
 }
 
 
@@ -48,8 +67,8 @@ html {
 }
 
 body {
-  color: #F8B01E;
-  background-color: #4D4D4D;
+  color: $orange;
+  background-color: $grey;
 }
 
 
@@ -72,14 +91,14 @@ body {
 
 .boxed-view__box {
   user-select: none;
-  background-color: #4D4D4D;
+  background-color: $grey;
   padding: 2.4rem;
   text-align: left;
   width: 24rem;
 }
 
 .linkColor {
-  color: #F8B01E;
+  color: $orange;
 }
 
 .buttonColor {

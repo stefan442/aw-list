@@ -50,7 +50,7 @@ export default class Login extends React.Component {
           <input type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
           <input type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
           <button className="buttonColor">Einloggen</button>
-          <Link to="/signup" replace className="linkColor">Account erstellen</Link>
+          <Link to="/signup" replace className="linkColor loginLink">Account erstellen</Link>
         </form>
         </div>
 
