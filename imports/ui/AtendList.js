@@ -136,7 +136,7 @@ export default class AtendList extends React.Component {
       <div>
         <div className="attendlistButtonRow">
         <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
-        <button onClick={() => this.dateDelete(date)} className="buttonColor attendlistButtonRowSingle">Termin löschen</button>
+        <button onClick={() => this.dateDelete(date)} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
         <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
         </div>
         <div className="playerprofilInfo">
