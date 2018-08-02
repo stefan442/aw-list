@@ -35,6 +35,9 @@ Meteor.methods({
                 Atendence.insert({"date": dateId, "player": player._id, "atend": false, "teamId": teamId});
                 return player;
             }
+            else{
+              Atendence.insert({"date": dateId, "player": player._id, "atend": false, "teamId": teamId});
+            }
           }
           );
         }
@@ -83,7 +86,7 @@ Meteor.methods({
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      let today = moment().format("YYYY-MM-DD");
-     let countDates = Dates.find({date: {$lte: today}, teamId: daterow.teamId}).fetch();
+     let countDates = Dates.find({date: {$lte: today}, teamId: dateRow.teamId}).fetch();
      countDates = countDates.map((date) => {
        return date._id;
      })
