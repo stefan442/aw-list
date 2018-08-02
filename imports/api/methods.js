@@ -11,19 +11,19 @@ Meteor.methods({
   //Setzt in der Atendence Tabelle die Anwesenheit defaultmaessig auf false
   //countdays wird nicht mehr benoetigt im finalen Programm
   'createAtendence' ({dateId, teamId}){
-    let players = Players.find().fetch();
-      let atendence = Atendence.find({date: dateId}).fetch();
+    let players = Players.find({teamId: teamId}).fetch();
+      let atendence = Atendence.find({date: dateId, teamId: teamId}).fetch();
       let actualDay = moment().format("YYYY-MM-DD");
         if(atendence === undefined || atendence.length <= 0){
             players = players.map((player) =>{
               let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
               if(thisDate){
-                let atendenceDates = Dates.find({date: {$lte: actualDay}});
+                let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
                   atendenceDates = atendenceDates.map((date) => {
                     return date._id;
                   })
                 let count = Atendence.find({date: {$in: atendenceDates}}).count();
-                let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}}).fetch();
+                let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
                 dates = dates.map((date) => {
                   let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
                   if(existAtendence == undefined){
@@ -51,12 +51,12 @@ Meteor.methods({
               players = players.map((player) =>{
                 let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
                 if(thisDate){
-                  let atendenceDates = Dates.find({date: {$lte: actualDay}});
+                  let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();;
                     atendenceDates = atendenceDates.map((date) => {
                       return date._id;
                     })
                   let count = Atendence.find({date: {$in: atendenceDates}}).count();
-                  let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}}).fetch();
+                  let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
                   dates = dates.map((date) => {
                     let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
                     if(existAtendence == undefined){
@@ -83,7 +83,7 @@ Meteor.methods({
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      let today = moment().format("YYYY-MM-DD");
-     let countDates = Dates.find({date: {$lte: today}}).fetch();
+     let countDates = Dates.find({date: {$lte: today}, teamId: daterow.teamId}).fetch();
      countDates = countDates.map((date) => {
        return date._id;
      })
@@ -124,7 +124,7 @@ Meteor.methods({
     Atendence.update({player: playerRow._id, date: today}, {$set: {atend: atendence.atend}});
     atendence.buttontext = atendence.atend + "";
     let playerRelAt = 0;
-    let dates = Dates.find({date: {$lte: actualDay}}).fetch();
+    let dates = Dates.find({date: {$lte: actualDay}, teamId: playerRow.teamId}).fetch();
     dates = dates.map((date) => {
         return date._id;
     })
@@ -162,14 +162,14 @@ Meteor.methods({
     let thisDate = Dates.findOne({_id: atendenceInsert.date, date: {$lt: actualDay}});
 
     if(thisDate){
-      let atendenceDates = Dates.find({date: {$lte: actualDay}}).fetch();
+      let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: atendenceInsert.teamId}).fetch();
         atendenceDates = atendenceDates.map((date) => {
           return date._id;
         })
 
 
       let count = Atendence.find({date: {$in: atendenceDates}}).count();
-      let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}}).fetch();
+      let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: atendenceInsert.teamId}).fetch();
       dates = dates.map((date) => {
         let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
         if(existAtendence == undefined){
@@ -188,7 +188,7 @@ Meteor.methods({
     if (playerInsert.name){
       id = Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "teamId": playerInsert.teamId, "playerRelAt": 0});
     }
-    let dates = Dates.find({date: {$gte: playerInsert.today}}).fetch();
+    let dates = Dates.find({date: {$gte: playerInsert.today}, teamId: playerInsert.teamId}).fetch();
     let count = 0;
     dates = dates.map((date) =>{
 
