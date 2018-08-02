@@ -86,13 +86,15 @@ export default class AtendList extends React.Component {
 //Methodenaufruf zum hinzufuegen eines Spielers
   onSubmitPlayer = (e) => {
     e.preventDefault();
-    let player = {
-                  name: e.target.name.value,
-                  phoneNumber: e.target.phone.value,
-                  teamId: this.state.date.teamId,
-                  today: this.state.date.date,
-                };
-    Meteor.call('onSubmitPlayer', player);
+    if(e.target.name.value){
+      let player = {
+                    name: e.target.name.value,
+                    phoneNumber: e.target.phone.value,
+                    teamId: this.state.date.teamId,
+                    today: this.state.date.date,
+                  };
+      Meteor.call('onSubmitPlayer', player);
+    }
     e.target.name.value = "";
     this.handleCloseModalPlayer();
 
