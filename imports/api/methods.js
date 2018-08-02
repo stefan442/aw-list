@@ -81,15 +81,16 @@ Meteor.methods({
 //loescht einen Termin auf der Dates Tabelle und die zugehoerigen Atendence Saetze zu diesen Termine
 //updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
+    debugger;
      let atendences = Atendence.find({date: dateRow._id}).fetch();
-     let actualDay = dateRow.date;
-     let dates = Dates.find({date: {$lte: actualDay}}).fetch();
-     dates = dates.map((date) => {
+     // let actualDay = dateRow.date;
+     let today = moment().format("YYYY-MM-DD");
+     let countDates = Dates.find({date: {$lte: today}}).fetch();
+     countDates = countDates.map((date) => {
        return date._id;
      })
 
-     let count = Atendence.find({date: {$in: dates}}).count();
-     let today = moment().format("YYYY-MM-DD");
+     let count = Atendence.find({date: {$in: countDates}}).count();
      atendences = atendences.map((atendence) => {
        let player = Players.findOne({_id: atendence.player});
 
@@ -113,9 +114,8 @@ Meteor.methods({
        }
      });
 
-
-     Dates.remove({_id: dateRow._id});
      Atendence.remove({date: dateRow._id});
+     Dates.remove({_id: dateRow._id});
 
   },
   //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
