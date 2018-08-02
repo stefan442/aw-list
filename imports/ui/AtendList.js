@@ -186,7 +186,7 @@ export default class AtendList extends React.Component {
         <p className="smallHeaderText">Spieler hinzufügen</p>
 
 
-        <div className="missingPlayers"> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
+        <MissingPlayers {...this.props} atendingPlayers={players} date={date}/>
 
         <div className="borderButton">
           <form onSubmit={this.onSubmitPlayer.bind(this)}>
@@ -199,15 +199,6 @@ export default class AtendList extends React.Component {
           </form>
         </div>
       </div>
-
-
-        {/* <form onSubmit={this.onSubmitPlayer.bind(this)}>
-          <input type="text" name="name" placeholder="name"  />
-          <input type="text" name="phone" placeholder="phone"  />
-          <button type="submit" className="buttonColor">OK!</button>
-        </form>
-        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button> */}
-
       </Modal>
       </div>
     </div>

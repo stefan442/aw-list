@@ -81,7 +81,6 @@ Meteor.methods({
 //loescht einen Termin auf der Dates Tabelle und die zugehoerigen Atendence Saetze zu diesen Termine
 //updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
-    debugger;
      let atendences = Atendence.find({date: dateRow._id}).fetch();
      // let actualDay = dateRow.date;
      let today = moment().format("YYYY-MM-DD");
@@ -165,7 +164,7 @@ Meteor.methods({
     let thisDate = Dates.findOne({_id: atendenceInsert.date, date: {$lt: actualDay}});
 
     if(thisDate){
-      let atendenceDates = Dates.find({date: {$lte: actualDay}});
+      let atendenceDates = Dates.find({date: {$lte: actualDay}}).fetch();
         atendenceDates = atendenceDates.map((date) => {
           return date._id;
         })
