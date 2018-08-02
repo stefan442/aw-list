@@ -82,7 +82,6 @@ Meteor.methods({
 //updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
-     // let actualDay = dateRow.date;
      let today = moment().format("YYYY-MM-DD");
      let countDates = Dates.find({date: {$lte: today}}).fetch();
      countDates = countDates.map((date) => {
@@ -154,7 +153,6 @@ Meteor.methods({
   },
   //loescht einen Spieler mit seinen zugehoerigen Atendence Saetzen
   'playerDelete'(playerRow){
-
     Atendence.remove({player: playerRow._id});
     Players.remove({_id: playerRow._id});
   },
