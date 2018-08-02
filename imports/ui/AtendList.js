@@ -208,7 +208,7 @@ export default class AtendList extends React.Component {
             <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
             <div>
               <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
-              <button type="submit" className="buttonColor">OK!</button>
+              <button type="submit" className="buttonColor">OK</button>
             </div>
           </form>
         </div>
@@ -224,7 +224,7 @@ export default class AtendList extends React.Component {
          className="boxed-view__box confirmMessage"
          overlayClassName="boxed-view boxed-view--modal"
       >
-        <p>Möchten sie wirklich diesen Termin löschen?</p>
+        <p>Möchten Sie wirklich diesen Termin löschen?</p>
         <form>
         <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
         <button  onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>

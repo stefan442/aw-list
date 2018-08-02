@@ -9,7 +9,7 @@ export default class TeamPage extends React.Component {
       constructor(props){
         super(props);
         this.state = {
-            title: "Mannschaften"
+            title: "Teams"
         };
       }
 

@@ -95,7 +95,6 @@ export default class PlayerProfil extends React.Component{
       </div>
       <div>
       <div className="playerprofilForm">
-      <h1 className="smallHeaderText">Spieler Profil</h1>
       <div className="borderButton">
       <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">Zurück</button>
       <button onClick={this.handleOpenModalDelete} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
@@ -144,7 +143,7 @@ export default class PlayerProfil extends React.Component{
             pageText='Seite'
             ofText='von'
             showPageSizeOptions={false}
-            defaultPageSize={14}
+            defaultPageSize={12}
             className="-striped -highlight"
           />
 
@@ -156,7 +155,7 @@ export default class PlayerProfil extends React.Component{
              className="boxed-view__box confirmMessage"
              overlayClassName="boxed-view boxed-view--modal"
           >
-            <p>Möchten sie wirklich diesen Spieler löschen?</p>
+            <p>Möchten Sie wirklich diesen Spieler löschen?</p>
             <form>
             <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
             <button  onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>

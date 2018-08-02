@@ -73,6 +73,9 @@ body {
 .ReactModalPortal>div>div>div>div>form>div>div>div{
   color: $orange;
 }
+.ReactModalPortal>div>div>div>div>form>div>div>div>select>option{
+  background-color: $grey;
+}
 
 .confirmMessage{
   font-family: sans-serif;
@@ -97,7 +100,7 @@ body {
   align-content: center;
   justify-content: center;
   flex-direction: column;
-  margin: 2% 5%;
+  margin: 2% 5px;
   width: auto;
 }
 .borderButton{
@@ -109,11 +112,10 @@ body {
   width: auto;
 }
 .playerprofilButtonBack{
-  font-size: 100px;
-  width: 50%
+  width: 80%
 }
 .playerprofilButtonDel{
-  width: 50%;
+  width: 80%;
 }
 .playerprofilInfo{
   font-family: sans-serif;

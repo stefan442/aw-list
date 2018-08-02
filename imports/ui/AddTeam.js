@@ -17,7 +17,7 @@ export default class AddTeam extends React.Component {
     return(
       <div>
         <form className="teamListCenteredForm" onSubmit={this.handleSubmit.bind(this)}>
-          	<input type="text" name="teamName" placeholder="Mannschaftsname" className="teamListCenteredFormInput"/>
+          	<input type="text" name="teamName" placeholder="Teamname" className="teamListCenteredFormInput"/>
             <button className="buttonColor">Team hinzufügen</button>
         </form>
         <div className="buttonLogout">

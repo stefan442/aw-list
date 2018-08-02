@@ -162,7 +162,7 @@ export default class PlayersList extends React.Component{
                 <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
                 <div>
                   <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
-                  <button type="submit" className="buttonColor">OK!</button>
+                  <button type="submit" className="buttonColor">OK</button>
                 </div>
               </form>
             </div>
