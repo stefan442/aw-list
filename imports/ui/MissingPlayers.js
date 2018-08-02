@@ -15,7 +15,7 @@ export default class MissingPlayers extends React.Component {
   componentDidMount(){
     this.playersTracker = Tracker.autorun(() => {
         Meteor.subscribe("players");
-        const players = Players.find().fetch();
+        const players = Players.find({teamId: this.props.date.teamId}).fetch();
         this.setState({ players });
       }
     );
@@ -39,7 +39,7 @@ export default class MissingPlayers extends React.Component {
 
 
   render(){
-    let players = Players.find().fetch();
+    let players = this.state.players;
     players = players.filter((player) => {
 
       let noAtend = this.state.atendingPlayers.find((obj) => {
