@@ -4,6 +4,7 @@ import {Dates} from '../api/dates.js';
 import {Players} from './../api/players.js';
 import {Atendence} from './../api/atendence.js';
 import Header from './header.js';
+import Modal from 'react-modal';
 
 
 
@@ -17,7 +18,10 @@ export default class PlayerProfil extends React.Component{
       player: player,
       atendence: [],
       dates: [],
+      showModalDelete: false,
     }
+    this.handleOpenModalDelete = this.handleOpenModalDelete.bind(this);
+    this.handleCloseModalDelete = this.handleCloseModalDelete.bind(this);
   }
   //Tracker zum laden der Atendence Saetze und Termine
   componentDidMount(){
@@ -34,7 +38,15 @@ export default class PlayerProfil extends React.Component{
       }
     );
   }
-
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
+ handleOpenModalDelete () {
+   this.setState({ showModalDelete: true });
+ }
+ handleCloseModalDelete () {
+    this.setState({ showModalDelete: false });
+ }
 
   //stoppt den Tracker
   componentWillUnmount(){
@@ -45,8 +57,8 @@ export default class PlayerProfil extends React.Component{
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
 //funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren
-  playerDelete(e) {
-    Meteor.call('playerDelete', e);
+  playerDelete() {
+    Meteor.call('playerDelete', this.state.player);
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
 
   }
@@ -86,7 +98,7 @@ export default class PlayerProfil extends React.Component{
       <h1 className="smallHeaderText">Spieler Profil</h1>
       <div className="borderButton">
       <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">Zurück</button>
-      <button onClick={() => {this.playerDelete(player)}} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
+      <button onClick={this.handleOpenModalDelete} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
       </div>
       <div className="playerprofilInfo">
       <p>Name: {player.name}</p>
@@ -136,6 +148,20 @@ export default class PlayerProfil extends React.Component{
             className="-striped -highlight"
           />
 
+          <Modal
+             isOpen={this.state.showModalDelete}
+             contentLabel="onRequestClose Example"
+             onRequestClose={this.handleCloseModalDelete}
+             shouldCloseOnOverlayClick={false}
+             className="boxed-view__box confirmMessage"
+             overlayClassName="boxed-view boxed-view--modal"
+          >
+            <p>Möchten sie wirklich diesen Spieler löschen?</p>
+            <form>
+            <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+            <button  onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+            </form>
+          </Modal>
           </div>
       </div>
     </div>

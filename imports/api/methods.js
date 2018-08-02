@@ -82,7 +82,6 @@ Meteor.methods({
 //updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
      let atendences = Atendence.find({date: dateRow._id}).fetch();
-     // let actualDay = dateRow.date;
      let today = moment().format("YYYY-MM-DD");
      let countDates = Dates.find({date: {$lte: today}}).fetch();
      countDates = countDates.map((date) => {
@@ -159,7 +158,6 @@ Meteor.methods({
   },
   //erstellt fuer einen neuen spieler rueckwirkend neue atendence Saetze ab einen Termin in der Vergangenheit der seine erste Anwesenheit war
   'updateAtendence'(atendenceInsert){
-    debugger;
     let actualDay = moment().format("YYYY-MM-DD");
     let thisDate = Dates.findOne({_id: atendenceInsert.date, date: {$lt: actualDay}});
 

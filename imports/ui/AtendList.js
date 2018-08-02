@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
-// import createHistory from "history/createBrowserHistory";
 import Modal from 'react-modal';
 import Header from './header.js';
 
@@ -23,10 +22,14 @@ export default class AtendList extends React.Component {
       players: [],
       atendence: [],
       date: date,
+      showModalPlayer: false,
+      showModalDelete: false
     };
 
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
+    this.handleOpenModalDelete = this.handleOpenModalDelete.bind(this);
+    this.handleCloseModalDelete = this.handleCloseModalDelete.bind(this);
   }
 //Tracker zum laden der Atendence Saetze und Spieler
   componentDidMount(){
@@ -68,8 +71,8 @@ export default class AtendList extends React.Component {
   }
   //ruft die Methode zum loeschen eines Termins auf
   //navigiert zum Temin-Liste zurueck
-  dateDelete(e) {
-    Meteor.call('dateDelete', e);
+  dateDelete() {
+    Meteor.call('dateDelete', this.state.date);
     this.props.history.replace('/datelist/' + this.state.date.teamId);
 
   }
@@ -82,6 +85,13 @@ export default class AtendList extends React.Component {
   handleCloseModalPlayer () {
      this.setState({ showModalPlayer: false });
   }
+  handleOpenModalDelete () {
+    this.setState({ showModalDelete: true });
+  }
+  handleCloseModalDelete () {
+     this.setState({ showModalDelete: false });
+  }
+
 
 //Methodenaufruf zum hinzufuegen eines Spielers
   onSubmitPlayer = (e) => {
@@ -136,7 +146,7 @@ export default class AtendList extends React.Component {
       <div>
         <div className="attendlistButtonRow">
         <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
-        <button onClick={() => this.dateDelete(date)} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
+        <button onClick={this.handleOpenModalDelete} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
         <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
         </div>
         <div className="playerprofilInfo">
@@ -177,6 +187,8 @@ export default class AtendList extends React.Component {
       />
 
       <Modal
+      appElement = {document.getElementById('body')}
+
          isOpen={this.state.showModalPlayer}
          contentLabel="onRequestClose Example"
          onRequestClose={this.handleCloseModalPlayer}
@@ -202,14 +214,21 @@ export default class AtendList extends React.Component {
         </div>
       </div>
 
+      </Modal>
 
-        {/* <form onSubmit={this.onSubmitPlayer.bind(this)}>
-          <input type="text" name="name" placeholder="name"  />
-          <input type="text" name="phone" placeholder="phone"  />
-          <button type="submit" className="buttonColor">OK!</button>
+      <Modal
+         isOpen={this.state.showModalDelete}
+         contentLabel="onRequestClose Example"
+         onRequestClose={this.handleCloseModalDelete}
+         shouldCloseOnOverlayClick={false}
+         className="boxed-view__box confirmMessage"
+         overlayClassName="boxed-view boxed-view--modal"
+      >
+        <p>Möchten sie wirklich diesen Termin löschen?</p>
+        <form>
+        <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+        <button  onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
         </form>
-        <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button> */}
-
       </Modal>
       </div>
     </div>
