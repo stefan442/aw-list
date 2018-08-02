@@ -35,15 +35,35 @@ body {
   justify-content: center;
 }
 
-.Logo{
+.LogoClientis{
+  display: flex;
+  width: auto;
+  margin: 35% auto 0 auto;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.LogoClientis>img{
+  width: 263px;
+  height: auto;
+  margin: auto;
+}
+.LogoClientis>p{
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.LogoSgm{
   display: flex;
   width: auto;
   margin: 15% auto;
   align-content: center;
   justify-content: center;
 }
-.Logo>img{
-  width: 263px;
+.LogoSgm>img{
+  width: 100px;
   height: auto;
   margin: auto;
 }

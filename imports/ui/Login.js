@@ -41,8 +41,8 @@ export default class Login extends React.Component {
         </div>
       </div>
       <div>
-        <div className="Logo">
-        <img border="0" height="51" hspace="0" src="/images/logo.png" width="263" />
+        <div className="LogoSgm">
+          <img border="0" height="102" hspace="0" src="/images/sgm_logo.png" width="94" />
         </div>
         <div>
         {this.state.error ? <p>{this.state.error}</p> : undefined}
@@ -52,8 +52,11 @@ export default class Login extends React.Component {
           <button className="buttonColor">Einloggen</button>
           <Link to="/signup" replace className="linkColor loginLink">Account erstellen</Link>
         </form>
+      </div>
+        <div className="LogoClientis">
+          <img border="0" height="51" hspace="0" src="/images/logo.png" width="263" />
+          <p>Developed by Team Clientis</p>
         </div>
-
       </div>
       </div>
     );
