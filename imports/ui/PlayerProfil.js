@@ -134,7 +134,7 @@ export default class PlayerProfil extends React.Component{
             defaultSorted={[
                 {
                   id: "date",
-                  desc: false
+                  desc: true,
                 }
             ]}
             resizable={false}
