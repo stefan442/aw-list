@@ -6,31 +6,30 @@ import Header from './header.js';
 
 
 export default class TeamPage extends React.Component {
-      constructor(props){
-        super(props);
-        this.state = {
-            title: "Teams"
-        };
-      }
+  constructor(props){
+    super(props);
+    this.state = {
+      title: "Teams"
+    };
+  }
 
-      onLogout(){
-        Accounts.logout();
-      }
+  onLogout(){
+    Accounts.logout();
+  }
+  onBack(){
+    Accounts.logout();
+  }
 
-      onBack(){
-          Accounts.logout();
-      }
-
-      render(){
-        return(
-          <div>
-            <Header/>
-          <div>
-              <h1 className="teamListCentered">{this.state.title}</h1>
-              <TeamList {...this.props}/>
-              <AddTeam/>
-          </div>
-          </div>
-        );
-      }
+  render(){
+    return(
+      <div>
+        <Header/>
+        <div>
+          <h1 className="teamListCentered">{this.state.title}</h1>
+          <TeamList {...this.props}/>
+          <AddTeam/>
+        </div>
+      </div>
+    );
+  }
 };

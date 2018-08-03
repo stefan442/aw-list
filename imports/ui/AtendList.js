@@ -17,7 +17,6 @@ export default class AtendList extends React.Component {
   constructor(props) {
     super(props);
     let date = Dates.findOne({_id: this.props.match.params._id});
-
     this.state = {
       players: [],
       atendence: [],
@@ -25,7 +24,6 @@ export default class AtendList extends React.Component {
       showModalPlayer: false,
       showModalDelete: false
     };
-
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
     this.handleOpenModalDelete = this.handleOpenModalDelete.bind(this);
@@ -43,13 +41,13 @@ export default class AtendList extends React.Component {
         let playerIds = atendence.map((atend) =>{return atend.player});
         const players = Players.find({_id: {$in: playerIds}}).fetch();
         this.setState({ players });
-
       }
     );
   }
+
   componentWillMount() {
     Modal.setAppElement('body');
- }
+  }
 
 //stoppt den Tracker
   componentWillUnmount(){
@@ -74,7 +72,6 @@ export default class AtendList extends React.Component {
   dateDelete() {
     Meteor.call('dateDelete', this.state.date);
     this.props.history.replace('/datelist/' + this.state.date.teamId);
-
   }
   //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
   handleOpenModalPlayer () {
@@ -91,8 +88,6 @@ export default class AtendList extends React.Component {
   handleCloseModalDelete () {
      this.setState({ showModalDelete: false });
   }
-
-
 //Methodenaufruf zum hinzufuegen eines Spielers
   onSubmitPlayer = (e) => {
     e.preventDefault();
@@ -107,16 +102,12 @@ export default class AtendList extends React.Component {
     }
     e.target.name.value = "";
     this.handleCloseModalPlayer();
-
   };
-
-
 
   render(){
     let date  = this.state.date;
     let formatedDate = moment(date.date).format("DD.MM.YYYY");
     let players = this.state.players;
-
     players = players.map((player) => {
       let atendDB = this.state.atendence.find((obj) => {
         if(obj.player === player._id){
@@ -125,9 +116,8 @@ export default class AtendList extends React.Component {
       });
       // let atend = false;
       let buttontext = "Nein";
-
       if(atendDB.atend){
-        // atend = atendDB.atend;
+      // atend = atendDB.atend;
         buttontext = "Ja";
       }
       return {
@@ -136,110 +126,102 @@ export default class AtendList extends React.Component {
       }
     });
 
-
-
     return (
       <div>
-      <div>
-        <Header/>
-      </div>
-      <div>
-        <div className="attendlistButtonRow">
-        <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
-        <button onClick={this.handleOpenModalDelete} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
-        <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
+        <div>
+          <Header/>
         </div>
-        <div className="playerprofilInfo">
-        <h3> {formatedDate}</h3>
-        <p> Art: {date.art} </p>
-        <p> Info: {date.info} </p>
-        </div>
-        <ReactTable
-          data = {players}
-           columns={[
-            {
-              Header: "Name",
-              accessor: "name",
-              sortable: false,
-            },
-
-            {
-              Header: "Anwesend",
-              sortable: false,
-              Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
-            },
-
-          ]}
-          defaultSorted={[
+        <div>
+          <div className="attendlistButtonRow">
+            <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
+            <button onClick={this.handleOpenModalDelete} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
+            <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
+          </div>
+          <div className="playerprofilInfo">
+            <h3> {formatedDate}</h3>
+            <p> Art: {date.art} </p>
+            <p> Info: {date.info} </p>
+            </div>
+          <ReactTable
+            data = {players}
+            columns={[
+              {
+                Header: "Name",
+                accessor: "name",
+                sortable: false,
+              },
+              {
+                Header: "Anwesend",
+                sortable: false,
+                Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
+              },
+            ]}
+            defaultSorted={[
               {
                 id: "name",
                 desc: false
               }
-          ]}
-          resizable={false}
-          previousText='Zurück'
-          nextText='Vor'
-          pageText='Seite'
-          ofText='von'
-          showPageSizeOptions={false}
-          defaultPageSize={11}
-          className="-striped -highlight"
-      />
+            ]}
+            resizable={false}
+            previousText='Zurück'
+            nextText='Vor'
+            pageText='Seite'
+            ofText='von'
+            showPageSizeOptions={false}
+            defaultPageSize={11}
+            className="-striped -highlight"
+          />
 
-      <Modal
-      appElement = {document.getElementById('body')}
-
-         isOpen={this.state.showModalPlayer}
-         contentLabel="onRequestClose Example"
-         onRequestClose={this.handleCloseModalPlayer}
-         shouldCloseOnOverlayClick={false}
-         className="boxed-view__box"
-         overlayClassName="boxed-view boxed-view--modal"
-      >
-        <div className="">
-        <p className="smallHeaderText">Spieler hinzufügen</p>
-
-
-        <div className="missingPlayers"> <MissingPlayers {...this.props} atendingPlayers={players} date={date}/> </div>
-
-        <div className="borderButton">
-          <form onSubmit={this.onSubmitPlayer.bind(this)}>
-            <input type="text" name="name" placeholder="Name" className="inputField"/>
-            <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
-            <div>
-              <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
-              <button type="submit" className="buttonColor">OK</button>
+          <Modal
+            appElement = {document.getElementById('body')}
+            isOpen={this.state.showModalPlayer}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleCloseModalPlayer}
+            shouldCloseOnOverlayClick={false}
+            className="boxed-view__box"
+            overlayClassName="boxed-view boxed-view--modal"
+          >
+            <div className="">
+              <p className="smallHeaderText">Spieler hinzufügen</p>
+              <div className="missingPlayers">
+                <MissingPlayers {...this.props} atendingPlayers={players} date={date}/>
+              </div>
+              <div className="borderButton">
+                <form onSubmit={this.onSubmitPlayer.bind(this)}>
+                  <input type="text" name="name" placeholder="Name" className="inputField"/>
+                  <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
+                  <div>
+                    <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                    <button type="submit" className="buttonColor">OK</button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
+
+          </Modal>
+
+          <Modal
+            isOpen={this.state.showModalDelete}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleCloseModalDelete}
+            shouldCloseOnOverlayClick={false}
+            className="boxed-view__box confirmMessage"
+            overlayClassName="boxed-view boxed-view--modal"
+          >
+            <p>Möchten Sie wirklich diesen Termin löschen?</p>
+            <form>
+              <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+              <button  onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+            </form>
+          </Modal>
         </div>
       </div>
-
-      </Modal>
-
-      <Modal
-         isOpen={this.state.showModalDelete}
-         contentLabel="onRequestClose Example"
-         onRequestClose={this.handleCloseModalDelete}
-         shouldCloseOnOverlayClick={false}
-         className="boxed-view__box confirmMessage"
-         overlayClassName="boxed-view boxed-view--modal"
-      >
-        <p>Möchten Sie wirklich diesen Termin löschen?</p>
-        <form>
-        <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
-        <button  onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
-        </form>
-      </Modal>
-      </div>
-    </div>
-
     );
   }
 }
 AtendList.propTypes = {
   history: PropTypes.object
 };
-
 AtendList.defaultProps = {
   history: history
 };

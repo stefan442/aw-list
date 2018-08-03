@@ -17,18 +17,16 @@ export default class PlayersList extends React.Component{
       showModalPlayer: false,
       value: 0,
     };
-
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
   //Tracker zum laden der Spieler
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {
-        Meteor.subscribe("players");
-        const players = Players.find({teamId: this.state.teamId}).fetch();
-        this.setState({ players });
-      }
-    );
+      Meteor.subscribe("players");
+      const players = Players.find({teamId: this.state.teamId}).fetch();
+      this.setState({ players });
+    });
   }
   componentWillMount() {
     Modal.setAppElement('body');
@@ -36,7 +34,7 @@ export default class PlayersList extends React.Component{
 
   //stoppt den Tracker
   componentWillUnmount(){
-      this.datesTracker.stop();
+    this.datesTracker.stop();
   }
   //navigation zur Terminliste(tab)
   switchToDates(){
@@ -74,7 +72,6 @@ export default class PlayersList extends React.Component{
     this.props.history.replace('/teampage');
   }
 
-
   render() {
     let players = this.state.players;
 
@@ -88,86 +85,85 @@ export default class PlayersList extends React.Component{
             <button onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
             <button onClick={this.switchToDates.bind(this)} className="buttonColor navigation">Termin Liste</button>
             <button onClick={this.handleOpenModalPlayer} className="navigation buttonColor">Spieler hinzufügen</button>
-        </div>
-        <p> {players.name} </p>
-        <ReactTable
-          data = {players}
-          columns={[
-            {
-              Header: "Name",
-              sortable: false,
-              Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}} className="buttonColor">{row.original.name}</button>,
-            },
-            {
-              Header: 'Anwesenheit',
-              accessor: 'playerRelAt',
-              Cell: (row) => (
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: '#dadada',
-                    borderRadius: '2px'
-                  }}
-                >
+          </div>
+          <p> {players.name} </p>
+          <ReactTable
+            data = {players}
+            columns={[
+              {
+                Header: "Name",
+                sortable: false,
+                Cell: (row) => <button onClick={() => {this.goToPlayerProfil(row.original);}} className="buttonColor">{row.original.name}</button>,
+              },
+              {
+                Header: 'Anwesenheit',
+                accessor: 'playerRelAt',
+                Cell: (row) => (
                   <div
                     style={{
-                      width: `${row.original.playerRelAt}%`,
+                      width: '100%',
                       height: '100%',
-                      backgroundColor: row.original.playerRelAt > 66 ? '#85cc00'
-                      : row.original.playerRelAt > 33 ? '#ffbf00'
-                      : '#ff2e00',
-                      borderRadius: '2px',
-                      transition: 'all .2s ease-out'
+                      backgroundColor: '#dadada',
+                      borderRadius: '2px'
                     }}
-                  />
+                  >
+                    <div
+                      style={{
+                        width: `${row.original.playerRelAt}%`,
+                        height: '100%',
+                        backgroundColor: row.original.playerRelAt > 66 ? '#85cc00'
+                        : row.original.playerRelAt > 33 ? '#ffbf00'
+                        : '#ff2e00',
+                        borderRadius: '2px',
+                        transition: 'all .2s ease-out'
+                      }}
+                    />
+                  </div>
+                )
+              },
+              {
+                accessor: "name",
+                show: false,
+              },
+            ]}
+            defaultSorted={[
+              {
+                id: "name",
+                desc: false
+              }
+            ]}
+            resizable={false}
+            previousText='Zurück'
+            nextText='Vor'
+            pageText='Seite'
+            ofText='von'
+            showPageSizeOptions={false}
+            defaultPageSize={14}
+            className="-striped -highlight"
+          />
+
+          <Modal
+            isOpen={this.state.showModalPlayer}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleCloseModalPlayer}
+            shouldCloseOnOverlayClick={false}
+            className="boxed-view__box"
+            overlayClassName="boxed-view boxed-view--modal"
+          >
+            <p className="smallHeaderText">Spieler hinzufügen</p>
+            <div className="borderButton">
+              <form onSubmit={this.onSubmitPlayer.bind(this)}>
+                <input type="text" name="name" placeholder="Name" className="inputField"/>
+                <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
+                <div>
+                  <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                  <button type="submit" className="buttonColor">OK</button>
                 </div>
-              )
-            },
-            {
-              accessor: "name",
-              show: false,
-            },
-          ]}
-          defaultSorted={[
-            {
-              id: "name",
-              desc: false
-            }
-          ]}
-          resizable={false}
-          previousText='Zurück'
-          nextText='Vor'
-          pageText='Seite'
-          ofText='von'
-          showPageSizeOptions={false}
-          defaultPageSize={14}
-          className="-striped -highlight"
-        />
-
-        <Modal
-          isOpen={this.state.showModalPlayer}
-          contentLabel="onRequestClose Example"
-          onRequestClose={this.handleCloseModalPlayer}
-          shouldCloseOnOverlayClick={false}
-          className="boxed-view__box"
-          overlayClassName="boxed-view boxed-view--modal"
-        >
-          <p className="smallHeaderText">Spieler hinzufügen</p>
-          <div className="borderButton">
-            <form onSubmit={this.onSubmitPlayer.bind(this)}>
-              <input type="text" name="name" placeholder="Name" className="inputField"/>
-              <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
-              <div>
-                <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
-                <button type="submit" className="buttonColor">OK</button>
-              </div>
-            </form>
-          </div>
-        </Modal>
+              </form>
+            </div>
+          </Modal>
+        </div>
       </div>
-    </div>
-
     );
   }
 }

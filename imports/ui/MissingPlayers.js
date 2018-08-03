@@ -23,9 +23,9 @@ export default class MissingPlayers extends React.Component {
 
 
   //stoppt den Tracker
-    componentWillUnmount(){
-      this.playersTracker.stop();
-    }
+  componentWillUnmount(){
+    this.playersTracker.stop();
+  }
 //funktion zum methodanufruf um Atendencesaetze zum updaten
   updateAtendence(playerId){
     let newAtend ={
@@ -36,12 +36,9 @@ export default class MissingPlayers extends React.Component {
     Meteor.call('updateAtendence', newAtend);
   }
 
-
-
   render(){
     let players = this.state.players;
     players = players.filter((player) => {
-
       let noAtend = this.state.atendingPlayers.find((obj) => {
         if(obj._id === player._id){
           return obj;
@@ -51,22 +48,17 @@ export default class MissingPlayers extends React.Component {
         return player;
       }
     });
-
     if(players !== undefined && players.length !== 0){
       this.missingPlayers = players.map((player) => {
-          return (<div key={player._id} >
+        return (<div key={player._id} >
           <button onClick={(e) =>{
             e.target.style.visibility='hidden';
-
             this.updateAtendence(player._id)}} className="buttonColor"> {player.name} </button>
           </div>)
         })
     }
     return(
       <div>{this.missingPlayers}</div>
-
     );
   }
-
-
 }

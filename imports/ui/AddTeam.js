@@ -7,7 +7,6 @@ export default class AddTeam extends React.Component {
 
   handleSubmit(e){
     let teamName = e.target.teamName.value;
-
     e.preventDefault();
     Meteor.call('teamAdd', teamName);
     e.target.teamName.value = '';
@@ -21,7 +20,7 @@ export default class AddTeam extends React.Component {
             <button className="buttonColor">Team hinzufügen</button>
         </form>
         <div className="buttonLogout">
-        <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
+          <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
         </div>
       </div>
     );

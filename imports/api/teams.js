@@ -12,11 +12,9 @@ if(Meteor.isServer){
 
 Meteor.methods({
   //erstellt ein neues Team
-    'teamAdd'(team){
-      if(team){
-        Teams.insert({
-          name: team
-        });
-      }
+  'teamAdd'(team){
+    if(team){
+      Teams.insert({name: team});
     }
-    });
+  }
+});

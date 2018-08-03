@@ -27,22 +27,22 @@ export const onAuthChange = (isAuthenticated) => {
     if (isUnauthenticatedPage) {
       history.replace("/teampage");
     }
-  } else {
+  }
+  else {
     if (isAuthenticatedPage) {
       history.replace("/");
     }
   }
 };
 
- export const history = createHistory();
+export const history = createHistory();
 
 
 export class AppRouter extends React.Component {
 //constructer fuer state-daten der anwesenheitsliste
   constructor(props){
-      super(props);
+    super(props);
   }
-
 
   onEnterPublicPage() {
     if (Meteor.userId()) {
@@ -54,9 +54,6 @@ export class AppRouter extends React.Component {
       this.props.history.replace("/");
     }
   }
-
-
-
 
   render() {
     return (
