@@ -30,8 +30,8 @@ Meteor.methods({
                 count++;
               }
             });
-            // let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-            // Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+            let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+            Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
             Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
             return player;
           }
@@ -64,8 +64,8 @@ Meteor.methods({
                       count++;
                     }
                   });
-                  // let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-                  // Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+                  let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+                  Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
                   Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
                   return player;
                 }
