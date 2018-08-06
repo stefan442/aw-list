@@ -13,9 +13,7 @@ SyncedCron.add({
   schedule: function(parser) {
 // parser is a later.parse object
 // return parser.text('every 5 seconds');
-
     return parser.recur().on('00:00:00').time();
-// midnight is at 5pm LA time ... 10 am LA time is 3 am UTC
   },
   job: function() {
     console.log("job start");
