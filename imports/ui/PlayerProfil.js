@@ -12,11 +12,13 @@ export default class PlayerProfil extends React.Component{
   constructor(props) {
     super(props);
     let player = Players.findOne({_id: this.props.match.params._id});
+    let today = moment().format('YYYY-MM-DD');
     this.state = {
       player: player,
       atendence: [],
       dates: [],
       showModalDelete: false,
+      today: today
     }
     this.handleOpenModalDelete = this.handleOpenModalDelete.bind(this);
     this.handleCloseModalDelete = this.handleCloseModalDelete.bind(this);
@@ -30,7 +32,7 @@ export default class PlayerProfil extends React.Component{
 
       Meteor.subscribe("dates");
       let dateId = atendence.map((atend) =>{return atend.date});
-      const dates = Dates.find({_id: {$in: dateId}}).fetch();
+      const dates = Dates.find({_id: {$in: dateId}, date: {$lte: this.state.today}}).fetch();
       this.setState({ dates });
 
       }
