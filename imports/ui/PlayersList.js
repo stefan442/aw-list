@@ -20,8 +20,12 @@ export default class PlayersList extends React.Component{
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
+
+
+
   //Tracker zum laden der Spieler
   componentDidMount(){
+  //  Meteor.call('updatePercentage', this.state.teamId);
     this.datesTracker = Tracker.autorun(() => {
       Meteor.subscribe("players");
       const players = Players.find({teamId: this.state.teamId}).fetch();

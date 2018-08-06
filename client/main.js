@@ -13,5 +13,6 @@ Tracker.autorun(() => {
 });
 
 Meteor.startup(() => {
+  //session vcariable aktuelles datum
   ReactDOM.render(<AppRouter/>, document.getElementById("app"));
 });

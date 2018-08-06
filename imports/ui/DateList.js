@@ -33,6 +33,7 @@ export default class DateList extends React.Component{
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
+
   //Tracker zum laden der Termine und Spieler
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {

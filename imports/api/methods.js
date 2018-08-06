@@ -30,8 +30,8 @@ Meteor.methods({
                 count++;
               }
             });
-            let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-            Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+            // let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+            // Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
             Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
             return player;
           }
@@ -64,8 +64,8 @@ Meteor.methods({
                       count++;
                     }
                   });
-                  let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-                  Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+                  // let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+                  // Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
                   Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
                   return player;
                 }
@@ -91,7 +91,7 @@ Meteor.methods({
        let player = Players.findOne({_id: atendence.player});
        count = Atendence.find({date: {$in: countDates}, player: player._id}).count();
        if((atendence.atend) && (dateRow.date <= today)){
-         if((count - 1) != 0){
+         if((count - 1) > 0){
            playerRelAt = (player.countAtend - 1) / (count - 1) * 100;
          }
          else{
@@ -100,11 +100,11 @@ Meteor.methods({
          Players.update({_id: player._id},  {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
        }
        else{
-         if((count - 1) != 0){
+         if((count - 1) > 0){
            playerRelAt = (player.countAtend) / (count - 1) * 100;
          }
          else{
-           	playerRelAt = 0;
+           playerRelAt = 0;
          }
          Players.update({_id: player._id}, {$set: {playerRelAt: playerRelAt}});
        }
@@ -127,7 +127,7 @@ Meteor.methods({
 
     let count = Atendence.find({date: {$in: dates}, player: playerRow._id}).count();
     if(atendence.atend){
-      if(count != 0){
+      if(count > 0){
         playerRelAt = (playerRow.countAtend + 1) / count * 100;
       }
       else{
@@ -136,11 +136,11 @@ Meteor.methods({
       Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}, $set: {playerRelAt: playerRelAt}});
     }
     else{
-      if(count != 0){
+      if(count > 0){
         playerRelAt = (playerRow.countAtend - 1) / count * 100;
       }
       else{
-        	playerRelAt = 0;
+        playerRelAt = 0;
       }
       Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
     }
@@ -195,7 +195,7 @@ Meteor.methods({
       dates = dates.map((date) =>{
           Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
-      Players.update({_id: id},  {$inc: {"countAtend": +1}, $set: {"playerRelAt": 100}});
+      Players.update({_id: id}, {$inc: {"countAtend": +1}, $set: {"playerRelAt": 100}});
     }
   else{
     dates = Dates.find({date: {$gte: actualDay}, teamId: playerInsert.teamId}).fetch();
@@ -218,4 +218,28 @@ Meteor.methods({
     Players.remove({teamId: teamId});
     Teams.remove({_id: teamId});
   },
-  });
+  'updatePercentage'(teamId){
+    // debugger;
+    let today =  moment().format("YYYY-MM-DD");
+    let todayDate = Dates.findOne({date: today, teamId: teamId});
+    if(todayDate){
+      let count = 0;
+      let dates = Dates.find({date: {$lte: today}, teamId: teamId}).fetch();
+      let datesId = dates.map((date) => {
+        return date._id;
+      });
+      players = Players.find({teamId: teamId}).fetch();
+      players.map((player) => {
+        count = Atendence.find({date: {$in: datesId}, player: player._id}).count();
+        let playerRelAt;
+        if(count > 0){
+          playerRelAt = (player.countAtend + 1) / count * 100;
+        }
+        else{
+          playerRelAt = 0;
+        }
+        Players.update({_id: player._id}, {$inc: {"countAtend": +1}, $set: {"playerRelAt": playerRelAt}});
+      });
+    }
+  },
+});
