@@ -6,6 +6,7 @@ import ReactTable from "react-table";
 import history from './../routes/AppRouter.js';
 import Modal from 'react-modal';
 import Header from './header.js';
+import TextField from '@material-ui/core/TextField';
 
 
 import {Dates} from './../api/dates.js';
@@ -188,8 +189,10 @@ export default class AtendList extends React.Component {
               </div>
               <div className="borderButton">
                 <form onSubmit={this.onSubmitPlayer.bind(this)}>
-                  <input type="text" name="name" placeholder="Name" className="inputField"/>
-                  <input type="text" name="phone" placeholder="Telefonnummer" className="inputField"/>
+                  <div className="datelistModalText">
+                    <TextField id="name" type="text" placeholder="Name"/>
+                    <TextField id="phone" type="text" placeholder="Telefonnummer"/>
+                  </div>
                   <div>
                     <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">OK</button>

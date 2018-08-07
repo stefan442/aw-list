@@ -1,4 +1,5 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 export default class AddTeam extends React.Component {
   onLogout() {
@@ -16,8 +17,8 @@ export default class AddTeam extends React.Component {
     return(
       <div>
         <form className="teamListCenteredForm" onSubmit={this.handleSubmit.bind(this)}>
-          	<input type="text" name="teamName" placeholder="Teamname" className="teamListCenteredFormInput"/>
-            <button className="buttonColor">Team hinzufügen</button>
+          <TextField id="teamName" type="text" placeholder="Teamname" />
+          <button className="buttonColor">Team hinzufügen</button>
         </form>
         <div className="buttonLogout">
           <button onClick={this.onLogout.bind(this)} className="buttonColor">Logout</button>
@@ -26,3 +27,4 @@ export default class AddTeam extends React.Component {
     );
   }
 };
+// <input type="text" name="teamName" placeholder="Teamname" className="teamListCenteredFormInput"/>

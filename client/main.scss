@@ -253,7 +253,9 @@ body {
   height: 20%;
   margin: 5%;
 }
-
+.teamListCenteredForm>div>div {
+  color: $orange;
+}
 
 .teamListCenteredForm {
   display: flex;

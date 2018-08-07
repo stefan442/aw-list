@@ -117,8 +117,7 @@ Meteor.methods({
     let actualDay = moment().format("YYYY-MM-DD");
     let atendence = Atendence.findOne({player: playerRow._id, date: today});
     atendence.atend = !atendence.atend;
-    Atendence.update({player: playerRow._id, date: today}, {$set: {atend: atendence.atend}});
-    atendence.buttontext = atendence.atend + "";
+    Atendence.update({date: today, player: playerRow._id}, {$set: {atend: atendence.atend}});
     let playerRelAt = 0;
     let dates = Dates.find({date: {$lte: actualDay}, teamId: playerRow.teamId}).fetch();
     dates = dates.map((date) => {
@@ -219,7 +218,7 @@ Meteor.methods({
     Teams.remove({_id: teamId});
   },
   'updatePercentage'(teamId){
-    // debugger;
+    debugger;
     let today =  moment().format("YYYY-MM-DD");
     let todayDate = Dates.findOne({date: today, teamId: teamId});
     if(todayDate){

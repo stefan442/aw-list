@@ -13,7 +13,8 @@ SyncedCron.add({
   schedule: function(parser) {
 // parser is a later.parse object
 // return parser.text('every 5 seconds');
-    return parser.recur().on('00:00:00').time();
+//UTC TIME BEACHTEN
+    return parser.recur().on('09:54:00').time();
   },
   job: function() {
     console.log("job start");
@@ -21,7 +22,6 @@ SyncedCron.add({
     teams = teams.map((team) =>{
       Meteor.call('updatePercentage', team._id);
     });
-
   }
 });
 
