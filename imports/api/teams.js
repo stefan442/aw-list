@@ -6,15 +6,17 @@ export const Teams = new Mongo.Collection('teams');
 
 if(Meteor.isServer){
   Meteor.publish("teams", function(){
-    return Teams.find();
+    let userId = Meteor.userId();
+    return Teams.find({trainer: userId});
   });
 }
 
 Meteor.methods({
   //erstellt ein neues Team
   'teamAdd'(team){
+    let userId = Meteor.userId();
     if(team){
-      Teams.insert({name: team});
+      Teams.insert({name: team, trainer: userId});
     }
   }
 });
