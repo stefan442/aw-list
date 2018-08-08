@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {Accounts} from "meteor/accounts-base";
+import TextField from '@material-ui/core/TextField';
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ export default class Signup extends React.Component {
     e.preventDefault();
 
     // Email und Passwort werden gekürzt
-    let email = this.refs.email.value.trim();
-    let password = this.refs.password.value.trim();
+    let email = e.target.email.value.trim();
+    let password = e.target.password.value.trim();
 
     if (password.length < 6) {
       return this.setState({error: "Passwort muss länger als 5 Zeichen sein"});
@@ -53,8 +54,8 @@ export default class Signup extends React.Component {
             {this.state.error ? <p>{this.state.error}</p> : undefined}
             <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
               <h1 className="smallHeaderText">Erstelle einen Account</h1>
-              <input type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
-              <input type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
+              <TextField type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
+              <TextField type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
               <button className="buttonColor">Account erstellen</button>
               <Link to="/" replace className="linkColor loginLink">Du hast bereits einen Account?</Link>
             </form>

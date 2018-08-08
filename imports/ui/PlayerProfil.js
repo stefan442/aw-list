@@ -150,9 +150,9 @@ export default class PlayerProfil extends React.Component{
               overlayClassName="boxed-view boxed-view--modal"
             >
               <p>Möchten Sie wirklich diesen Spieler löschen?</p>
-              <form>
-                <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
-                <button  onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+              <form className="borderButton">
+                <button onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+                <button onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
               </form>
             </Modal>
           </div>

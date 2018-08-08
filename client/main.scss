@@ -76,6 +76,12 @@ body {
   margin: 15% 10%;
   width: auto;
 }
+.loginForm>div>div{
+  border-bottom: 2px solid $orange;
+}
+.loginForm>div>div::after{
+  border-bottom: 2px solid $orange;
+}
 .loginField{
   padding: 5px;
   margin-bottom: 2%;
@@ -92,11 +98,18 @@ body {
 
 .ReactModalPortal>div>div>div>div>form>div>div>div{
   color: $orange;
+  border-bottom: 2px solid $orange;
+
 }
 .ReactModalPortal>div>div>div>div>form>div>div>div>select>option{
   background-color: $grey;
 }
-
+// .ReactModalPortal>div>div>div>div>form>div>div>div::before{
+//   border-bottom: 2px solid $orange;
+// }
+.ReactModalPortal>div>div>div>div>form>div>div>div::after{
+  border-bottom: 2px solid $orange;
+}
 .confirmMessage{
   font-family: sans-serif;
   display: flex;
@@ -130,6 +143,8 @@ body {
   flex-direction: row;
   margin: 20px;
   width: auto;
+  justify-content: space-between;
+
 }
 .playerprofilButtonBack{
   width: 80%
@@ -255,6 +270,10 @@ body {
 }
 .teamListCenteredForm>div>div {
   color: $orange;
+  border-bottom: 2px solid $orange;
+}
+.teamListCenteredForm>div>div::after {
+  border-bottom: 2px solid $orange;
 }
 
 .teamListCenteredForm {
@@ -300,7 +319,6 @@ body {
   height: 20%;
   width: auto;
   margin: 5px;
-
 }
 .navigation{
   width: 33%;
@@ -317,4 +335,14 @@ body {
 }
 .todayButton{
   height: auto;
+}
+
+.ReactTable .-pagination .-pageJump>input{
+  background-color: $grey;
+  border-bottom: 2px solid $orange;
+  color: $orange;
+}
+
+.breakLine{
+  word-wrap: break-word;
 }

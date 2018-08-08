@@ -107,7 +107,7 @@ export default class PlayersList extends React.Component{
                     style={{
                       width: '100%',
                       height: '100%',
-                      backgroundColor: '#dadada',
+                      backgroundColor: '#DEDEDE',
                       borderRadius: '2px'
                     }}
                   >
@@ -162,7 +162,7 @@ export default class PlayersList extends React.Component{
                     <TextField id="name" type="text" placeholder="Name" />
                     <TextField id="phone" type="text" placeholder="Telefonnummer"/>
                   </div>
-                  <div>
+                  <div className="borderButton">
                     <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">OK</button>
                   </div>

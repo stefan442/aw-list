@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {Meteor} from "meteor/meteor";
+import TextField from '@material-ui/core/TextField';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ export default class Login extends React.Component {
     e.preventDefault();
 
     // Beides wird gekürzt
-    let email = this.refs.email.value.trim();
-    let password = this.refs.password.value.trim();
+    let email = e.target.email.value.trim();
+    let password = e.target.password.value.trim();
 
     Meteor.loginWithPassword({email}, password, (err) => {
       if (err) {
@@ -47,8 +48,9 @@ export default class Login extends React.Component {
           <div>
             {this.state.error ? <p>{this.state.error}</p> : undefined}
             <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
-              <input type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
-              <input type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
+
+              <TextField type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
+              <TextField type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
               <button className="buttonColor">Einloggen</button>
               <Link to="/signup" replace className="linkColor loginLink">Account erstellen</Link>
             </form>

@@ -141,8 +141,10 @@ export default class AtendList extends React.Component {
           <div className="playerprofilInfo">
             <h3> {formatedDate}</h3>
             <p> Art: {date.art} </p>
-            <p> Info: {date.info} </p>
+            <div className="breakLine">
+              <p> Info: {date.info} </p>
             </div>
+          </div>
           <ReactTable
             data = {players}
             columns={[
@@ -193,8 +195,8 @@ export default class AtendList extends React.Component {
                     <TextField id="name" type="text" placeholder="Name"/>
                     <TextField id="phone" type="text" placeholder="Telefonnummer"/>
                   </div>
-                  <div>
-                    <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                  <div className="borderButton">
+                    <button onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">OK</button>
                   </div>
                 </form>
@@ -212,9 +214,9 @@ export default class AtendList extends React.Component {
             overlayClassName="boxed-view boxed-view--modal"
           >
             <p>Möchten Sie wirklich diesen Termin löschen?</p>
-            <form>
-              <button  onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
-              <button  onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+            <form className="borderButton">
+              <button onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+              <button onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
             </form>
           </Modal>
         </div>

@@ -44,9 +44,9 @@ export default class TeamFunc extends React.Component {
           overlayClassName="boxed-view boxed-view--modal"
         >
           <p>Möchten Sie wirklich dieses Team löschen?</p>
-          <form>
-            <button  onClick={this.handleCloseModalTeam} className="buttonColor confirmButtons">Abbrechen</button>
-            <button  onClick={this.teamDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+          <form className="borderButton">
+            <button onClick={this.handleCloseModalTeam} className="buttonColor confirmButtons">Abbrechen</button>
+            <button onClick={this.teamDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
           </form>
         </Modal>
       </div>
