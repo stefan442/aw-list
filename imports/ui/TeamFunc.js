@@ -75,7 +75,7 @@ export default class TeamFunc extends React.Component {
           <div className="missingPlayers">
             <Trainer {...this.props}/>
           </div>
-          <p>Fügen Sie einen Trainer hinzufügen</p>
+          <p>Fügen Sie einen Trainer hinzu/p>
           <div className="missingPlayers">
             <MissingTrainer {...this.props}/>
           </div>
