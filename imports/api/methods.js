@@ -5,6 +5,7 @@ import {Dates} from './dates.js';
 import {Players} from './players.js';
 import {Atendence} from './atendence.js';
 import {Teams} from './teams.js';
+import {TrainerTeam} from './trainerTeam.js';
 
 Meteor.methods({
   //erzeugt Atendence- Sätze bei der Termin erstellung
@@ -215,6 +216,7 @@ Meteor.methods({
     Atendence.remove({teamId: teamId});
     Dates.remove({teamId: teamId});
     Players.remove({teamId: teamId});
+    TrainerTeam.remove({team: teamId});
     Teams.remove({_id: teamId});
   },
   'updatePercentage'(teamId){

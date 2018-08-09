@@ -134,9 +134,9 @@ export default class AtendList extends React.Component {
         </div>
         <div>
           <div className="attendlistButtonRow">
-            <button onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
-            <button onClick={this.handleOpenModalDelete} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
-            <button onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
+            <button type="button" onClick={this.goToApp.bind(this)} className="buttonColor attendlistButtonRowSingle">Zurück</button>
+            <button type="button" onClick={this.handleOpenModalDelete} className="buttonColor  attendlistButtonRowSingle">Termin löschen</button>
+            <button type="button" onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
           </div>
           <div className="playerprofilInfo">
             <h3> {formatedDate}</h3>
@@ -196,7 +196,7 @@ export default class AtendList extends React.Component {
                     <TextField id="phone" type="text" placeholder="Telefonnummer"/>
                   </div>
                   <div className="borderButton">
-                    <button onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                    <button type="button" onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">OK</button>
                   </div>
                 </form>
@@ -215,8 +215,8 @@ export default class AtendList extends React.Component {
           >
             <p>Möchten Sie wirklich diesen Termin löschen?</p>
             <form className="borderButton">
-              <button onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
-              <button onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+              <button type="button" onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+              <button type="button" onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
             </form>
           </Modal>
         </div>

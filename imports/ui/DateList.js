@@ -136,12 +136,12 @@ export default class DateList extends React.Component{
         <Header/>
         <div>
           <div className="navBardp">
-            <button onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
-            <button onClick={this.switchToPlayer.bind(this)} className="buttonColor navigation">Spieler Liste</button>
-            <button onClick={this.handleOpenModalDate} className="buttonColor navigation">Termin hinzufügen</button>
+            <button type="button" onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
+            <button type="button" onClick={this.switchToPlayer.bind(this)} className="buttonColor navigation">Spieler Liste</button>
+            <button type="button" onClick={this.handleOpenModalDate} className="buttonColor navigation">Termin hinzufügen</button>
           </div>
           <div className="today">
-            <button onClick={this.goTodayAtend.bind(this)} className="buttonColor todayButton">Termin Heute: {today}</button>
+            <button type="button" onClick={this.goTodayAtend.bind(this)} className="buttonColor todayButton">Termin Heute: {today}</button>
           </div>
           <ReactTable
             data = {dates}
@@ -207,7 +207,7 @@ export default class DateList extends React.Component{
                     />
                   </div>
                   <div className="borderButton">
-                    <button  onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
+                    <button type="button" onClick={this.handleCloseModalDate} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">Hinzufügen</button>
                   </div>
                 </form>

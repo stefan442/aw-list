@@ -1,5 +1,7 @@
+import {Meteor} from 'meteor/meteor';
 import React from 'react';
 import {Tracker} from 'meteor/tracker';
+import {TrainerTeam} from './../api/trainerTeam.js';
 
 import TeamFunc from './TeamFunc.js';
 import {Teams} from '../api/teams.js';
@@ -8,13 +10,22 @@ export default class TeamList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      team: []
+      teams: [],
+      users: [],
     };
   }
   componentWillMount(){
     this.teamTracker = Tracker.autorun(() =>{
+      Meteor.subscribe("trainerTeam");
+      // const trainerTeam = Train
       Meteor.subscribe("teams");
-      const teams = Teams.find({}, {sort: {name: 1}}).fetch();
+      let id = TrainerTeam.find({trainer: Meteor.userId()}).fetch();
+        console.log(id);
+        id = id.map((teamId) =>{
+          return teamId.team;
+
+        });
+      const teams = Teams.find({_id: {$in: id}}, {sort: {name: 1}}).fetch();
       this.setState({ teams });
     });
   }

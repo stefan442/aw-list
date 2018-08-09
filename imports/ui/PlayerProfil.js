@@ -93,8 +93,8 @@ export default class PlayerProfil extends React.Component{
         <div>
           <div className="playerprofilForm">
             <div className="borderButton">
-              <button onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">Zurück</button>
-              <button onClick={this.handleOpenModalDelete} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
+              <button type="button" onClick={this.goToPlayersList.bind(this)} className="buttonColor playerprofilButtonBack">Zurück</button>
+              <button type="button" onClick={this.handleOpenModalDelete} className="buttonColor playerprofilButtonDel">Spieler löschen</button>
             </div>
             <div className="playerprofilInfo">
               <p>Name: {player.name}</p>
@@ -151,8 +151,8 @@ export default class PlayerProfil extends React.Component{
             >
               <p>Möchten Sie wirklich diesen Spieler löschen?</p>
               <form className="borderButton">
-                <button onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
-                <button onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
+                <button type="button" onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
+                <button type="button" onClick={this.playerDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
               </form>
             </Modal>
           </div>

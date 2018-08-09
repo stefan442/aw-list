@@ -28,6 +28,7 @@ export default class TeamPage extends React.Component {
           <h1 className="teamListCentered">{this.state.title}</h1>
           <TeamList {...this.props}/>
           <AddTeam/>
+
         </div>
       </div>
     );

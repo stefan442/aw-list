@@ -49,9 +49,9 @@ export default class Login extends React.Component {
             {this.state.error ? <p>{this.state.error}</p> : undefined}
             <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
 
-              <TextField type="email" ref="email" name="email" placeholder="Email" className="loginField"/>
-              <TextField type="password" ref="password" name="password" placeholder="Passwort" className="loginField"/>
-              <button className="buttonColor">Einloggen</button>
+              <TextField type="email" /*ref="email"*/ name="email" placeholder="Email" className="loginField"/>
+              <TextField type="password" /*ref="password"*/ name="password" placeholder="Passwort" className="loginField"/>
+              <button type="submit" className="buttonColor">Einloggen</button>
               <Link to="/signup" replace className="linkColor loginLink">Account erstellen</Link>
             </form>
           </div>

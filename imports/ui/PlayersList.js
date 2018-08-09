@@ -86,9 +86,9 @@ export default class PlayersList extends React.Component{
         </div>
         <div>
           <div className="navBardp">
-            <button onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
-            <button onClick={this.switchToDates.bind(this)} className="buttonColor navigation">Termin Liste</button>
-            <button onClick={this.handleOpenModalPlayer} className="navigation buttonColor">Spieler hinzufügen</button>
+            <button type="button" onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>
+            <button type="button" onClick={this.switchToDates.bind(this)} className="buttonColor navigation">Termin Liste</button>
+            <button type="button" onClick={this.handleOpenModalPlayer} className="navigation buttonColor">Spieler hinzufügen</button>
           </div>
           <p> {players.name} </p>
           <ReactTable
@@ -163,7 +163,7 @@ export default class PlayersList extends React.Component{
                     <TextField id="phone" type="text" placeholder="Telefonnummer"/>
                   </div>
                   <div className="borderButton">
-                    <button  onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
+                    <button type="button" onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
                     <button type="submit" className="buttonColor">OK</button>
                   </div>
                 </form>
