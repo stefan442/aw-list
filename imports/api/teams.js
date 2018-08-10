@@ -17,8 +17,8 @@ Meteor.methods({
   'teamAdd'(team){
     let userId = Meteor.userId();
     if(team){
-      let id = Teams.insert({name: team});
-      TrainerTeam.insert({team: id, trainer: userId});
+      let id = Teams.insert({name: team, created: userId});
+      TrainerTeam.insert({team: id, trainer: userId, created: userId});
     }
   }
 });

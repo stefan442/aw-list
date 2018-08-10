@@ -39,6 +39,16 @@ export default class MissingTrainer extends React.Component {
     Meteor.call('deleteTrainerTeam', del);
   }
 
+  renderDeleteTrainerButton(userId){
+    if(this.props.team.created == Meteor.userId()){
+      return(
+      <button type="button" onClick={(e) =>{
+        e.target.style.visibility='hidden';
+        this.deleteTrainerTeam(userId)}} className="buttonColor">  X  </button>
+      )
+    }
+  }
+
   render(){
     let atendingTrainer = this.state.trainerTeam;
     atendingTrainer = atendingTrainer.map((trainer) =>{
@@ -53,11 +63,10 @@ export default class MissingTrainer extends React.Component {
     });
     if(users && users.length !== 0){
       this.trainer = users.map((user) => {
-        return (<div className="teamListCenteredFunc" key={user._id} >
-          <p>{user.emails[0].address}</p>
-          <button type="button" onClick={(e) =>{
-            e.target.style.visibility='hidden';
-            this.deleteTrainerTeam(user._id)}} className="buttonColor">  X  </button>
+        return (
+          <div className="teamListCenteredFunc" key={user._id} >
+            <p>{user.emails[0].address}</p>
+            {this.renderDeleteTrainerButton(user._id)}
           </div>)
         })
     }

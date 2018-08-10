@@ -12,7 +12,7 @@ if(Meteor.isServer){
 
 Meteor.methods({
   'addTrainerTeam'(add){
-    TrainerTeam.insert({team: add.teamId, trainer: add.trainer});
+    TrainerTeam.insert({team: add.teamId, trainer: add.trainer, created: add.created});
   },
   'deleteTrainerTeam'(del){
     TrainerTeam.remove({team: del.teamId, trainer: del.trainer});

@@ -12,7 +12,6 @@ export default class MissingTrainer extends React.Component {
       trainerTeam: [],
     }
   }
-
   componentDidMount(){
     this.userTracker = Tracker.autorun(() => {
         Meteor.subscribe("users");
@@ -32,6 +31,7 @@ export default class MissingTrainer extends React.Component {
     let add = {
       teamId: this.props.team._id,
       trainer: trainer,
+      created:  this.props.team.created,
     }
     Meteor.call('addTrainerTeam', add);
   }

@@ -20,10 +20,8 @@ export default class TeamList extends React.Component {
       // const trainerTeam = Train
       Meteor.subscribe("teams");
       let id = TrainerTeam.find({trainer: Meteor.userId()}).fetch();
-        console.log(id);
         id = id.map((teamId) =>{
           return teamId.team;
-
         });
       const teams = Teams.find({_id: {$in: id}}, {sort: {name: 1}}).fetch();
       this.setState({ teams });
