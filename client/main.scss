@@ -105,10 +105,11 @@ body {
 .ReactModalPortal>div>div>div>div>form>div>div>div>select>option{
   background-color: $grey;
 }
-// .ReactModalPortal>div>div>div>div>form>div>div>div::before{
-//   border-bottom: 2px solid $orange;
-// }
+
 .ReactModalPortal>div>div>div>div>form>div>div>div::after{
+  border-bottom: 2px solid $orange;
+}
+.ReactModalPortal>div>div>div>div>form>div>div::after{
   border-bottom: 2px solid $orange;
 }
 .confirmMessage{
@@ -251,10 +252,18 @@ body {
 	position:relative;
 	top:0.5px;
 }
-.buttonTeamDel {
+.buttonTeamTrainer {
   margin: 5%;
+  margin-right: 2%;
+  margin-left: 2%;
   height: 20%;
-  width: 15%;
+  width: 20%;
+}
+.buttonTeamDel{
+  margin: 5%;
+  margin-left: 2%;
+  height: 20%;
+  width: auto;
 }
 .buttonLogout{
     display: flex;
