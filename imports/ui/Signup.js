@@ -16,6 +16,7 @@ export default class Signup extends React.Component {
 
     // Email und Passwort werden gekürzt
     let email = e.target.email.value.trim();
+    let username = e.target.username.value;
     let password = e.target.password.value.trim();
 
     if (password.length < 6) {
@@ -23,7 +24,7 @@ export default class Signup extends React.Component {
     }
 
     // Erstellt User und prüft Email in users.api
-    Accounts.createUser({email, password}, (err) => {
+    Accounts.createUser({email, username, password}, (err) => {
       if (err) {
         this.setState({error: err.reason});
       } else {
@@ -55,6 +56,7 @@ export default class Signup extends React.Component {
             <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
               <h1 className="smallHeaderText">Erstelle einen Account</h1>
               <TextField type="email" name="email" placeholder="Email" className="loginField"/>
+              <TextField type="username" name="username" placeholder="Name" className="loginField"/>
               <TextField type="password" name="password" placeholder="Passwort" className="loginField"/>
               <button type="submit" className="buttonColor">Account erstellen</button>
               <Link to="/" replace className="linkColor loginLink">Du hast bereits einen Account?</Link>

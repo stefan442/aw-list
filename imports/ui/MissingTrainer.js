@@ -54,7 +54,7 @@ export default class MissingTrainer extends React.Component {
         return (<div className="teamListCenteredFunc" key={user._id} >
           <button type="button" onClick={(e) =>{
             e.target.style.visibility='hidden';
-            this.addTrainerTeam(user._id)}} className="buttonColor"> {user.emails[0].address} </button>
+            this.addTrainerTeam(user._id)}} className="buttonColor"> {user.username} </button>
           </div>)
         })
     }
@@ -63,3 +63,4 @@ export default class MissingTrainer extends React.Component {
     );
   }
 }
+// user.emails[0].address
