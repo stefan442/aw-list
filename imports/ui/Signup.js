@@ -20,7 +20,7 @@ export default class Signup extends React.Component {
     let password = e.target.password.value.trim();
 
     if (password.length < 6) {
-      return this.setState({error: "Passwort muss länger als 5 Zeichen sein"});
+      return this.setState({error: "Passwort muss mindesten 6 Zeichen lang sein"});
     }
 
     // Erstellt User und prüft Email in users.api
