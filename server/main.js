@@ -14,7 +14,7 @@ SyncedCron.add({
 // parser is a later.parse object
 // return parser.text('every 5 seconds');
 //UTC TIME BEACHTEN
-    return parser.recur().on('09:54:00').time();
+    return parser.recur().on('08:00:00').time();
   },
   job: function() {
     console.log("job start");
