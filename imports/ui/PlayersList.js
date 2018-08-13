@@ -155,7 +155,7 @@ export default class PlayersList extends React.Component{
             overlayClassName="boxed-view boxed-view--modal"
           >
             <p className="smallHeaderText">Spieler hinzufügen</p>
-            <div className="borderButton">
+            <div /*className="borderButton"*/>
               <div>
                 <form onSubmit={this.onSubmitPlayer.bind(this)}>
                   <div className="datelistModalText">

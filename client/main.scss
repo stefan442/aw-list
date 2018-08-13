@@ -146,7 +146,6 @@ body {
   margin: 20px;
   width: auto;
   justify-content: space-between;
-
 }
 .playerprofilButtonBack{
   width: 80%
@@ -310,12 +309,28 @@ body {
 .teamListCenteredFunc {
   display: flex;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   margin: auto;
   width: auto;
 }
 
+.missingTrainerButton {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: auto;
+  width: auto;
+}
+.borderButtonClose{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 20px;
+  width: auto;
+}
 
 .ReactTable .rt-noData{
   visibility: hidden;

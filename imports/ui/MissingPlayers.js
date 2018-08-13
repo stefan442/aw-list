@@ -21,7 +21,6 @@ export default class MissingPlayers extends React.Component {
     );
   }
 
-
   //stoppt den Tracker
   componentWillUnmount(){
     this.playersTracker.stop();

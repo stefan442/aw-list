@@ -63,7 +63,6 @@ export default class AtendList extends React.Component {
   addAtend(e){
     let thisToday = moment().format('YYYY-MM-DD');
     let actualDay = this.state.date;
-
     if(actualDay.date <= thisToday){
       Meteor.call ('toggleAtendence', {playerRow: e, today: this.props.match.params._id});
     }
@@ -115,10 +114,8 @@ export default class AtendList extends React.Component {
           return obj;
         }
       });
-      // let atend = false;
       let buttontext = "Nein";
       if(atendDB.atend){
-      // atend = atendDB.atend;
         buttontext = "Ja";
       }
       return {
@@ -189,7 +186,7 @@ export default class AtendList extends React.Component {
               <div className="missingPlayers">
                 <MissingPlayers {...this.props} atendingPlayers={players} date={date}/>
               </div>
-              <div className="borderButton">
+              <div>
                 <form onSubmit={this.onSubmitPlayer.bind(this)}>
                   <div className="datelistModalText">
                     <TextField id="name" type="text" placeholder="Name"/>

@@ -202,8 +202,11 @@ export default class DateList extends React.Component{
                   <div className="datelistModalText">
                     <TextField
                       id="info"
+                      multiline
+                      rows="4"
                       type="text"
                       placeholder="Info"
+                      fullWidth
                     />
                   </div>
                   <div className="borderButton">

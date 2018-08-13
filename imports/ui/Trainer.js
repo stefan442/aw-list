@@ -64,7 +64,7 @@ export default class MissingTrainer extends React.Component {
     if(users && users.length !== 0){
       this.trainer = users.map((user) => {
         return (
-          <div className="teamListCenteredFunc" key={user._id} >
+          <div className="missingTrainerButton" key={user._id} >
             <p>{user.username}</p>
             {this.renderDeleteTrainerButton(user._id)}
           </div>)

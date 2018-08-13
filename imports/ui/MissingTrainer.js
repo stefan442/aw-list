@@ -51,7 +51,7 @@ export default class MissingTrainer extends React.Component {
     });
     if(users !== undefined && users.length !== 0){
       this.trainer = users.map((user) => {
-        return (<div className="teamListCenteredFunc" key={user._id} >
+        return (<div className="missingTrainerButton" key={user._id} >
           <button type="button" onClick={(e) =>{
             e.target.style.visibility='hidden';
             this.addTrainerTeam(user._id)}} className="buttonColor"> {user.username} </button>
@@ -63,4 +63,3 @@ export default class MissingTrainer extends React.Component {
     );
   }
 }
-// user.emails[0].address
