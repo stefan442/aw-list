@@ -8,6 +8,8 @@ import { Teams } from "../imports/api/teams.js";
 import "../imports/startup/simple-schema-configuration.js";
 import "../imports/api/methods.js"
 
+if(Meteor.isServer){ 
+
 SyncedCron.add({
   name: 'Prozentsaetze updaten',
   schedule: function(parser) {
@@ -15,7 +17,7 @@ SyncedCron.add({
 // return parser.text('every 5 seconds');
 //UTC TIME BEACHTEN
 
-    return parser.recur().on('08:00:00').time();
+    return parser.recur().on('14:00:00').time();
   },
   utc: false,
   job: function() {
@@ -26,7 +28,7 @@ SyncedCron.add({
     });
   }
 });
-
+}
 
 
 Meteor.startup(() => {
