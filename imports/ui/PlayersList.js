@@ -5,7 +5,7 @@ import "react-table/react-table.css";
 import {Players} from './../api/players.js';
 import Header from './header.js';
 import TextField from '@material-ui/core/TextField';
-
+import NumberFormat from 'react-number-format';
 
 export default class PlayersList extends React.Component{
   constructor(props) {
@@ -21,8 +21,6 @@ export default class PlayersList extends React.Component{
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
   }
-
-
 
   //Tracker zum laden der Spieler
   componentDidMount(){
@@ -78,7 +76,6 @@ export default class PlayersList extends React.Component{
 
   render() {
     let players = this.state.players;
-
     return(
       <div>
         <div>
@@ -160,7 +157,7 @@ export default class PlayersList extends React.Component{
                 <form onSubmit={this.onSubmitPlayer.bind(this)}>
                   <div className="datelistModalText">
                     <TextField id="name" type="text" placeholder="Name" />
-                    <TextField id="phone" type="text" placeholder="Telefonnummer"/>
+                    <NumberFormat placeholder="Telefonnummer" customInput={TextField} id="phone" format="###############"/>
                   </div>
                   <div className="borderButton">
                     <button type="button" onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>

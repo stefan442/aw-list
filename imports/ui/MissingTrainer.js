@@ -41,7 +41,6 @@ export default class MissingTrainer extends React.Component {
     atendingTrainer = atendingTrainer.map((trainer) =>{
       return trainer.trainer;
     })
-
     let users = this.state.users;
     users = users.filter((user) => {
       if((user._id == Meteor.userId()) || (atendingTrainer.includes(user._id))){

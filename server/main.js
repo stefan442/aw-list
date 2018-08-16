@@ -10,26 +10,24 @@ import "../imports/api/methods.js"
 
 if(Meteor.isServer){ 
 
-SyncedCron.add({
-  name: 'Prozentsaetze updaten',
-  schedule: function(parser) {
-// parser is a later.parse object
-// return parser.text('every 5 seconds');
-//UTC TIME BEACHTEN
-
-    return parser.recur().on('14:00:00').time();
-  },
-  utc: false,
-  job: function() {
-    console.log("job start");
-    let teams = Teams.find().fetch();
-    teams = teams.map((team) =>{
-      Meteor.call('updatePercentage', team._id);
-    });
-  }
-});
+  SyncedCron.add({
+    name: 'Prozentsaetze updaten',
+    schedule: function(parser) {
+      // parser is a later.parse object
+      // return parser.text('every 5 seconds');
+      //UTC TIME BEACHTEN
+      return parser.recur().on('14:00:00').time();
+    },
+    utc: false,
+    job: function() {
+      console.log("job start");
+      let teams = Teams.find().fetch();
+      teams = teams.map((team) =>{
+        Meteor.call('updatePercentage', team._id);
+      });
+    }
+  });
 }
-
 
 Meteor.startup(() => {
   if(Meteor.isServer){ 

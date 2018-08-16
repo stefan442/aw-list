@@ -153,6 +153,17 @@ body {
 .playerprofilButtonDel{
   width: 80%;
 }
+.column{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.playerprofilChange{
+  margin-top: 0%;
+  margin-right: 20px;
+}
+
 .playerprofilInfo{
   font-family: sans-serif;
   margin: 10px 0 0 10px;
@@ -353,13 +364,14 @@ body {
   display: flex;
   align-content: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   height: 80%;
   width: auto;
   margin: 5px;
 }
 .todayButton{
   height: auto;
+  width: 49.5%;
 }
 
 .ReactTable .-pagination .-pageJump>input{
@@ -370,4 +382,7 @@ body {
 
 .breakLine{
   word-wrap: break-word;
+  margin-left: 10px;
+  margin-right: 10px;
+
 }

@@ -11,22 +11,21 @@ import {Players} from './../api/players.js';
 import TextField from '@material-ui/core/TextField';
 import Header from './header.js';
 
-
-
 export default class DateList extends React.Component{
   constructor(props) {
     super(props);
     let teamId = this.props.match.params._id;
-    let today= moment().format("DD.MM.YYYY");
-
+    let actualDay = moment().format("YYYY-MM-DD");
     this.state = {
       dates: [],
+      allDates: [],
       players:[],
       teamId: teamId,
       showModalDate: false,
       showModalPlayer: false,
       value: 0,
-      today: today,
+      actualDay: actualDay,
+      all: false,
     };
     this.handleOpenModalDate = this.handleOpenModalDate.bind(this);
     this.handleCloseModalDate = this.handleCloseModalDate.bind(this);
@@ -38,8 +37,12 @@ export default class DateList extends React.Component{
   componentDidMount(){
     this.datesTracker = Tracker.autorun(() => {
         Meteor.subscribe("dates");
-        const dates = Dates.find({teamId: this.state.teamId}).fetch();
+        const dates = Dates.find({date: {$lte: this.state.actualDay}, teamId: this.state.teamId}).fetch();
         this.setState({ dates });
+
+        Meteor.subscribe("allDates");
+        const allDates = Dates.find({teamId: this.state.teamId}).fetch();
+        this.setState({ allDates });
 
         Meteor.subscribe("players");
         const players = Players.find({teamId: this.state.teamId}).fetch();
@@ -53,7 +56,7 @@ export default class DateList extends React.Component{
 
  //stoppt den Tracker
  componentWillUnmount(){
-      this.datesTracker.stop();
+   this.datesTracker.stop();
  }
 
 //oeffnet popup für Termin hinzufuegen
@@ -103,7 +106,7 @@ export default class DateList extends React.Component{
   };
 //navigiert zum Temin am heutigen Tag
   goTodayAtend(){
-    let today = moment().format("YYYY-MM-DD");
+    let today = this.state.actualDay;
     let date = this.state.dates.find((obj) => {
       if(obj.date === today){
         return obj;
@@ -125,12 +128,30 @@ export default class DateList extends React.Component{
     this.props.history.replace('/playerslist/' + this.state.teamId);
   }
 
+  allDates(){
+    this.setState({ all: true });
+  }
+
+  tillToday(){
+    this.setState({ all: false });
+  }
+
   render() {
-    let dates = this.state.dates.map((date) =>{
-      date.formatedDate = moment(date.date).format("DD.MM.YYYY");
-      return  date;
-    });
-    let today = this.state.today;
+    let dates = this.state.dates;
+    if(!this.state.all){
+      let dates = this.state.dates;
+      dates = this.state.dates.map((date) =>{
+        date.formatedDate = moment(date.date).format("DD.MM.YYYY");
+        return  date;
+      });
+    }
+    else{
+      dates = this.state.allDates;
+      dates = this.state.allDates.map((date) =>{
+        date.formatedDate = moment(date.date).format("DD.MM.YYYY");
+        return date;
+      });
+    }
     return(
       <div>
         <Header/>
@@ -141,7 +162,8 @@ export default class DateList extends React.Component{
             <button type="button" onClick={this.handleOpenModalDate} className="buttonColor navigation">Termin hinzufügen</button>
           </div>
           <div className="today">
-            <button type="button" onClick={this.goTodayAtend.bind(this)} className="buttonColor todayButton">Termin Heute: {today}</button>
+            <button type="button" onClick={this.allDates.bind(this)} className="buttonColor todayButton">Alle Termine</button>
+            <button type="button" onClick={this.tillToday.bind(this)} className="buttonColor todayButton">Termine bis Heute</button>
           </div>
           <ReactTable
             data = {dates}

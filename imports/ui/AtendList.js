@@ -7,7 +7,8 @@ import history from './../routes/AppRouter.js';
 import Modal from 'react-modal';
 import Header from './header.js';
 import TextField from '@material-ui/core/TextField';
-
+import NumberFormat from 'react-number-format';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 import {Dates} from './../api/dates.js';
 import {Players} from './../api/players.js';
@@ -23,12 +24,15 @@ export default class AtendList extends React.Component {
       atendence: [],
       date: date,
       showModalPlayer: false,
-      showModalDelete: false
+      showModalDelete: false,
+      showModalChange: false,
     };
     this.handleOpenModalPlayer = this.handleOpenModalPlayer.bind(this);
     this.handleCloseModalPlayer = this.handleCloseModalPlayer.bind(this);
     this.handleOpenModalDelete = this.handleOpenModalDelete.bind(this);
     this.handleCloseModalDelete = this.handleCloseModalDelete.bind(this);
+    this.handleOpenModalChange = this.handleOpenModalChange.bind(this);
+    this.handleCloseModalChange = this.handleCloseModalChange.bind(this);
   }
 //Tracker zum laden der Atendence Saetze und Spieler
   componentDidMount(){
@@ -46,7 +50,7 @@ export default class AtendList extends React.Component {
     );
   }
 
-  componentWillMount() {
+  componentWillMount(){
     Modal.setAppElement('body');
   }
 
@@ -56,7 +60,7 @@ export default class AtendList extends React.Component {
   }
 
 //route zur DateList
-  goToApp() {
+  goToApp(){
     this.props.history.replace('/datelist/' + this.state.date.teamId);
   }
 //ruft die methode zum setzen der Anwesenheit auf
@@ -69,40 +73,61 @@ export default class AtendList extends React.Component {
   }
   //ruft die Methode zum loeschen eines Termins auf
   //navigiert zum Temin-Liste zurueck
-  dateDelete() {
+  dateDelete(){
     Meteor.call('dateDelete', this.state.date);
     this.props.history.replace('/datelist/' + this.state.date.teamId);
   }
   //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
-  handleOpenModalPlayer () {
+  handleOpenModalPlayer(){
     this.setState({ showModalPlayer: true });
   }
   //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
 
-  handleCloseModalPlayer () {
+  handleCloseModalPlayer(){
      this.setState({ showModalPlayer: false });
   }
-  handleOpenModalDelete () {
+  handleOpenModalDelete(){
     this.setState({ showModalDelete: true });
   }
-  handleCloseModalDelete () {
+  handleCloseModalDelete(){
      this.setState({ showModalDelete: false });
   }
+  handleOpenModalChange(){
+    this.setState({ showModalChange: true });
+  }
+  handleCloseModalChange(){
+     this.setState({ showModalChange: false });
+  }
 //Methodenaufruf zum hinzufuegen eines Spielers
-  onSubmitPlayer = (e) => {
+  onSubmitPlayer = (e) =>{
     e.preventDefault();
     if(e.target.name.value){
       let player = {
-                    name: e.target.name.value,
-                    phoneNumber: e.target.phone.value,
-                    teamId: this.state.date.teamId,
-                    today: this.state.date.date,
-                  };
+        name: e.target.name.value,
+        phoneNumber: e.target.phone.value,
+        teamId: this.state.date.teamId,
+        today: this.state.date.date,
+      };
       Meteor.call('onSubmitPlayer', player);
     }
     e.target.name.value = "";
     this.handleCloseModalPlayer();
   };
+
+  changeDate  = (e) =>{
+    e.preventDefault();
+    let date = {
+      id: this.state.date._id,
+      art: e.target.art.value,
+      info: e.target.info.value,
+    };
+    if((e.target.art.value != this.state.date.art) || (e.target.info.value != this.state.date.info)){
+      Meteor.call('changedate', date);
+      this.state.date.art = date.art;
+      this.state.date.info = date.info;
+    }
+    this.handleCloseModalChange();
+  }
 
   render(){
     let date  = this.state.date;
@@ -136,8 +161,15 @@ export default class AtendList extends React.Component {
             <button type="button" onClick={this.handleOpenModalPlayer} className="buttonColor attendlistButtonRowSingle">Spieler hinzufügen</button>
           </div>
           <div className="playerprofilInfo">
-            <h3> {formatedDate}</h3>
-            <p> Art: {date.art} </p>
+            <div className="column">
+              <div className="playerprofilInfo">
+                <h3> {formatedDate}</h3>
+                <p> Art: {date.art} </p>
+              </div>
+              <div className="playerprofilChange">
+                <button type="button" onClick={this.handleOpenModalChange} className="buttonColor ">Bearbeiten</button>
+              </div>
+            </div>
             <div className="breakLine">
               <p> Info: {date.info} </p>
             </div>
@@ -190,7 +222,7 @@ export default class AtendList extends React.Component {
                 <form onSubmit={this.onSubmitPlayer.bind(this)}>
                   <div className="datelistModalText">
                     <TextField id="name" type="text" placeholder="Name"/>
-                    <TextField id="phone" type="text" placeholder="Telefonnummer"/>
+                    <NumberFormat placeholder="Telefonnummer" customInput={TextField} id="phone" format="###############"/>
                   </div>
                   <div className="borderButton">
                     <button type="button" onClick={this.handleCloseModalPlayer} className="buttonColor">Abbrechen</button>
@@ -215,6 +247,45 @@ export default class AtendList extends React.Component {
               <button type="button" onClick={this.handleCloseModalDelete} className="buttonColor confirmButtons">Abbrechen</button>
               <button type="button" onClick={this.dateDelete.bind(this)} className="buttonColor confirmButtons">Löschen</button>
             </form>
+          </Modal>
+
+          <Modal
+            isOpen={this.state.showModalChange}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleCloseModalChange}
+            shouldCloseOnOverlayClick={false}
+            className="boxed-view__box confirmMessage"
+            overlayClassName="boxed-view boxed-view--modal"
+          >
+            <p>Termin ändern:</p>
+            <div>
+              <div>
+                <form onSubmit={this.changeDate.bind(this)}>
+                  <div className="datelistModalText">
+                    <NativeSelect name="art" defaultValue={date.art} >
+                      <option value={"Training"}>Training</option>
+                      <option value={"Spiel"}>Spiel</option>
+                      <option value={"Sonstiges"}>Sonstiges</option>
+                    </NativeSelect>
+                  </div>
+                  <div className="datelistModalText">
+                    <TextField
+                      id="info"
+                      multiline
+                      rows="4"
+                      type="text"
+                      defaultValue={date.info}
+                      placeholder="Info"
+                      fullWidth
+                    />
+                  </div>
+                  <div className="borderButton">
+                    <button type="button" onClick={this.handleCloseModalChange} className="buttonColor">Abbrechen</button>
+                    <button type="submit" className="buttonColor">Ok</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </Modal>
         </div>
       </div>

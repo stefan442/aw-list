@@ -67,8 +67,9 @@ export default class MissingTrainer extends React.Component {
           <div className="missingTrainerButton" key={user._id} >
             <p>{user.username}</p>
             {this.renderDeleteTrainerButton(user._id)}
-          </div>)
-        })
+          </div>
+        )
+      })
     }
     return(
       <div>{this.trainer}</div>

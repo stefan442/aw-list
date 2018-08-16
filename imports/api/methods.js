@@ -243,4 +243,10 @@ Meteor.methods({
       });
     }
   },
+  'changePlayer'(player){
+    Players.update({_id: player.id}, {$set: {name: player.name, phoneNumber: player.phoneNumber}});
+  },
+  'changedate'(date){
+    Dates.update({_id: date.id}, {$set: {art: date.art, info:date.info}});
+  },
 });

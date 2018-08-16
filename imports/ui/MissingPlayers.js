@@ -53,8 +53,9 @@ export default class MissingPlayers extends React.Component {
           <button type="button" onClick={(e) =>{
             e.target.style.visibility='hidden';
             this.updateAtendence(player._id)}} className="buttonColor"> {player.name} </button>
-          </div>)
-        })
+          </div>
+        )
+      })
     }
     return(
       <div>{this.missingPlayers}</div>

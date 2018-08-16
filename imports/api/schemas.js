@@ -9,7 +9,7 @@ export const signupSchema = new SimpleSchema({
 });
 
 signupSchema.messageBox.messages({
-en: {
+  en: {
    regEx: 'Die Email ist ungültig',
-},
+ },
 });
