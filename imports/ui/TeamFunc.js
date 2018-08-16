@@ -71,8 +71,7 @@ export default class TeamFunc extends React.Component {
           {this.props.team.name}
         </button>
         <button className="buttonColor buttonTeamTrainer" onClick={this.handleOpenModalTrainer}> Trainer </button>
-
-          {this.renderDeleteTeamButton()}
+        {this.renderDeleteTeamButton()}
 
         <Modal
           appElement = {document.getElementById('body')}

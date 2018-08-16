@@ -15,8 +15,11 @@ if(Meteor.isServer){ 
     schedule: function(parser) {
       // parser is a later.parse object
       // return parser.text('every 5 seconds');
-      //UTC TIME BEACHTEN
-      return parser.recur().on('14:00:00').time();
+      // Berechnet an der Angegeben Uhrzeit die relAt Prozentsätze für den
+      // Termin der heute stattfindet fals dieser in der Vergangenheit erstellt wurde
+      // Vorausgesetz Meteor Läuft am rechner zu dieser Zeit
+      // UTC TIME BEACHTEN (nur am Server)
+      return parser.recur().on('09:00:00').time();
     },
     utc: false,
     job: function() {

@@ -220,7 +220,6 @@ Meteor.methods({
     Teams.remove({_id: teamId});
   },
   'updatePercentage'(teamId){
-    debugger;
     let today =  moment().format("YYYY-MM-DD");
     let todayDate = Dates.findOne({date: today, teamId: teamId});
     if(todayDate){
