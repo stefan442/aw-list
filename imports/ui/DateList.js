@@ -104,22 +104,6 @@ export default class DateList extends React.Component{
     e.target.info.value = "";
     this.handleCloseModalDate();
   };
-//navigiert zum Temin am heutigen Tag
-  goTodayAtend(){
-    let today = this.state.actualDay;
-    let date = this.state.dates.find((obj) => {
-      if(obj.date === today){
-        return obj;
-      }
-    });
-    if(date){
-      this.props.history.replace('/atendlist/' + date._id);
-    }
-    else{
-      return alert("Heute kein Termin");
-    }
-  }
-
   onLogout(){
     Accounts.logout()
   }

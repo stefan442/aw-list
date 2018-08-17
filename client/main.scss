@@ -276,12 +276,12 @@ body {
   width: auto;
 }
 .buttonLogout{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: 95% auto 0 auto;
-    width: 30%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
+  width: 30%;
 }
 .buttonTeamName {
   width: 50%;
@@ -384,5 +384,11 @@ body {
   word-wrap: break-word;
   margin-left: 10px;
   margin-right: 10px;
+}
 
+.AddTeamSticky {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    background-color: $grey;
 }
