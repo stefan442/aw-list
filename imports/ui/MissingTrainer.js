@@ -14,15 +14,14 @@ export default class MissingTrainer extends React.Component{
   }
   componentDidMount(){
     this.userTracker = Tracker.autorun(() => {
-        Meteor.subscribe("users");
-        const users = Meteor.users.find().fetch();
-        this.setState({ users });
+      Meteor.subscribe("users");
+      const users = Meteor.users.find().fetch();
+      this.setState({ users });
 
-        Meteor.subscribe("trainerTeam");
-        const trainerTeam = TrainerTeam.find({team: this.props.team._id}).fetch();
-        this.setState({ trainerTeam });
-      }
-    );
+      Meteor.subscribe("trainerTeam");
+      const trainerTeam = TrainerTeam.find({team: this.props.team._id}).fetch();
+      this.setState({ trainerTeam });
+    });
   }
   componentWillUnmount(){
     this.userTracker.stop();
@@ -44,7 +43,7 @@ export default class MissingTrainer extends React.Component{
     let users = this.state.users;
     users = users.filter((user) => {
       if((user._id == Meteor.userId()) || (atendingTrainer.includes(user._id))){
-        return ;
+        return;
       }
       return user;
     });

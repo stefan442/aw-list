@@ -50,9 +50,9 @@ export default class DateList extends React.Component{
       }
     );
   }
- componentWillMount(){
-   Modal.setAppElement('body');
- }
+  componentWillMount(){
+    Modal.setAppElement('body');
+  }
 
  //stoppt den Tracker
  componentWillUnmount(){

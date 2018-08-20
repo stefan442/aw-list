@@ -16,10 +16,10 @@ import {Atendence} from './../api/atendence.js';
 import MissingPlayers from './MissingPlayers.js';
 
 export default class AtendList extends React.Component{
-  constructor(props) {
+  constructor(props){
     super(props);
     let date = Dates.findOne({_id: this.props.match.params._id});
-    this.state ={
+    this.state = {
       players: [],
       atendence: [],
       date: date,
@@ -82,7 +82,6 @@ export default class AtendList extends React.Component{
     this.setState({ showModalPlayer: true });
   }
   //funktion zum oeffnen des popups um einen spieler hinzuzufuegen
-
   handleCloseModalPlayer(){
      this.setState({ showModalPlayer: false });
   }

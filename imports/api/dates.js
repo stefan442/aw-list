@@ -14,7 +14,7 @@ if(Meteor.isServer){
 
 Meteor.methods({
   //ertellt neuen Termin und erzeugt die dazugehoerigen Atendence- Saetze
-  'onSubmitDate' (dateRow){
+  'onSubmitDate'(dateRow){
     let id;
     let today = moment().format("YYYY-MM-DD");
     if (dateRow.date && dateRow.art){

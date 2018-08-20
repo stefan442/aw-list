@@ -33,11 +33,11 @@ Meteor.methods({
           });
           let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
           Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
-          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});
           return player;
         }
         else{
-          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});
         }
       });
     }
@@ -67,7 +67,7 @@ Meteor.methods({
                 });
                 let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
                 Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
-                Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+                Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});
                 return player;
               }
             });
@@ -98,7 +98,7 @@ Meteor.methods({
         else{
           playerRelAt = 0;
         }
-        Players.update({_id: player._id},  {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
+        Players.update({_id: player._id}, {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
       }
       else{
         if((count - 1) > 0){
@@ -163,7 +163,7 @@ Meteor.methods({
       dates = dates.map((date) => {
         let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
         if(existAtendence == undefined){
-          Players.update({_id: atendenceInsert.player},  {$inc: {"countAtend": +1}});
+          Players.update({_id: atendenceInsert.player}, {$inc: {"countAtend": +1}});
           Atendence.insert({"date": date._id, "player": atendenceInsert.player, "atend": true, "teamId": atendenceInsert.teamId});
           count++;
         }
@@ -184,13 +184,13 @@ Meteor.methods({
     let date = [];
     if(compareDate == undefined){
       dates = Dates.find({date: {$gt: playerInsert.today}, teamId: playerInsert.teamId}).fetch();
-      dates = dates.map((date) =>{
+      dates = dates.map((date) => {
         Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
     }
     else if(compareDate.date == actualDay){
       dates = Dates.find({date: {$gte: playerInsert.today}, teamId: playerInsert.teamId}).fetch();
-      dates = dates.map((date) =>{
+      dates = dates.map((date) => {
         Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
       Players.update({_id: id}, {$inc: {"countAtend": +1}, $set: {"playerRelAt": 100}});

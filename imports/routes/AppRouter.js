@@ -23,13 +23,13 @@ export const onAuthChange = (isAuthenticated) => {
   const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
   const isAuthenticatedPage = authenticatedPages.includes(pathname);
 
-  if (isAuthenticated) {
-    if (isUnauthenticatedPage) {
+  if(isAuthenticated){
+    if(isUnauthenticatedPage){
       history.replace("/teampage");
     }
   }
-  else {
-    if (isAuthenticatedPage) {
+  else{
+    if(isAuthenticatedPage){
       history.replace("/");
     }
   }
@@ -38,25 +38,25 @@ export const onAuthChange = (isAuthenticated) => {
 export const history = createHistory();
 
 
-export class AppRouter extends React.Component {
+export class AppRouter extends React.Component{
 //constructer fuer state-daten der anwesenheitsliste
   constructor(props){
     super(props);
   }
 
-  onEnterPublicPage() {
-    if (Meteor.userId()) {
+  onEnterPublicPage(){
+    if (Meteor.userId()){
       this.props.history.replace("/teampage");
     }
   }
-  onEnterPrivatePage() {
-    if (!Meteor.userId()) {
+  onEnterPrivatePage(){
+    if (!Meteor.userId()){
       this.props.history.replace("/");
     }
   }
 
-  render() {
-    return (
+  render(){
+    return(
       <Router history={history}>
         <Switch>
           /*Public*/

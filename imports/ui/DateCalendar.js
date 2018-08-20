@@ -17,11 +17,11 @@ const styles = theme => ({
 
 function DatePickers(props){
   return(
-      <TextField
-        id="date"
-        type="date"
-        defaultValue={moment().format("YYYY-MM-DD")}
-      />
+    <TextField
+      id="date"
+      type="date"
+      defaultValue={moment().format("YYYY-MM-DD")}
+    />
   );
 }
 
