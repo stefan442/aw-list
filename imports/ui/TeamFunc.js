@@ -40,7 +40,7 @@ export default class TeamFunc extends React.Component{
     if(this.props.team.created == Meteor.userId()){
       return(
         <div className="teamListCenteredFunc">
-          <button type="button" onClick={() =>{
+          <button type="button" onClick={() => {
             this.handleOpenModalTeam()}} className="buttonColor buttonTeamDel"> X
           </button>
 

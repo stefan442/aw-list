@@ -32,7 +32,7 @@ Meteor.methods({
             }
           });
           let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-          Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+          Players.update({_id: player._id}, {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
           Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});
           return player;
         }
@@ -132,7 +132,7 @@ Meteor.methods({
       else{
         playerRelAt = 0;
       }
-      Players.update({_id: playerRow._id}, {$inc: {countAtend: 1}, $set: {playerRelAt: playerRelAt}});
+      Players.update({_id: playerRow._id}, {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
     }
     else{
       if(count > 0){
@@ -141,7 +141,7 @@ Meteor.methods({
       else{
         playerRelAt = 0;
       }
-      Players.update({_id: playerRow._id}, {$inc: {countAtend: -1}, $set: {playerRelAt: playerRelAt}});
+      Players.update({_id: playerRow._id}, {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
     }
   },
   //loescht einen Spieler mit seinen zugehoerigen Atendence Saetzen
