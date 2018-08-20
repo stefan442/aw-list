@@ -165,33 +165,33 @@ export default class DateList extends React.Component{
               {
                 accessor: "date",
                 show: false,
-            },
-          ]}
-          defaultSorted={[
-            {
-              id: "date",
-              desc: true,
-            }
-          ]}
-          resizable={false}
-          previousText='Zurück'
-          nextText='Vor'
-          pageText='Seite'
-          ofText='von'
-          showPageSizeOptions={false}
-          defaultPageSize={13}
-          className="-striped -highlight"
-        />
+              },
+            ]}
+            defaultSorted={[
+              {
+                id: "date",
+                desc: true,
+              }
+            ]}
+            resizable={false}
+            previousText='Zurück'
+            nextText='Vor'
+            pageText='Seite'
+            ofText='von'
+            showPageSizeOptions={false}
+            defaultPageSize={13}
+            className="-striped -highlight"
+          />
 
-        <Modal
-          isOpen={this.state.showModalDate}
-          contentLabel="onRequestClose Example"
-          onRequestClose={this.handleCloseModalDate}
-          shouldCloseOnOverlayClick={false}
-          className="boxed-view__box"
-          overlayClassName="boxed-view boxed-view--modal"
-        >
-          <p className="smallHeaderText">Termin hinzufügen</p>
+          <Modal
+            isOpen={this.state.showModalDate}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleCloseModalDate}
+            shouldCloseOnOverlayClick={false}
+            className="boxed-view__box"
+            overlayClassName="boxed-view boxed-view--modal"
+          >
+            <p className="smallHeaderText">Termin hinzufügen</p>
             <div>
               <div>
                 <form onSubmit={this.onSubmitDate.bind(this)}>
