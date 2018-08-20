@@ -50,9 +50,9 @@ export default class MissingTrainer extends React.Component{
     });
     if(users !== undefined && users.length !== 0){
       this.trainer = users.map((user) => {
-        return (
+        return(
           <div className="missingTrainerButton" key={user._id} >
-            <button type="button" onClick={(e) =>{
+            <button type="button" onClick={(e) => {
               e.target.style.visibility='hidden';
               this.addTrainerTeam(user._id)}} className="buttonColor"> {user.username}
             </button>

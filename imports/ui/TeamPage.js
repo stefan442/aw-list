@@ -5,7 +5,7 @@ import TeamList from './TeamList.js';
 import Header from './header.js';
 
 
-export default class TeamPage extends React.Component {
+export default class TeamPage extends React.Component{
   constructor(props){
     super(props);
     this.state = {

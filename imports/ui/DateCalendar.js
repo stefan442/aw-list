@@ -15,8 +15,8 @@ const styles = theme => ({
   },
 });
 
-function DatePickers(props) {
-  return (
+function DatePickers(props){
+  return(
       <TextField
         id="date"
         type="date"

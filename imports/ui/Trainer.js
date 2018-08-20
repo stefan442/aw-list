@@ -41,7 +41,7 @@ export default class MissingTrainer extends React.Component{
   renderDeleteTrainerButton(userId){
     if(this.props.team.created == Meteor.userId()){
       return(
-        <button type="button" onClick={(e) =>{
+        <button type="button" onClick={(e) => {
           e.target.style.visibility='hidden';
           this.deleteTrainerTeam(userId)}} className="buttonColor">  X
         </button>

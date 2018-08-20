@@ -11,7 +11,7 @@ export default class Login extends React.Component{
     };
   }
 
-  onSubmit(e) {
+  onSubmit(e){
     e.preventDefault();
     // Beides wird gekürzt
     let email = e.target.email.value.trim();

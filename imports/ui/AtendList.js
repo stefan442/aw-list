@@ -15,11 +15,11 @@ import {Players} from './../api/players.js';
 import {Atendence} from './../api/atendence.js';
 import MissingPlayers from './MissingPlayers.js';
 
-export default class AtendList extends React.Component {
+export default class AtendList extends React.Component{
   constructor(props) {
     super(props);
     let date = Dates.findOne({_id: this.props.match.params._id});
-    this.state = {
+    this.state ={
       players: [],
       atendence: [],
       date: date,
@@ -143,13 +143,13 @@ export default class AtendList extends React.Component {
       if(atendDB.atend){
         buttontext = "Ja";
       }
-      return {
+      return{
         ...player,
         buttontext: buttontext + "",
       }
     });
 
-    return (
+    return(
       <div>
         <div>
           <Header/>

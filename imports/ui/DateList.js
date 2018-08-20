@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Header from './header.js';
 
 export default class DateList extends React.Component{
-  constructor(props) {
+  constructor(props){
     super(props);
     let teamId = this.props.match.params._id;
     let actualDay = moment().format("YYYY-MM-DD");
@@ -131,7 +131,7 @@ export default class DateList extends React.Component{
     }
     else{
       dates = this.state.allDates;
-      dates = this.state.allDates.map((date) =>{
+      dates = this.state.allDates.map((date) => {
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
         return date;
       });
