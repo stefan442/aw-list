@@ -37,8 +37,7 @@ Meteor.startup(() => {
     Meteor.startup(function () { 
       SyncedCron.start();
       WebApp.connectHandlers.use(function (req, res, next) {
-         res.setHeader('access-control-allow-origin', '*'
-      ); 
+        res.setHeader('access-control-allow-origin', '*'); 
         return next(); 
       }) 
     }) 
