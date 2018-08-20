@@ -10,7 +10,7 @@ import NumberFormat from 'react-number-format';
 
 
 export default class PlayerProfil extends React.Component{
-  constructor(props) {
+  constructor(props){
     super(props);
     let player = Players.findOne({_id: this.props.match.params._id});
     let today = moment().format('YYYY-MM-DD');
@@ -40,19 +40,19 @@ export default class PlayerProfil extends React.Component{
       this.setState({ dates });
     });
   }
-  componentWillMount() {
+  componentWillMount(){
     Modal.setAppElement('body');
   }
-  handleOpenModalDelete() {
+  handleOpenModalDelete(){
     this.setState({ showModalDelete: true });
   }
-  handleCloseModalDelete() {
+  handleCloseModalDelete(){
     this.setState({ showModalDelete: false });
   }
-  handleOpenModalChange() {
+  handleOpenModalChange(){
     this.setState({ showModalChange: true });
   }
-  handleCloseModalChange() {
+  handleCloseModalChange(){
     this.setState({ showModalChange: false });
   }
   //stoppt den Tracker
@@ -60,15 +60,15 @@ export default class PlayerProfil extends React.Component{
     this.playersTracker.stop();
   }
 //navigation zur Spielerliste zurueck
-  goToPlayersList() {
+  goToPlayersList(){
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
 //funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren
-  playerDelete() {
+  playerDelete(){
     Meteor.call('playerDelete', this.state.player);
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
-  changePlayer  = (e) =>{
+  changePlayer = (e) => {
     e.preventDefault();
     let player = {
       id: this.state.player._id,
@@ -99,7 +99,7 @@ export default class PlayerProfil extends React.Component{
         // atend = atendDB.atend;
         buttontext = "Ja";
       }
-      return {
+      return{
         ...date,
         atend: buttontext + "",
       }

@@ -3,15 +3,15 @@ import {Route, Router, Switch} from "react-router-dom";
 import React from "react";
 import createHistory from "history/createBrowserHistory";
 
-export default class Header extends React.Component {
-  constructor(props) {
+export default class Header extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
       error: ""
     };
   }
 
-  onLogout() {
+  onLogout(){
     Accounts.logout();
   }
 
@@ -19,7 +19,7 @@ export default class Header extends React.Component {
     this.props.history.goBack();
   }
 
-  render() {
+  render(){
     return(
       <div className="Header">
         <div>

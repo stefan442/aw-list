@@ -50,7 +50,7 @@ export default class DateList extends React.Component{
       }
     );
   }
- componentWillMount() {
+ componentWillMount(){
    Modal.setAppElement('body');
  }
 
@@ -60,24 +60,24 @@ export default class DateList extends React.Component{
  }
 
 //oeffnet popup für Termin hinzufuegen
- handleOpenModalDate () {
+ handleOpenModalDate(){
    this.setState({ showModalDate: true });
  }
   //schliesst popup für Termin hinzufuegen
-  handleCloseModalDate () {
+  handleCloseModalDate(){
     this.setState({ showModalDate: false });
   }
   //oeffnet popup für Spieler hinzufuegen
-  handleOpenModalPlayer () {
+  handleOpenModalPlayer(){
     this.setState({ showModalPlayer: true });
   }
    //schliesst popup für Termin hinzufuegen
-  handleCloseModalPlayer () {
+  handleCloseModalPlayer(){
     this.setState({ showModalPlayer: false });
   }
 
 //route zur anwesenheitsliste
-  goToAtend(e) {
+  goToAtend(e){
     let _id = e._id;
     this.props.history.replace('/atendlist/' + _id);
   }
@@ -120,11 +120,11 @@ export default class DateList extends React.Component{
     this.setState({ all: false });
   }
 
-  render() {
+  render(){
     let dates = this.state.dates;
     if(!this.state.all){
       let dates = this.state.dates;
-      dates = this.state.dates.map((date) =>{
+      dates = this.state.dates.map((date) => {
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
         return  date;
       });

@@ -99,7 +99,7 @@ export default class AtendList extends React.Component {
      this.setState({ showModalChange: false });
   }
 //Methodenaufruf zum hinzufuegen eines Spielers
-  onSubmitPlayer = (e) =>{
+  onSubmitPlayer = (e) => {
     e.preventDefault();
     if(e.target.name.value){
       let player = {
@@ -114,7 +114,7 @@ export default class AtendList extends React.Component {
     this.handleCloseModalPlayer();
   };
 
-  changeDate  = (e) =>{
+  changeDate  = (e) => {
     e.preventDefault();
     let date = {
       id: this.state.date._id,

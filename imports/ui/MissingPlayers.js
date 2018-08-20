@@ -2,8 +2,8 @@ import React from "react";
 
 import {Players} from './../api/players.js';
 
-export default class MissingPlayers extends React.Component {
-  constructor(props) {
+export default class MissingPlayers extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
       atendingPlayers: this.props.atendingPlayers,
@@ -26,7 +26,7 @@ export default class MissingPlayers extends React.Component {
   }
 //funktion zum methodanufruf um Atendencesaetze zum updaten
   updateAtendence(playerId){
-    let newAtend ={
+    let newAtend = {
       player: playerId,
       date: this.state.date._id,
       teamId: this.state.date.teamId,
@@ -50,7 +50,7 @@ export default class MissingPlayers extends React.Component {
       this.missingPlayers = players.map((player) => {
         return (
           <div key={player._id}>
-            <button type="button" onClick={(e) =>{
+            <button type="button" onClick={(e) => {
               e.target.style.visibility='hidden';
               this.updateAtendence(player._id)}} className="buttonColor"> {player.name}
             </button>

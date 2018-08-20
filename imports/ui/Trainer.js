@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import {TrainerTeam} from './../api/trainerTeam.js';
 
-export default class MissingTrainer extends React.Component {
-  constructor(props) {
+export default class MissingTrainer extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
       users: [],

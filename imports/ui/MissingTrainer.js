@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import {TrainerTeam} from './../api/trainerTeam.js';
 
-export default class MissingTrainer extends React.Component {
-  constructor(props) {
+export default class MissingTrainer extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
-      users:[],
+      users: [],
       trainerTeam: [],
     }
   }
@@ -38,7 +38,7 @@ export default class MissingTrainer extends React.Component {
 
   render(){
     let atendingTrainer = this.state.trainerTeam;
-    atendingTrainer = atendingTrainer.map((trainer) =>{
+    atendingTrainer = atendingTrainer.map((trainer) => {
       return trainer.trainer;
     })
     let users = this.state.users;

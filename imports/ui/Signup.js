@@ -3,15 +3,15 @@ import {Link} from "react-router-dom";
 import {Accounts} from "meteor/accounts-base";
 import TextField from '@material-ui/core/TextField';
 
-export default class Signup extends React.Component {
-  constructor(props) {
+export default class Signup extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
       error: ""
     };
   }
 
-  onSubmit(e) {
+  onSubmit(e){
     e.preventDefault();
 
     // Email und Passwort werden gekürzt
@@ -19,7 +19,7 @@ export default class Signup extends React.Component {
     let username = e.target.username.value;
     let password = e.target.password.value.trim();
 
-    if (password.length < 6) {
+    if(password.length < 6){
       return this.setState({error: "Passwort muss mindesten 6 Zeichen lang sein"});
     }
 
@@ -33,8 +33,8 @@ export default class Signup extends React.Component {
     });
   }
 
-  render() {
-    return (
+  render(){
+    return(
       <div>
         <div className="Header">
           <div>

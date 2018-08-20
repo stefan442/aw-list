@@ -8,11 +8,11 @@ import TextField from '@material-ui/core/TextField';
 import NumberFormat from 'react-number-format';
 
 export default class PlayersList extends React.Component{
-  constructor(props) {
+  constructor(props){
     super(props);
     let teamId = this.props.match.params._id;
     this.state = {
-      players:[],
+      players: [],
       teamId: teamId,
       showModalDate: false,
       showModalPlayer: false,
@@ -30,7 +30,7 @@ export default class PlayersList extends React.Component{
       this.setState({ players });
     });
   }
-  componentWillMount() {
+  componentWillMount(){
     Modal.setAppElement('body');
   }
 
@@ -43,11 +43,11 @@ export default class PlayersList extends React.Component{
     this.props.history.replace('/datelist/' + this.state.teamId);
   }
 //oeffnet popup zum Spielerhinzufuegen
-  handleOpenModalPlayer () {
+  handleOpenModalPlayer(){
     this.setState({ showModalPlayer: true });
   }
   //schliesst popup zum Spielerhinzufuegen
-  handleCloseModalPlayer () {
+  handleCloseModalPlayer(){
     this.setState({ showModalPlayer: false });
   }
 //funktion zum Methodenaufruf um einen Spieler hinzufuegen
@@ -74,7 +74,7 @@ export default class PlayersList extends React.Component{
     this.props.history.replace('/teampage');
   }
 
-  render() {
+  render(){
     let players = this.state.players;
     return(
       <div>

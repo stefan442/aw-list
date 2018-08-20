@@ -3,8 +3,8 @@ import {Link} from "react-router-dom";
 import {Meteor} from "meteor/meteor";
 import TextField from '@material-ui/core/TextField';
 
-export default class Login extends React.Component {
-  constructor(props) {
+export default class Login extends React.Component{
+  constructor(props){
     super(props);
     this.state = {
       error: ""
@@ -18,16 +18,16 @@ export default class Login extends React.Component {
     let password = e.target.password.value.trim();
 
     Meteor.loginWithPassword({email}, password, (err) => {
-      if(err) {
+      if(err){
         this.setState({error: "Login nicht möglich. Überprüfe Email und Passwort"});
       }
-      else {
+      else{
         this.setState({error: ""});
       }
     });
   }
 
-  render() {
+  render(){
     return(
       <div>
         <div className="Header">

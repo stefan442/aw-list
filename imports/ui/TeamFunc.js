@@ -4,8 +4,8 @@ import Modal from 'react-modal';
 import MissingTrainer from './MissingTrainer.js';
 import Trainer from './Trainer.js';
 
-export default class TeamFunc extends React.Component {
-  constructor() {
+export default class TeamFunc extends React.Component{
+  constructor(){
     super();
     this.state = {
       showModalTeam: false,
@@ -16,20 +16,20 @@ export default class TeamFunc extends React.Component {
     this.handleOpenModalTrainer = this.handleOpenModalTrainer.bind(this);
     this.handleCloseModalTrainer = this.handleCloseModalTrainer.bind(this);
   }
-  componentWillMount() {
+  componentWillMount(){
     Modal.setAppElement('body');
   }
-  handleOpenModalTeam () {
+  handleOpenModalTeam(){
     this.setState({ showModalTeam: true });
   }
   //schliesst popup für Termin hinzufuegen
-  handleCloseModalTeam () {
+  handleCloseModalTeam(){
     this.setState({ showModalTeam: false });
   }
-  handleOpenModalTrainer () {
+  handleOpenModalTrainer(){
     this.setState({ showModalTrainer: true });
   }
-  handleCloseModalTrainer () {
+  handleCloseModalTrainer(){
     this.setState({ showModalTrainer: false });
   }
   teamDelete(){

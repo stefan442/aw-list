@@ -16,7 +16,7 @@ Meteor.methods({
     let atendence = Atendence.find({date: dateId, teamId: teamId}).fetch();
     let actualDay = moment().format("YYYY-MM-DD");
     if(atendence === undefined || atendence.length <= 0){
-      players = players.map((player) =>{
+      players = players.map((player) => {
         let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
         if(thisDate){
           let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
@@ -43,14 +43,14 @@ Meteor.methods({
     }
     else{
       if(!(players.length === atendence.length)){
-        players = players.map((player) =>{
+        players = players.map((player) => {
           let playerExist = atendence.find((obj) => {
             if(obj.player === player._id){
               return obj;
             }
           });
           if(playerExist === undefined){
-            players = players.map((player) =>{
+            players = players.map((player) => {
               let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
               if(thisDate){
                 let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
@@ -80,7 +80,7 @@ Meteor.methods({
 
 //loescht einen Termin auf der Dates Tabelle und die zugehoerigen Atendence Saetze zu diesen Termine
 //updatet bei allen Spielern ihre Anwesenheit
-  'dateDelete' (dateRow){
+  'dateDelete'(dateRow){
     let atendences = Atendence.find({date: dateRow._id}).fetch();
     let today = moment().format("YYYY-MM-DD");
     let countDates = Dates.find({date: {$lte: today}, teamId: dateRow.teamId}).fetch();
@@ -114,7 +114,7 @@ Meteor.methods({
     Dates.remove({_id: dateRow._id});
   },
   //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
-  'toggleAtendence' ({playerRow, today}){
+  'toggleAtendence'({playerRow, today}){
     let actualDay = moment().format("YYYY-MM-DD");
     let atendence = Atendence.findOne({player: playerRow._id, date: today});
     atendence.atend = !atendence.atend;
@@ -174,10 +174,10 @@ Meteor.methods({
     }
   },
 //erstellt einen neuen Spieler und erzeugt neu Atendence Saetze ab dem heutigen Tag oder ab einem ausgewählten Termin
-  'onSubmitPlayer' (playerInsert){
+  'onSubmitPlayer'(playerInsert){
     let id;
     let actualDay = moment().format("YYYY-MM-DD");
-    if (playerInsert.name){
+    if(playerInsert.name){
       id = Players.insert({"name": playerInsert.name, "phoneNumber": playerInsert.phoneNumber, "countAtend": 0, "teamId": playerInsert.teamId, "playerRelAt": 0});
     }
     let compareDate = Dates.findOne({date: playerInsert.today});
@@ -197,11 +197,11 @@ Meteor.methods({
     }
     else{
       dates = Dates.find({date: {$gte: actualDay}, teamId: playerInsert.teamId}).fetch();
-      dates = dates.map((date) =>{
+      dates = dates.map((date) => {
         Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
-      Players.update({_id: id},  {$inc: {"countAtend": +1}});
-      let newAtend ={
+      Players.update({_id: id}, {$inc: {"countAtend": +1}});
+      let newAtend = {
         player: id,
         date: compareDate._id,
         teamId: playerInsert.teamId,
@@ -210,7 +210,7 @@ Meteor.methods({
     }
   },
 //loescht ein gesamtes Team mit allen dazugehoerigen Atendence Saetzen, Terminen und Spielern
-  'teamFullRemove' (teamId){
+  'teamFullRemove'(teamId){
     Atendence.remove({teamId: teamId});
     Dates.remove({teamId: teamId});
     Players.remove({teamId: teamId});

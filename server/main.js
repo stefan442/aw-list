@@ -12,7 +12,7 @@ if(Meteor.isServer){ 
 
   SyncedCron.add({
     name: 'Prozentsaetze updaten',
-    schedule: function(parser) {
+    schedule: function(parser){
       // parser is a later.parse object
       // return parser.text('every 5 seconds');
       // Berechnet an der Angegeben Uhrzeit die relAt Prozentsätze für den
@@ -22,10 +22,10 @@ if(Meteor.isServer){ 
       return parser.recur().on('09:00:00').time();
     },
     utc: false,
-    job: function() {
+    job: function(){
       console.log("job start");
       let teams = Teams.find().fetch();
-      teams = teams.map((team) =>{
+      teams = teams.map((team) => {
         Meteor.call('updatePercentage', team._id);
       });
     }
@@ -34,9 +34,9 @@ if(Meteor.isServer){ 
 
 Meteor.startup(() => {
   if(Meteor.isServer){ 
-    Meteor.startup(function () { 
+    Meteor.startup(function(){ 
       SyncedCron.start();
-      WebApp.connectHandlers.use(function (req, res, next) {
+      WebApp.connectHandlers.use(function(req, res, next){
         res.setHeader('access-control-allow-origin', '*'); 
         return next(); 
       }) 
