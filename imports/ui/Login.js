@@ -18,9 +18,10 @@ export default class Login extends React.Component {
     let password = e.target.password.value.trim();
 
     Meteor.loginWithPassword({email}, password, (err) => {
-      if (err) {
+      if(err) {
         this.setState({error: "Login nicht möglich. Überprüfe Email und Passwort"});
-      } else {
+      }
+      else {
         this.setState({error: ""});
       }
     });
@@ -47,7 +48,6 @@ export default class Login extends React.Component {
           <div>
             {this.state.error ? <p>{this.state.error}</p> : undefined}
             <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
-
               <TextField type="email" name="email" placeholder="Email" className="loginField"/>
               <TextField type="password" name="password" placeholder="Passwort" className="loginField"/>
               <button type="submit" className="buttonColor">Einloggen</button>

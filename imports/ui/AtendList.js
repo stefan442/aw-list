@@ -185,7 +185,7 @@ export default class AtendList extends React.Component {
               {
                 Header: "Anwesend",
                 sortable: false,
-                Cell: (row) =>  <button  onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
+                Cell: (row) => <button onClick={() => {this.addAtend(row.original);}} className="buttonColor">{row.original.buttontext}</button>
               },
             ]}
             defaultSorted={[
@@ -231,7 +231,6 @@ export default class AtendList extends React.Component {
                 </form>
               </div>
             </div>
-
           </Modal>
 
           <Modal

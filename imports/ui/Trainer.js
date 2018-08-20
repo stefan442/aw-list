@@ -8,22 +8,21 @@ export default class MissingTrainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users:[],
+      users: [],
       trainerTeam: [],
     }
   }
   //Tracker zum laden der Spieler
   componentDidMount(){
     this.userTracker = Tracker.autorun(() => {
-        Meteor.subscribe("trainerTeam");
-        const trainerTeam = TrainerTeam.find({team: this.props.team._id}).fetch();
-        this.setState({ trainerTeam });
+      Meteor.subscribe("trainerTeam");
+      const trainerTeam = TrainerTeam.find({team: this.props.team._id}).fetch();
+      this.setState({ trainerTeam });
 
-        Meteor.subscribe("users");
-        const users = Meteor.users.find().fetch();
-        this.setState({ users });
-      }
-    );
+      Meteor.subscribe("users");
+      const users = Meteor.users.find().fetch();
+      this.setState({ users });
+    });
   }
 
   //stoppt den Tracker
@@ -42,9 +41,10 @@ export default class MissingTrainer extends React.Component {
   renderDeleteTrainerButton(userId){
     if(this.props.team.created == Meteor.userId()){
       return(
-      <button type="button" onClick={(e) =>{
-        e.target.style.visibility='hidden';
-        this.deleteTrainerTeam(userId)}} className="buttonColor">  X  </button>
+        <button type="button" onClick={(e) =>{
+          e.target.style.visibility='hidden';
+          this.deleteTrainerTeam(userId)}} className="buttonColor">  X
+        </button>
       )
     }
   }

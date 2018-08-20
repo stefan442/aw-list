@@ -29,7 +29,7 @@ export default class PlayerProfil extends React.Component{
   }
   //Tracker zum laden der Atendence Saetze und Termine
   componentDidMount(){
-  this.playersTracker = Tracker.autorun(() => {
+    this.playersTracker = Tracker.autorun(() => {
       Meteor.subscribe("atendence");
       const atendence = Atendence.find({player: this.state.player._id}).fetch();
       this.setState({ atendence });
@@ -38,9 +38,7 @@ export default class PlayerProfil extends React.Component{
       let dateId = atendence.map((atend) =>{return atend.date});
       const dates = Dates.find({_id: {$in: dateId}, date: {$lte: this.state.today}}).fetch();
       this.setState({ dates });
-
-      }
-    );
+    });
   }
   componentWillMount() {
     Modal.setAppElement('body');

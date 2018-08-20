@@ -17,8 +17,7 @@ export default class MissingPlayers extends React.Component {
         Meteor.subscribe("players");
         const players = Players.find({teamId: this.props.date.teamId}).fetch();
         this.setState({ players });
-      }
-    );
+    });
   }
 
   //stoppt den Tracker
@@ -49,10 +48,12 @@ export default class MissingPlayers extends React.Component {
     });
     if(players !== undefined && players.length !== 0){
       this.missingPlayers = players.map((player) => {
-        return (<div key={player._id} >
-          <button type="button" onClick={(e) =>{
-            e.target.style.visibility='hidden';
-            this.updateAtendence(player._id)}} className="buttonColor"> {player.name} </button>
+        return (
+          <div key={player._id}>
+            <button type="button" onClick={(e) =>{
+              e.target.style.visibility='hidden';
+              this.updateAtendence(player._id)}} className="buttonColor"> {player.name}
+            </button>
           </div>
         )
       })

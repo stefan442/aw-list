@@ -12,106 +12,106 @@ Meteor.methods({
   //Setzt in der Atendence Tabelle die Anwesenheit defaultmaessig auf true
   //countdays wird nicht mehr benoetigt im finalen Programm
   'createAtendence' ({dateId, teamId}){
-      let players = Players.find({teamId: teamId}).fetch();
-      let atendence = Atendence.find({date: dateId, teamId: teamId}).fetch();
-      let actualDay = moment().format("YYYY-MM-DD");
-      if(atendence === undefined || atendence.length <= 0){
+    let players = Players.find({teamId: teamId}).fetch();
+    let atendence = Atendence.find({date: dateId, teamId: teamId}).fetch();
+    let actualDay = moment().format("YYYY-MM-DD");
+    if(atendence === undefined || atendence.length <= 0){
+      players = players.map((player) =>{
+        let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
+        if(thisDate){
+          let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
+          atendenceDates = atendenceDates.map((date) => {
+            return date._id;
+          })
+          let count = Atendence.find({date: {$in: atendenceDates}}).count();
+          let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
+          dates = dates.map((date) => {
+            let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
+            if(existAtendence == undefined){
+              count++;
+            }
+          });
+          let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+          Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+          return player;
+        }
+        else{
+          Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+        }
+      });
+    }
+    else{
+      if(!(players.length === atendence.length)){
         players = players.map((player) =>{
-          let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
-          if(thisDate){
-            let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
-            atendenceDates = atendenceDates.map((date) => {
-              return date._id;
-            })
-            let count = Atendence.find({date: {$in: atendenceDates}}).count();
-            let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
-            dates = dates.map((date) => {
-              let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
-              if(existAtendence == undefined){
-                count++;
+          let playerExist = atendence.find((obj) => {
+            if(obj.player === player._id){
+              return obj;
+            }
+          });
+          if(playerExist === undefined){
+            players = players.map((player) =>{
+              let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
+              if(thisDate){
+                let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
+                atendenceDates = atendenceDates.map((date) => {
+                  return date._id;
+                })
+                let count = Atendence.find({date: {$in: atendenceDates}}).count();
+                let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
+                dates = dates.map((date) => {
+                  let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
+                  if(existAtendence == undefined){
+                    count++;
+                  }
+                });
+                let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
+                Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
+                Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+                return player;
               }
             });
-            let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-            Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
-            Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
-            return player;
-          }
-          else{
-            Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
+            Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId });
           }
         });
       }
-      else{
-        if(!(players.length === atendence.length)){
-          players = players.map((player) =>{
-            let playerExist = atendence.find((obj) => {
-              if(obj.player === player._id){
-                return obj;
-              }
-            });
-            if(playerExist === undefined){
-              players = players.map((player) =>{
-                let thisDate = Dates.findOne({_id: dateId, date: {$lte: actualDay}});
-                if(thisDate){
-                  let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: teamId}).fetch();
-                  atendenceDates = atendenceDates.map((date) => {
-                    return date._id;
-                  })
-                  let count = Atendence.find({date: {$in: atendenceDates}}).count();
-                  let dates = Dates.find({date: {$lt: actualDay, $gte: thisDate.date}, teamId: teamId}).fetch();
-                  dates = dates.map((date) => {
-                    let existAtendence = Atendence.findOne({date: date._id, player: atendenceInsert.player});
-                    if(existAtendence == undefined){
-                      count++;
-                    }
-                  });
-                  let playerRelAt = (player.countAtend + 1) / (count + 1) * 100;
-                  Players.update({_id: player._id},  {$inc: {"countAtend": +1}, $set: {playerRelAt: playerRelAt}});
-                  Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId});//true
-                  return player;
-                }
-              });
-              Atendence.insert({"date": dateId, "player": player._id, "atend": true, "teamId": teamId });
-            }
-          });
-        }
-      }
-    },
+    }
+  },
 
 //loescht einen Termin auf der Dates Tabelle und die zugehoerigen Atendence Saetze zu diesen Termine
 //updatet bei allen Spielern ihre Anwesenheit
   'dateDelete' (dateRow){
-     let atendences = Atendence.find({date: dateRow._id}).fetch();
-     let today = moment().format("YYYY-MM-DD");
-     let countDates = Dates.find({date: {$lte: today}, teamId: dateRow.teamId}).fetch();
-     countDates = countDates.map((date) => {
-       return date._id;
-     })
-     let count = 0;
-     atendences = atendences.map((atendence) => {
-       let player = Players.findOne({_id: atendence.player});
-       count = Atendence.find({date: {$in: countDates}, player: player._id}).count();
-       if((atendence.atend) && (dateRow.date <= today)){
-         if((count - 1) > 0){
-           playerRelAt = (player.countAtend - 1) / (count - 1) * 100;
-         }
-         else{
-            playerRelAt = 0;
-         }
-         Players.update({_id: player._id},  {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
-       }
-       else{
-         if((count - 1) > 0){
-           playerRelAt = (player.countAtend) / (count - 1) * 100;
-         }
-         else{
-           playerRelAt = 0;
-         }
-         Players.update({_id: player._id}, {$set: {playerRelAt: playerRelAt}});
-       }
-     });
-     Atendence.remove({date: dateRow._id});
-     Dates.remove({_id: dateRow._id});
+    let atendences = Atendence.find({date: dateRow._id}).fetch();
+    let today = moment().format("YYYY-MM-DD");
+    let countDates = Dates.find({date: {$lte: today}, teamId: dateRow.teamId}).fetch();
+    countDates = countDates.map((date) => {
+      return date._id;
+    })
+    let count = 0;
+    atendences = atendences.map((atendence) => {
+      let player = Players.findOne({_id: atendence.player});
+      count = Atendence.find({date: {$in: countDates}, player: player._id}).count();
+      if((atendence.atend) && (dateRow.date <= today)){
+        if((count - 1) > 0){
+          playerRelAt = (player.countAtend - 1) / (count - 1) * 100;
+        }
+        else{
+          playerRelAt = 0;
+        }
+        Players.update({_id: player._id},  {$inc: {"countAtend": -1}, $set: {playerRelAt: playerRelAt}});
+      }
+      else{
+        if((count - 1) > 0){
+          playerRelAt = (player.countAtend) / (count - 1) * 100;
+        }
+        else{
+          playerRelAt = 0;
+        }
+        Players.update({_id: player._id}, {$set: {playerRelAt: playerRelAt}});
+      }
+    });
+    Atendence.remove({date: dateRow._id});
+    Dates.remove({_id: dateRow._id});
   },
   //Setzt in der Atendence Tabelle fuer die Anwesenheit auf true/false
   'toggleAtendence' ({playerRow, today}){
@@ -124,7 +124,6 @@ Meteor.methods({
     dates = dates.map((date) => {
       return date._id;
     });
-
     let count = Atendence.find({date: {$in: dates}, player: playerRow._id}).count();
     if(atendence.atend){
       if(count > 0){
@@ -154,7 +153,6 @@ Meteor.methods({
   'updateAtendence'(atendenceInsert){
     let actualDay = moment().format("YYYY-MM-DD");
     let thisDate = Dates.findOne({_id: atendenceInsert.date, date: {$lt: actualDay}});
-
     if(thisDate){
       let atendenceDates = Dates.find({date: {$lte: actualDay}, teamId: atendenceInsert.teamId}).fetch();
       atendenceDates = atendenceDates.map((date) => {
@@ -187,22 +185,22 @@ Meteor.methods({
     if(compareDate == undefined){
       dates = Dates.find({date: {$gt: playerInsert.today}, teamId: playerInsert.teamId}).fetch();
       dates = dates.map((date) =>{
-          Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
+        Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
     }
     else if(compareDate.date == actualDay){
       dates = Dates.find({date: {$gte: playerInsert.today}, teamId: playerInsert.teamId}).fetch();
       dates = dates.map((date) =>{
-          Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
+        Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
       });
       Players.update({_id: id}, {$inc: {"countAtend": +1}, $set: {"playerRelAt": 100}});
     }
-  else{
-    dates = Dates.find({date: {$gte: actualDay}, teamId: playerInsert.teamId}).fetch();
-    dates = dates.map((date) =>{
+    else{
+      dates = Dates.find({date: {$gte: actualDay}, teamId: playerInsert.teamId}).fetch();
+      dates = dates.map((date) =>{
         Atendence.insert({"date": date._id, "player": id, "atend": true, "teamId": date.teamId});
-    });
-    Players.update({_id: id},  {$inc: {"countAtend": +1}});
+      });
+      Players.update({_id: id},  {$inc: {"countAtend": +1}});
       let newAtend ={
         player: id,
         date: compareDate._id,
