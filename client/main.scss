@@ -7,11 +7,11 @@ $grey: #4d4d4d;
   padding: 0px;
 }
 
-html {
+html{
   font-size:4vw;
 }
 
-body {
+body{
   color: $orange;
   background-color: $grey;
 }
@@ -187,14 +187,14 @@ body {
   width: 33%;
 }
 
-.boxed-view {
+.boxed-view{
   align-items: center;
   display: flex;
   justify-content: center;
   height: 100vh;
   width: 100vw;
 }
-.boxed-view--modal {
+.boxed-view--modal{
   background-color: fade-out(#7A7A7A, .1);
   position: fixed;
   top: 0;
@@ -202,7 +202,7 @@ body {
   right: 0;
   bottom: 0;
 }
-.boxed-view__box {
+.boxed-view__box{
   user-select: none;
   background-color: $grey;
   padding: 2.4rem;
@@ -210,7 +210,7 @@ body {
   width: 24rem;
 }
 
-.linkColor {
+.linkColor{
   font-family: sans-serif;
   color: $orange;
 }
@@ -222,7 +222,7 @@ body {
   width: auto;
 }
 
-.buttonColor, .-btn {
+.buttonColor, .-btn{
 	-moz-box-shadow: 1px 1px 0px 0px #a66c00;
 	-webkit-box-shadow: 1px 1px 0px 0px #a66c00;
 	box-shadow: 1px 1px 0px 0px #a66c00;
@@ -248,7 +248,7 @@ body {
 	text-shadow:0px 1px 0px #f8af1e;
 }
 
-.buttonColor:hover {
+.buttonColor:hover{
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f09c00), color-stop(1, #f8af1e));
 	background:-moz-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
 	background:-webkit-linear-gradient(top, #f09c00 5%, #f8af1e 100%);
@@ -258,11 +258,11 @@ body {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09c00', endColorstr='#f8af1e',GradientType=0);
 	background-color:#f09c00;
 }
-.buttonColor:active {
+.buttonColor:active{
 	position:relative;
 	top:0.5px;
 }
-.buttonTeamTrainer {
+.buttonTeamTrainer{
   margin: 5%;
   margin-right: 2%;
   margin-left: 2%;
@@ -283,20 +283,20 @@ body {
   margin: 0 auto 0 auto;
   width: 30%;
 }
-.buttonTeamName {
+.buttonTeamName{
   width: 50%;
   height: 20%;
   margin: 5%;
 }
-.teamListCenteredForm>div>div {
+.teamListCenteredForm>div>div{
   color: $orange;
   border-bottom: 2px solid $orange;
 }
-.teamListCenteredForm>div>div::after {
+.teamListCenteredForm>div>div::after{
   border-bottom: 2px solid $orange;
 }
 
-.teamListCenteredForm {
+.teamListCenteredForm{
   display: flex;
   align-content: center;
   justify-content: center;
@@ -308,7 +308,7 @@ body {
   padding: 3px;
   margin: 5px;
 }
-.teamListCentered {
+.teamListCentered{
   display: flex;
   align-content: center;
   justify-content: center;
@@ -317,7 +317,7 @@ body {
   width: auto;
   font-family: sans-serif;
 }
-.teamListCenteredFunc {
+.teamListCenteredFunc{
   display: flex;
   align-content: center;
   justify-content: flex-start;
@@ -326,7 +326,7 @@ body {
   width: auto;
 }
 
-.missingTrainerButton {
+.missingTrainerButton{
   display: flex;
   align-content: center;
   justify-content: center;
@@ -386,7 +386,7 @@ body {
   margin-right: 10px;
 }
 
-.AddTeamSticky {
+.AddTeamSticky{
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
