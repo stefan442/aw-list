@@ -150,7 +150,7 @@ export default class AtendList extends React.Component{
 
     return(
       <div>
-        <div>
+        <div className="sticky">
           <Header/>
         </div>
         <div>

@@ -138,7 +138,9 @@ export default class DateList extends React.Component{
     }
     return(
       <div>
-        <Header/>
+        <div className="sticky">
+          <Header/>
+        </div>
         <div>
           <div className="navBardp">
             <button type="button" onClick={this.switchToTeams.bind(this)} className="buttonColor navigation">Team Liste</button>

@@ -78,7 +78,7 @@ export default class PlayersList extends React.Component{
     let players = this.state.players;
     return(
       <div>
-        <div>
+        <div className="sticky">
           <Header/>
         </div>
         <div>

@@ -107,7 +107,7 @@ export default class PlayerProfil extends React.Component{
     let percentage = Math.round(this.state.player.playerRelAt);
     return(
       <div>
-        <div>
+        <div className="sticky">
           <Header/>
         </div>
         <div>
