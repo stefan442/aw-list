@@ -82,16 +82,22 @@ export default class PlayerProfil extends React.Component{
     }
     this.handleCloseModalChange();
   }
-//   callPlayer(){
-//     let number = this.state.player.phoneNumber;
-//     window.plugins.CallNumber.callNumber(onSuccess, onError, number, bypassAppChooser);
-//   }
-//   onSuccess(result){
-//     console.log("Success:"+result);
-//   }
-//   onError(result) {
-//   console.log("Error:"+result);
-// }
+
+
+  callPlayer(){
+    if(Meteor.isCordova){
+    let number = this.state.player.phoneNumber;
+    window.plugins.CallNumber.callNumber(onSuccess, onError, number, bypassAppChooser);
+    }
+  }
+  onSuccess(result){
+    console.log("Success:"+result);
+  }
+  onError(result) {
+    console.log("Error:"+result);
+  }
+
+
   render(){
     let player = this.state.player;
     let dates = this.state.dates;
@@ -128,7 +134,7 @@ export default class PlayerProfil extends React.Component{
             <div className="column">
               <div className="playerprofilInfo">
                 <p>Name: {player.name}</p>
-                <p>Tel.Nr.: {player.phoneNumber}</p>
+                <p>Tel.Nr.: <button onClick={this.callPlayer.bind(this)}>{player.phoneNumber}</button></p>
                 <p>Anwesenheit: {percentage} % </p>
               </div>
               <div className="playerprofilChange">
