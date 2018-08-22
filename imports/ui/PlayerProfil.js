@@ -87,7 +87,7 @@ export default class PlayerProfil extends React.Component{
   callPlayer(){
     if(Meteor.isCordova){
     let number = this.state.player.phoneNumber;
-    window.plugins.CallNumber.callNumber(onSuccess, onError, number, bypassAppChooser);
+    window.plugins.CallNumber.callNumber(onSuccess, onError, number, false);
     }
   }
   onSuccess(result){
