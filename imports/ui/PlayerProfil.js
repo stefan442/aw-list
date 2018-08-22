@@ -134,7 +134,7 @@ export default class PlayerProfil extends React.Component{
             <div className="column">
               <div className="playerprofilInfo">
                 <p>Name: {player.name}</p>
-                <p>Tel.Nr.: <button onClick={this.callPlayer.bind(this)}>{player.phoneNumber}</button></p>
+                <p>Tel.Nr.: <button /*onClick={this.callPlayer.bind(this)}*/>{player.phoneNumber}</button></p>
                 <p>Anwesenheit: {percentage} % </p>
               </div>
               <div className="playerprofilChange">
