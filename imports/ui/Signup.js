@@ -11,7 +11,7 @@ export default class Signup extends React.Component{
     };
   }
 
-  onSubmit(e){
+  onSubmitSignUp(e){
     e.preventDefault();
 
     // Email und Passwort werden gekürzt
@@ -53,7 +53,7 @@ export default class Signup extends React.Component{
           </div>
           <div>
             {this.state.error ? <p>{this.state.error}</p> : undefined}
-            <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
+            <form onSubmit={this.onSubmitSignUp.bind(this)} noValidate className="loginForm">
               <h1 className="smallHeaderText">Erstelle einen Account</h1>
               <TextField type="email" name="email" placeholder="Email" className="loginField"/>
               <TextField type="username" name="username" placeholder="Name" className="loginField"/>

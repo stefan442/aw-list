@@ -19,7 +19,7 @@ export default class DateList extends React.Component{
     this.state = {
       dates: [],
       allDates: [],
-      players:[],
+      players: [],
       teamId: teamId,
       showModalDate: false,
       showModalPlayer: false,
@@ -126,7 +126,7 @@ export default class DateList extends React.Component{
       let dates = this.state.dates;
       dates = this.state.dates.map((date) => {
         date.formatedDate = moment(date.date).format("DD.MM.YYYY");
-        return  date;
+        return date;
       });
     }
     else{

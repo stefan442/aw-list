@@ -19,7 +19,7 @@ if(Meteor.isServer){ 
       // Termin der heute stattfindet fals dieser in der Vergangenheit erstellt wurde
       // Vorausgesetz Meteor Läuft am rechner zu dieser Zeit
       // UTC TIME BEACHTEN (nur am Server)
-      return parser.recur().on('08:30:00').time();
+      return parser.recur().on('09:00:00').time();
     },
     utc: false,
     job: function(){

@@ -6,7 +6,7 @@ export default class AddTeam extends React.Component{
     Accounts.logout();
   }
 
-  handleSubmit(e){
+  teamAdd(e){
     let teamName = e.target.teamName.value;
     e.preventDefault();
     Meteor.call('teamAdd', teamName);
@@ -16,7 +16,7 @@ export default class AddTeam extends React.Component{
   render(){
     return(
       <div>
-        <form className="teamListCenteredForm" onSubmit={this.handleSubmit.bind(this)}>
+        <form className="teamListCenteredForm" onSubmit={this.teamAdd.bind(this)}>
           <TextField id="teamName" type="text" placeholder="Teamname" />
           <button type="submit" className="buttonColor">Team hinzufügen</button>
         </form>

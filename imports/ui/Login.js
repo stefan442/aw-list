@@ -11,7 +11,7 @@ export default class Login extends React.Component{
     };
   }
 
-  onSubmit(e){
+  onSubmitLogin(e){
     e.preventDefault();
     // Beides wird gekürzt
     let email = e.target.email.value.trim();
@@ -47,7 +47,7 @@ export default class Login extends React.Component{
           </div>
           <div>
             {this.state.error ? <p>{this.state.error}</p> : undefined}
-            <form onSubmit={this.onSubmit.bind(this)} noValidate className="loginForm">
+            <form onSubmit={this.onSubmitLogin.bind(this)} noValidate className="loginForm">
               <TextField type="email" name="email" placeholder="Email" className="loginField"/>
               <TextField type="password" name="password" placeholder="Passwort" className="loginField"/>
               <button type="submit" className="buttonColor">Einloggen</button>

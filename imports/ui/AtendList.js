@@ -43,7 +43,7 @@ export default class AtendList extends React.Component{
         this.setState({ atendence });
 
         Meteor.subscribe("players");
-        let playerIds = atendence.map((atend) =>{return atend.player});
+        let playerIds = atendence.map((atend) => {return atend.player});
         const players = Players.find({_id: {$in: playerIds}}).fetch();
         this.setState({ players });
       }

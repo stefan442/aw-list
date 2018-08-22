@@ -63,7 +63,7 @@ export default class PlayerProfil extends React.Component{
   goToPlayersList(){
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
   }
-//funktion zum methoden aufruf um einen spieler zu loeschen und anscgliessend zur Spieler liste navigieren
+//funktion zum methoden aufruf um einen spieler zu loeschen und anschliessend zur Spieler liste navigieren
   playerDelete(){
     Meteor.call('playerDelete', this.state.player);
     this.props.history.replace('/playerslist/' + this.state.player.teamId);
@@ -82,7 +82,16 @@ export default class PlayerProfil extends React.Component{
     }
     this.handleCloseModalChange();
   }
-
+//   callPlayer(){
+//     let number = this.state.player.phoneNumber;
+//     window.plugins.CallNumber.callNumber(onSuccess, onError, number, bypassAppChooser);
+//   }
+//   onSuccess(result){
+//     console.log("Success:"+result);
+//   }
+//   onError(result) {
+//   console.log("Error:"+result);
+// }
   render(){
     let player = this.state.player;
     let dates = this.state.dates;
