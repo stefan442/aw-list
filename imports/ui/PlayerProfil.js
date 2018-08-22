@@ -84,18 +84,18 @@ export default class PlayerProfil extends React.Component{
   }
 
 
-  callPlayer(){
-    if(Meteor.isCordova){
-    let number = this.state.player.phoneNumber;
-    window.plugins.CallNumber.callNumber(onSuccess, onError, number, false);
-    }
-  }
-  onSuccess(result){
-    console.log("Success:"+result);
-  }
-  onError(result) {
-    console.log("Error:"+result);
-  }
+  // callPlayer(){
+  //   // if(Meteor.isCordova){
+  //   let number = this.state.player.phoneNumber;
+  //   window.cordova.plugins.CallNumber.callNumber(onSuccess, onError, number, bypassAppChooser);
+  //   }
+  // // }
+  // onSuccess(result){
+  //   console.log("Success:"+result);
+  // }
+  // onError(result) {
+  //   console.log("Error:"+result);
+  // }
 
 
   render(){

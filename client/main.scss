@@ -175,6 +175,9 @@ body{
 .ReactTable>div>div>div>div>div{
   text-align: center;
 }
+.ReactTable .rt-thead .rt-th, .ReactTable .rt-thead .rt-td {
+  position: static !important;
+}
 
 .attendlistButtonRow{
   display: flex;
