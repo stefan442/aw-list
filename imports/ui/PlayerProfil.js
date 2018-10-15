@@ -138,10 +138,11 @@ export default class PlayerProfil extends React.Component{
             <div className="column">
               <div className="playerprofilInfo">
                 <p>Name: {player.name}</p>
-                <p>Tel.Nr.:  <Clipboard className="buttonColor " data-clipboard-text={player.phoneNumber}>
-                                  {player.phoneNumber}
-                                </Clipboard></p>
-
+                <p>Tel.Nr.: 
+                  <Clipboard className="buttonColor " data-clipboard-text={player.phoneNumber}>
+                     {player.phoneNumber}
+                  </Clipboard>
+                </p>
                 <p>Anwesenheit: {percentage} % </p>
               </div>
               <div className="playerprofilChange">
