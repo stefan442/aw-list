@@ -7,7 +7,7 @@ import Header from './header.js';
 import Modal from 'react-modal';
 import TextField from '@material-ui/core/TextField';
 import NumberFormat from 'react-number-format';
-
+import Clipboard from 'react-clipboard.js';
 
 export default class PlayerProfil extends React.Component{
   constructor(props){
@@ -96,7 +96,11 @@ export default class PlayerProfil extends React.Component{
   // onError(result) {
   //   console.log("Error:"+result);
   // }
-
+  copyPhone(){
+    let copyText = player.phoneNumber;
+    // copyText.select();
+    copyText.execCommand("copy");
+  }
 
   render(){
     let player = this.state.player;
@@ -134,7 +138,10 @@ export default class PlayerProfil extends React.Component{
             <div className="column">
               <div className="playerprofilInfo">
                 <p>Name: {player.name}</p>
-                <p>Tel.Nr.: <button /*onClick={this.callPlayer.bind(this)}*/>{player.phoneNumber}</button></p>
+                <p>Tel.Nr.:  <Clipboard className="buttonColor " data-clipboard-text={player.phoneNumber}>
+                                  {player.phoneNumber}
+                                </Clipboard></p>
+
                 <p>Anwesenheit: {percentage} % </p>
               </div>
               <div className="playerprofilChange">

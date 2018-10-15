@@ -19,11 +19,11 @@ if(Meteor.isServer){ 
       // Termin der heute stattfindet fals dieser in der Vergangenheit erstellt wurde
       // Vorausgesetz Meteor Läuft am rechner zu dieser Zeit
       // UTC TIME BEACHTEN (nur am Server)
-      return parser.recur().on('09:00:00').time();
+      return parser.recur().on('00:30:00').time();
     },
     utc: false,
     job: function(){
-      console.log("job start");
+      // console.log("job start");
       let teams = Teams.find().fetch();
       teams = teams.map((team) => {
         Meteor.call('updatePercentage', team._id);
